@@ -284,6 +284,7 @@
     </section>
 
     <!-- Custom Integrated Form Section (Connected to Google Forms) -->
+    <!-- Custom Integrated Form Section -->
     <section id="registro" class="py-20 bg-zinc-950 border-t border-zinc-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             
@@ -297,43 +298,39 @@
                 </p>
             </div>
 
-            <!-- Custom Styled Form Wrapper -->
             <div class="bg-zinc-900 border-4 border-yellow-400 p-6 sm:p-10 rounded-xl shadow-2xl max-w-2xl mx-auto">
                 
-                <!-- 
-                  NOTA: Reemplaza la URL del action con tu enlace de Google Forms terminado en '/formResponse' 
-                  y ajusta los atributos name="entry.XXXXX" con los identificadores reales de cada campo de tu formulario.
-                -->
-                <form action="https://docs.google.com/forms/d/e/1FAIpQLScWIh209smgIsX_7qNO6GmlV3f5_CMspHPJGz8RFj8_rL175Q/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;" class="space-y-6">
+                <!-- Formulario conectado a Google Apps Script -->
+                <form id="registro-form" class="space-y-6">
                     
                     <!-- Nombre -->
                     <div>
                         <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Nombre *</label>
-                        <input type="text" name="entry.2094923030" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                        <input type="text" name="nombre" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
 
                     <!-- Edad -->
                     <div>
                         <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Edad *</label>
-                        <input type="number" name="entry.486158078" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                        <input type="number" name="edad" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
 
                     <!-- Lugar de procedencia -->
                     <div>
                         <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Lugar de procedencia</label>
-                        <input type="text" name="entry.941816251" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                        <input type="text" name="procedencia" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
 
                     <!-- Equipo -->
                     <div>
                         <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Equipo</label>
-                        <input type="text" name="entry.747247618" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                        <input type="text" name="equipo" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
 
                     <!-- Ruta -->
                     <div>
                         <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Ruta *</label>
-                        <select name="entry.1996504495" required class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                        <select name="ruta" required class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
                             <option value="" disabled selected>Elegir</option>
                             <option value="Principiantes aferrados">Principiantes aferrados</option>
                             <option value="Intermedios">Intermedios</option>
@@ -344,27 +341,53 @@
                     <!-- Teléfono -->
                     <div>
                         <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Teléfono *</label>
-                        <input type="tel" name="entry.1312880577" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                        <input type="tel" name="telefono" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
 
                     <!-- Contacto de emergencia -->
                     <div>
                         <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Contacto de emergencia</label>
-                        <input type="text" name="entry.1417118846" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                        <input type="text" name="emergencia" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-black uppercase py-4 rounded-lg tracking-wider text-base transition shadow-lg transform hover:-translate-y-0.5">
+                    <button type="submit" id="submit-btn" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-black uppercase py-4 rounded-lg tracking-wider text-base transition shadow-lg transform hover:-translate-y-0.5">
                         <i class="fa-solid fa-paper-plane mr-2"></i> Enviar Registro
                     </button>
                 </form>
 
-                <!-- Hidden iframe to prevent page redirect on submit -->
-                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('¡Registro enviado con éxito! Nos vemos en la rodada.'); location.reload(); }"></iframe>
             </div>
 
         </div>
     </section>
+
+    <!-- Script actualizado para manejar el envío por AJAX -->
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmaGm1b3lPhTSBjeS-tpHgjIfPEtQzylDAA-N5-6yDVp_-xYSV-2ebG1veVvXmt79ydg/exec'; // <--- Reemplaza con tu URL obtenida
+
+        const form = document.getElementById('registro-form');
+        const submitBtn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Enviando...';
+
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    alert('¡Registro enviado con éxito! Nos vemos en la rodada.');
+                    form.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i> Enviar Registro';
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('Hubo un error al enviar tu registro. Inténtalo de nuevo.');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i> Enviar Registro';
+                });
+        });
+    </script>
 
     <!-- Footer -->
     <footer class="bg-black border-t border-zinc-900 py-10 text-zinc-400 text-xs sm:text-sm">
