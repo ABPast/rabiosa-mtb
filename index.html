@@ -283,7 +283,7 @@
         </div>
     </section>
 
-    <!-- Google Form Section -->
+    <!-- Custom Integrated Form Section (Connected to Google Forms) -->
     <section id="registro" class="py-20 bg-zinc-950 border-t border-zinc-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             
@@ -293,21 +293,74 @@
                     REGÍSTRATE PARA <span class="text-yellow-400">LA RODADA</span>
                 </h2>
                 <p class="text-zinc-400 text-sm max-w-lg mx-auto">
-                    Llena tus datos a continuación en el formulario oficial para asegurar tu registro al 3er Aniversario.
+                    Completa tus datos directamente en este formulario. ¡Es totalmente gratuito y asegura tu registro al 3er Aniversario!
                 </p>
             </div>
 
-            <!-- Form Wrapper -->
-            <div class="bg-zinc-900 border-4 border-yellow-400 p-4 sm:p-8 rounded shadow-2xl relative">
+            <!-- Custom Styled Form Wrapper -->
+            <div class="bg-zinc-900 border-4 border-yellow-400 p-6 sm:p-10 rounded-xl shadow-2xl max-w-2xl mx-auto">
                 
-                <div id="form-container" class="w-full flex flex-col items-center justify-center min-h-[500px]">
-                    <iframe src="https://forms.gle/GeLRTKaCbxhSivCD9?embedded=true" width="100%" height="650" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-                </div>
+                <!-- 
+                  NOTA: Reemplaza la URL del action con tu enlace de Google Forms terminado en '/formResponse' 
+                  y ajusta los atributos name="entry.XXXXX" con los identificadores reales de cada campo de tu formulario.
+                -->
+                <form action="https://docs.google.com/forms/d/e/1FAIpQLScWIh209smgIsX_7qNO6GmlV3f5_CMspHPJGz8RFj8_rL175Q/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;" class="space-y-6">
+                    
+                    <!-- Nombre -->
+                    <div>
+                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Nombre *</label>
+                        <input type="text" name="entry.2094923030" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
 
-            </div>
+                    <!-- Edad -->
+                    <div>
+                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Edad *</label>
+                        <input type="number" name="entry.486158078" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
 
-            <div class="mt-8 text-center text-xs text-zinc-500 font-bold uppercase tracking-wider">
-                <i class="fa-solid fa-triangle-exclamation text-yellow-400 mr-1"></i> Próximamente mayor información, estén al pendiente de nuestras redes sociales.
+                    <!-- Lugar de procedencia -->
+                    <div>
+                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Lugar de procedencia</label>
+                        <input type="text" name="entry.941816251" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
+
+                    <!-- Equipo -->
+                    <div>
+                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Equipo</label>
+                        <input type="text" name="entry.747247618" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
+
+                    <!-- Ruta -->
+                    <div>
+                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Ruta *</label>
+                        <select name="entry.1996504495" required class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                            <option value="" disabled selected>Elegir</option>
+                            <option value="Principiantes aferrados">Principiantes aferrados</option>
+                            <option value="Intermedios">Intermedios</option>
+                            <option value="Avanzados">Avanzados</option>
+                        </select>
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div>
+                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Teléfono *</label>
+                        <input type="tel" name="entry.1312880577" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
+
+                    <!-- Contacto de emergencia -->
+                    <div>
+                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Contacto de emergencia</label>
+                        <input type="text" name="entry.1417118846" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-black uppercase py-4 rounded-lg tracking-wider text-base transition shadow-lg transform hover:-translate-y-0.5">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Enviar Registro
+                    </button>
+                </form>
+
+                <!-- Hidden iframe to prevent page redirect on submit -->
+                <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { alert('¡Registro enviado con éxito! Nos vemos en la rodada.'); location.reload(); }"></iframe>
             </div>
 
         </div>
@@ -328,7 +381,10 @@
         </div>
     </footer>
 
+    <!-- Scripting for submission feedback & mobile menu -->
     <script>
+        let submitted = false;
+
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -338,4 +394,3 @@
     </script>
 </body>
 </html>
-
