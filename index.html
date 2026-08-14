@@ -57,6 +57,8 @@
                 <a href="#inicio" class="hover:text-yellow-400 transition">INICIO</a>
                 <a href="#detalles" class="hover:text-yellow-400 transition">DETALLES</a>
                 <a href="#ruta" class="hover:text-yellow-400 transition">CATEGORÍAS</a>
+                <a href="#strava" class="hover:text-yellow-400 transition">RUTAS STRAVA</a>
+                <a href="#ubicacion" class="hover:text-yellow-400 transition">UBICACIÓN</a>
                 <a href="#registro" class="bg-yellow-400 text-black px-5 py-2.5 rounded shadow hover:bg-yellow-500 transition">REGÍSTRATE GRATIS</a>
             </nav>
             <button id="menu-btn" class="md:hidden text-2xl text-yellow-400 focus:outline-none">
@@ -68,6 +70,8 @@
             <a href="#inicio" class="block py-1 hover:text-yellow-400">INICIO</a>
             <a href="#detalles" class="block py-1 hover:text-yellow-400">DETALLES</a>
             <a href="#ruta" class="block py-1 hover:text-yellow-400">CATEGORÍAS</a>
+            <a href="#strava" class="block py-1 hover:text-yellow-400">RUTAS STRAVA</a>
+            <a href="#ubicacion" class="block py-1 hover:text-yellow-400">UBICACIÓN</a>
             <a href="#registro" class="block text-center bg-yellow-400 text-black py-2.5 rounded">REGÍSTRATE GRATIS</a>
         </div>
     </header>
@@ -181,6 +185,104 @@
         </div>
     </section>
 
+    <!-- Strava Routes Section -->
+    <section id="strava" class="py-20 bg-zinc-900 border-y border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="bg-orange-500 text-white text-xs font-black uppercase px-3 py-1 rounded"><i class="fa-brands fa-strava mr-1"></i> SECCIÓN STRAVA</span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-3 mb-4">
+                    MAPAS Y <span class="text-yellow-400">RUTAS OFICIALES</span>
+                </h2>
+                <p class="text-zinc-400 text-sm">Consulta la altimetría, descarga el archivo GPX o analiza los tramos oficiales de la rodada en Strava.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Tarjeta Ruta Corta / Principiantes -->
+                <div class="bg-black border-2 border-zinc-800 p-6 sm:p-8 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-yellow-400/10 text-yellow-400 border border-yellow-400/30 text-xs font-bold px-3 py-1 rounded uppercase">Principiantes Aferrados</span>
+                            <span class="text-orange-500 text-2xl"><i class="fa-brands fa-strava"></i></span>
+                        </div>
+                        <h3 class="text-2xl font-black uppercase text-white mb-2">Circuito Santa Cruz</h3>
+                        <p class="text-zinc-400 text-xs sm:text-sm mb-6">Ruta diseñada para disfrutar de los paisajes locales con exigencia moderada y excelente marcaje.</p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6 border-y border-zinc-800 py-4">
+                            <div>
+                                <p class="text-xs text-zinc-500 uppercase font-bold">Distancia Estimada</p>
+                                <p class="text-lg font-black text-white">~ 25 km</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-zinc-500 uppercase font-bold">Desnivel (+)</p>
+                                <p class="text-lg font-black text-white">~ 450 m</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.strava.com" target="_blank" class="block text-center bg-zinc-800 hover:bg-orange-600 text-white font-bold py-3 rounded uppercase text-sm transition tracking-wider">
+                        Ver Ruta en Strava <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Tarjeta Ruta Reto / Intermedios y Avanzados -->
+                <div class="bg-black border-2 border-yellow-400/60 p-6 sm:p-8 rounded-xl flex flex-col justify-between shadow-xl shadow-yellow-400/5">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="bg-yellow-400 text-black text-xs font-black px-3 py-1 rounded uppercase">Intermedios y Avanzados</span>
+                            <span class="text-orange-500 text-2xl"><i class="fa-brands fa-strava"></i></span>
+                        </div>
+                        <h3 class="text-2xl font-black uppercase text-white mb-2">El Reto "La Rabiosa"</h3>
+                        <p class="text-zinc-400 text-xs sm:text-sm mb-6">La ruta completa que atraviesa los senderos más técnicos, subidas demandantes y toda la aventura.</p>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6 border-y border-zinc-800 py-4">
+                            <div>
+                                <p class="text-xs text-zinc-500 uppercase font-bold">Distancia Estimada</p>
+                                <p class="text-lg font-black text-white">~ 45 km</p>
+                            </div>
+                            <div>
+                                <p class="text-xs text-zinc-500 uppercase font-bold">Desnivel (+)</p>
+                                <p class="text-lg font-black text-white">~ 950 m</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="https://www.strava.com" target="_blank" class="block text-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded uppercase text-sm transition tracking-wider">
+                        Ver Ruta Completa en Strava <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ubicación Google Maps Section -->
+    <section id="ubicacion" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded"><i class="fa-solid fa-location-dot mr-1"></i> PUNTO DE SALIDA Y META</span>
+            <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-3 mb-4">
+                UBICACIÓN DEL <span class="text-yellow-400">EVENTO</span>
+            </h2>
+            <p class="text-zinc-400 text-sm">Santa Cruz El Porvenir, Ixtacuixtla, Tlaxcala. ¡Te esperamos para el banderazo de salida!</p>
+        </div>
+
+        <div class="bg-zinc-900 border-4 border-yellow-400 p-2 rounded-2xl shadow-2xl overflow-hidden">
+            <div class="w-full h-[450px] rounded-xl overflow-hidden">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15049.527376045612!2d-98.3370932!3d19.3458285!2m3!1f0!2f0!3f0!3m2!1f1024!2f768!4f13.1!3m3!1m2!1s0x85cfd2d765b2a0c3%3A0x808b8b9cb07cb04!2sSanta%20Cruz%20el%20Porvenir%2C%20Tlax.!5e0!3m2!1ses-419!2smx!4v1710000000000!5m2!1ses-419!2smx" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    class="filter contrast-125 invert brightness-90">
+                </iframe>
+            </div>
+        </div>
+        <div class="mt-6 text-center">
+            <a href="https://maps.app.goo.gl/3QW6n5z15K4zWc8n9" target="_blank" class="inline-flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white font-bold px-6 py-3 rounded-lg border border-zinc-700 text-sm uppercase tracking-wider transition">
+                <i class="fa-solid fa-diamond-turn-right text-yellow-400"></i> Abrir ubicación en la app de Google Maps
+            </a>
+        </div>
+    </section>
+
     <!-- Google Form Section -->
     <section id="registro" class="py-20 bg-zinc-950 border-t border-zinc-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -199,16 +301,7 @@
             <div class="bg-zinc-900 border-4 border-yellow-400 p-4 sm:p-8 rounded shadow-2xl relative">
                 
                 <div id="form-container" class="w-full flex flex-col items-center justify-center min-h-[500px]">
-                    
-                    <div id="form-placeholder" class="text-center p-6 space-y-6 max-w-md">
-                        <div class="w-20 h-20 bg-yellow-400 text-black text-4xl rounded-full flex items-center justify-center mx-auto font-black shadow-md">
-                            <i class="fa-solid fa-file-lines"></i>
-                        </div>
-                  
-                    </div>
-                        <iframe src="https://forms.gle/GeLRTKaCbxhSivCD9?embedded=true" width="100%" height="650" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
-                    
-
+                    <iframe src="https://forms.gle/GeLRTKaCbxhSivCD9?embedded=true" width="100%" height="650" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
                 </div>
 
             </div>
