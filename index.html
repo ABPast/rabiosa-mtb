@@ -50,10 +50,9 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center gap-3 group">
                 <div class="bg-yellow-400 text-black font-black px-3 py-1.5 rounded-lg text-lg uppercase tracking-wider flex items-center gap-2.5 shadow-lg shadow-yellow-400/20">
-                    <!-- Contenedor del Logo del Equipo en el Encabezado -->
+                    <!-- Logo del Equipo en el Encabezado -->
                     <div class="w-10 h-10 flex items-center justify-center overflow-hidden">
                         <img src="./app/logo-equipo.png" alt="Logo MTB Pugs" class="max-h-full max-w-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <!-- Respaldo en caso de que la imagen no esté cargada -->
                         <div class="hidden w-full h-full bg-black text-yellow-400 rounded items-center justify-center text-base">
                             <i class="fa-solid fa-dog"></i>
                         </div>
@@ -90,19 +89,24 @@
     <section id="inicio" class="relative pt-20 pb-28 md:pt-32 md:pb-36 bg-zinc-950 overflow-hidden">
         <div class="absolute inset-0 opacity-15 bg-cover bg-center pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1920&q=80')"></div>
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
             
             <div class="inline-flex items-center gap-2 bg-yellow-400 text-black font-black text-xl sm:text-2xl px-6 py-2 uppercase tracking-widest mb-6 transform -rotate-1 shadow-lg">
                 <i class="fa-solid fa-shield-dog"></i> #3ER ANIVERSARIO <i class="fa-solid fa-bicycle"></i>
             </div>
 
-            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black italic tracking-tighter uppercase mb-4 text-white">
+            <!-- Logo del equipo entre el distintivo y el título -->
+            <div class="w-24 h-24 sm:w-32 sm:h-32 mb-6 flex items-center justify-center bg-black/40 p-2 rounded-full border-2 border-yellow-400/50 shadow-xl overflow-hidden">
+                <img src="./app/logo-equipo.png" alt="Logo MTB Pugs" class="max-h-full max-w-full object-contain filter drop-shadow-[0_5px_5px_rgba(255,215,0,0.4)]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="hidden w-full h-full bg-black text-yellow-400 rounded-full items-center justify-center text-4xl">
+                    <i class="fa-solid fa-dog"></i>
+                </div>
+            </div>
+
+            <!-- Título principal sin texto debajo -->
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black italic tracking-tighter uppercase mb-10 text-white">
                 RODADA <span class="text-yellow-400 underline decoration-yellow-400 decoration-wavy">"LA RABIOSA"</span>
             </h1>
-
-            <p class="text-zinc-400 font-bold tracking-widest text-sm sm:text-lg uppercase mb-10">
-                Santa Cruz El Porvenir, Ixtacuixtla, Tlaxcala
-            </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="#registro" class="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 font-black text-lg uppercase tracking-wider rounded shadow-xl transition transform hover:-translate-y-1">
@@ -118,7 +122,7 @@
     <!-- Info Grid matching poster icons -->
     <section id="detalles" class="py-16 bg-zinc-900 border-y-4 border-yellow-400">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                 <!-- Location -->
                 <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
                     <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
@@ -137,6 +141,16 @@
                     <div>
                         <p class="text-xs font-bold text-yellow-400 uppercase">Fecha</p>
                         <p class="text-sm font-bold text-white">22 de Noviembre</p>
+                    </div>
+                </div>
+                <!-- Hour -->
+                <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-yellow-400 uppercase">Hora de Salida</p>
+                        <p class="text-sm font-bold text-white">8:00 AM</p>
                     </div>
                 </div>
                 <!-- Route / Levels -->
@@ -371,6 +385,14 @@
                         <input type="text" name="emergencia" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
 
+                    <!-- Check de Privacidad Opción 1 -->
+                    <div class="flex items-start gap-3 pt-2">
+                        <input type="checkbox" id="privacidad" name="privacidad" required class="mt-1 w-4 h-4 accent-yellow-400 bg-black border-zinc-800 rounded cursor-pointer">
+                        <label for="privacidad" class="text-xs text-zinc-300 leading-relaxed cursor-pointer">
+                            Doy mi consentimiento para que el equipo MTB Pug's utilice mis datos exclusivamente para la organización del evento. *
+                        </label>
+                    </div>
+
                     <!-- Submit Button -->
                     <button type="submit" id="submit-btn" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-black uppercase py-4 rounded-lg tracking-wider text-base transition shadow-lg transform hover:-translate-y-0.5">
                         <i class="fa-solid fa-paper-plane mr-2"></i> Enviar Registro
@@ -382,63 +404,42 @@
         </div>
     </section>
 
-    <!-- Patrocinadores Section (Al final, con carga de imágenes) -->
-    <section id="patrocinadores" class="py-20 bg-zinc-900 border-t border-zinc-800">
+    <!-- Patrocinadores Section (Simplificado: Solo logos, justo después del formulario) -->
+    <section id="patrocinadores" class="py-16 bg-zinc-900 border-t border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded"><i class="fa-solid fa-handshake mr-1"></i> ALIADOS Y MARCAS</span>
-                <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-3 mb-4">
-                    NUESTROS <span class="text-yellow-400">PATROCINADORES</span>
+            <div class="text-center mb-10">
+                <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
+                    PATROCINADORES
                 </h2>
-                <p class="text-zinc-400 text-sm">Agradecemos profundamente a los negocios, marcas y amigos que apoyan e impulsan este gran evento.</p>
             </div>
 
-            <!-- Grid de Patrocinadores con contenedores de imagen -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Grid simple de logos -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto items-center justify-items-center">
                 
                 <!-- Patrocinador 1 -->
-                <div class="bg-black border-2 border-zinc-800 hover:border-yellow-400 p-6 rounded-xl flex flex-col items-center justify-center text-center transition group min-h-[160px]">
-                    <div class="w-28 h-16 flex items-center justify-center mb-3">
-                        <img src="./app/patrocinador1.png" alt="Logo Patrocinador 1" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="hidden text-xs text-zinc-500 italic font-bold">[Cargar Logo 1]</span>
-                    </div>
-                    <h3 class="font-black text-white uppercase text-xs tracking-wider">Patrocinador 01</h3>
+                <div class="w-full bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-24 group">
+                    <img src="./app/patrocinador1.png" alt="Patrocinador 1" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="hidden text-xs text-zinc-600 font-bold">[Logo 1]</span>
                 </div>
 
                 <!-- Patrocinador 2 -->
-                <div class="bg-black border-2 border-zinc-800 hover:border-yellow-400 p-6 rounded-xl flex flex-col items-center justify-center text-center transition group min-h-[160px]">
-                    <div class="w-28 h-16 flex items-center justify-center mb-3">
-                        <img src="./app/patrocinador2.png" alt="Logo Patrocinador 2" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="hidden text-xs text-zinc-500 italic font-bold">[Cargar Logo 2]</span>
-                    </div>
-                    <h3 class="font-black text-white uppercase text-xs tracking-wider">Patrocinador 02</h3>
+                <div class="w-full bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-24 group">
+                    <img src="./app/patrocinador2.png" alt="Patrocinador 2" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="hidden text-xs text-zinc-600 font-bold">[Logo 2]</span>
                 </div>
 
                 <!-- Patrocinador 3 -->
-                <div class="bg-black border-2 border-zinc-800 hover:border-yellow-400 p-6 rounded-xl flex flex-col items-center justify-center text-center transition group min-h-[160px]">
-                    <div class="w-28 h-16 flex items-center justify-center mb-3">
-                        <img src="./app/patrocinador3.png" alt="Logo Patrocinador 3" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="hidden text-xs text-zinc-500 italic font-bold">[Cargar Logo 3]</span>
-                    </div>
-                    <h3 class="font-black text-white uppercase text-xs tracking-wider">Patrocinador 03</h3>
+                <div class="w-full bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-24 group">
+                    <img src="./app/patrocinador3.png" alt="Patrocinador 3" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="hidden text-xs text-zinc-600 font-bold">[Logo 3]</span>
                 </div>
 
                 <!-- Patrocinador 4 -->
-                <div class="bg-black border-2 border-zinc-800 hover:border-yellow-400 p-6 rounded-xl flex flex-col items-center justify-center text-center transition group min-h-[160px]">
-                    <div class="w-28 h-16 flex items-center justify-center mb-3">
-                        <img src="./app/patrocinador4.png" alt="Logo Patrocinador 4" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                        <span class="hidden text-xs text-zinc-500 italic font-bold">[Cargar Logo 4]</span>
-                    </div>
-                    <h3 class="font-black text-white uppercase text-xs tracking-wider">Patrocinador 04</h3>
+                <div class="w-full bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-24 group">
+                    <img src="./app/patrocinador4.png" alt="Patrocinador 4" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="hidden text-xs text-zinc-600 font-bold">[Logo 4]</span>
                 </div>
 
-            </div>
-
-            <div class="mt-12 text-center bg-black border border-zinc-800 p-6 rounded-xl max-w-lg mx-auto">
-                <p class="text-xs text-zinc-300 font-bold mb-2 uppercase">¿Te gustaría sumar tu marca como patrocinador?</p>
-                <a href="https://www.facebook.com/mtbpugssantacruzelporvenirixtacuixtla" target="_blank" class="inline-block text-yellow-400 font-black text-sm hover:underline">
-                    Contáctanos vía Facebook <i class="fa-solid fa-arrow-right ml-1"></i>
-                </a>
             </div>
         </div>
     </section>
