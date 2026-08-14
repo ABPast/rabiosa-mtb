@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3er Aniversario MTB Pugs - "La Rabiosa"</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rabiosaYellow: {
+                            400: '#ffd700',
+                            500: '#ffcc00',
+                            600: '#e6b800',
+                        },
+                        rabiosaDark: '#121212',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0b0b0b;
+            color: #f3f3f3;
+        }
+    </style>
+</head>
+<body class="bg-black text-white selection:bg-yellow-400 selection:text-black">
+
+    <!-- Top Banner / Club Info -->
+    <div class="bg-yellow-400 text-black font-black py-2.5 px-4 text-center text-xs sm:text-sm tracking-wider uppercase shadow-md overflow-hidden">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2">
+            <span><i class="fa-solid fa-paw mr-1"></i> MTB PUG'S SANTA CRUZ EL PORVENIR IXTACUIXTLA</span>
+            <span class="hidden sm:inline">|</span>
+            <span>¡EVENTO TOTALMENTE GRATUITO!</span>
+        </div>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-black/95 backdrop-blur border-b border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3">
+                <div class="bg-yellow-400 text-black font-black p-2 rounded text-lg uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-dog"></i> MTB PUG'S
+                </div>
+            </a>
+            <nav class="hidden md:flex items-center gap-6 font-bold text-sm tracking-wide">
+                <a href="#inicio" class="hover:text-yellow-400 transition">INICIO</a>
+                <a href="#detalles" class="hover:text-yellow-400 transition">DETALLES</a>
+                <a href="#ruta" class="hover:text-yellow-400 transition">CATEGORÍAS</a>
+                <a href="#registro" class="bg-yellow-400 text-black px-5 py-2.5 rounded shadow hover:bg-yellow-500 transition">REGÍSTRATE GRATIS</a>
+            </nav>
+            <button id="menu-btn" class="md:hidden text-2xl text-yellow-400 focus:outline-none">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-b border-zinc-800 px-4 py-4 space-y-3 font-bold text-sm">
+            <a href="#inicio" class="block py-1 hover:text-yellow-400">INICIO</a>
+            <a href="#detalles" class="block py-1 hover:text-yellow-400">DETALLES</a>
+            <a href="#ruta" class="block py-1 hover:text-yellow-400">CATEGORÍAS</a>
+            <a href="#registro" class="block text-center bg-yellow-400 text-black py-2.5 rounded">REGÍSTRATE GRATIS</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative pt-20 pb-28 md:pt-32 md:pb-36 bg-zinc-950 overflow-hidden">
+        <div class="absolute inset-0 opacity-15 bg-cover bg-center pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1920&q=80')"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            
+            <div class="inline-block bg-yellow-400 text-black font-black text-xl sm:text-2xl px-6 py-2 uppercase tracking-widest mb-6 transform -rotate-1 shadow-lg">
+                #3ER ANIVERSARIO
+            </div>
+
+            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black italic tracking-tighter uppercase mb-4 text-white">
+                RODADA <span class="text-yellow-400 underline decoration-yellow-400 decoration-wavy">"LA RABIOSA"</span>
+            </h1>
+
+            <p class="text-zinc-400 font-bold tracking-widest text-sm sm:text-lg uppercase mb-10">
+                Santa Cruz El Porvenir, Ixtacuixtla, Tlaxcala
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#registro" class="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 font-black text-lg uppercase tracking-wider rounded shadow-xl transition transform hover:-translate-y-1">
+                    <i class="fa-solid fa-bicycle mr-2"></i> Apartar Mi Lugar Gratis
+                </a>
+                <a href="#detalles" class="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700 px-8 py-4 font-bold text-lg uppercase tracking-wider rounded transition">
+                    Ver Información
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Grid matching poster icons -->
+    <section id="detalles" class="py-16 bg-zinc-900 border-y-4 border-yellow-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Location -->
+                <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-yellow-400 uppercase">Ubicación</p>
+                        <p class="text-sm font-bold text-white">Santa Cruz El Porvenir, Ixtacuixtla, Tlax.</p>
+                    </div>
+                </div>
+                <!-- Date -->
+                <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-yellow-400 uppercase">Fecha</p>
+                        <p class="text-sm font-bold text-white">22 de Noviembre</p>
+                    </div>
+                </div>
+                <!-- Route / Levels -->
+                <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
+                        <i class="fa-solid fa-mountain"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-yellow-400 uppercase">Ruta / Niveles</p>
+                        <p class="text-sm font-bold text-white">Principiantes aferrados, Intermedios y Avanzados</p>
+                    </div>
+                </div>
+                <!-- Cost -->
+                <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
+                    <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
+                        <i class="fa-solid fa-paw"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs font-bold text-yellow-400 uppercase">Costo</p>
+                        <p class="text-sm font-bold text-white">¡Evento Totalmente Gratuito!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="ruta" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+            <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
+                CATEGORÍAS DE <span class="text-yellow-400">RODADA</span>
+            </h2>
+            <p class="text-zinc-400 text-sm">Elige la categoría que mejor se adapte a tu nivel y prepárate para conquistar los caminos.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Principiantes aferrados -->
+            <div class="bg-zinc-900 border-2 border-zinc-800 p-8 rounded relative">
+                <div class="text-yellow-400 text-4xl font-black mb-4"><i class="fa-solid fa-seedling"></i></div>
+                <h3 class="text-xl font-black uppercase text-white mb-3">Principiantes aferrados</h3>
+                <p class="text-zinc-400 text-sm">Para quienes están empezando en el mundo del MTB pero con todas las ganas de completar el reto y disfrutar cada kilómetro.</p>
+            </div>
+            <!-- Intermedios -->
+            <div class="bg-zinc-900 border-2 border-zinc-800 p-8 rounded relative">
+                <div class="text-yellow-400 text-4xl font-black mb-4"><i class="fa-solid fa-bolt"></i></div>
+                <h3 class="text-xl font-black uppercase text-white mb-3">Intermedios</h3>
+                <p class="text-zinc-400 text-sm">Para rodadores con buen ritmo, listos para superar senderos divertidos y mantener una rodada constante y ágil.</p>
+            </div>
+            <!-- Avanzados -->
+            <div class="bg-zinc-900 border-2 border-yellow-400 p-8 rounded relative shadow-lg shadow-yellow-400/10">
+                <div class="absolute -top-3 right-4 bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">¡Alto Rendimiento!</div>
+                <div class="text-yellow-400 text-4xl font-black mb-4"><i class="fa-solid fa-fire"></i></div>
+                <h3 class="text-xl font-black uppercase text-white mb-3">Avanzados</h3>
+                <p class="text-zinc-400 text-sm">Para los expertos que buscan exigencia máxima, tramos técnicos avanzados y poner a prueba toda su condición física.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Form Section -->
+    <section id="registro" class="py-20 bg-zinc-950 border-t border-zinc-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center mb-12">
+                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">INSCRIPCIÓN OFICIAL</span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-3 mb-4">
+                    REGÍSTRATE PARA <span class="text-yellow-400">LA RODADA</span>
+                </h2>
+                <p class="text-zinc-400 text-sm max-w-lg mx-auto">
+                    Llena tus datos a continuación en el formulario oficial o ábrelo directamente en pantalla completa para asegurar tu registro al 3er Aniversario.
+                </p>
+            </div>
+
+            <!-- Form Wrapper -->
+            <div class="bg-zinc-900 border-4 border-yellow-400 p-4 sm:p-8 rounded shadow-2xl relative">
+                
+                <div id="form-container" class="w-full flex flex-col items-center justify-center min-h-[500px]">
+                    
+                    <div id="form-placeholder" class="text-center p-6 space-y-6 max-w-md">
+                        <div class="w-20 h-20 bg-yellow-400 text-black text-4xl rounded-full flex items-center justify-center mx-auto font-black shadow-md">
+                            <i class="fa-solid fa-file-lines"></i>
+                        </div>
+                        <h3 class="text-2xl font-black uppercase text-white">Formulario de Registro Integrado</h3>
+                        <p class="text-xs text-zinc-400">
+                            Inserta tu enlace de Google Forms en el código fuente (cambiando <code>TU_URL_DE_GOOGLE_FORM</code>) o haz clic en el botón inferior para abrirlo en una pestaña nueva.
+                        </p>
+                        <div>
+                            <a href="https://forms.google.com" target="_blank" class="inline-block bg-yellow-400 hover:bg-yellow-500 text-black font-black uppercase px-8 py-3 rounded tracking-wider text-sm transition shadow-lg">
+                                Abrir Google Forms <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 
+                        CÓDIGO DE GOOGLE FORM REAL (Descomenta esto y coloca tu enlace en src):
+                        <iframe src="TU_URL_DE_GOOGLE_FORM?embedded=true" width="100%" height="650" frameborder="0" marginheight="0" marginwidth="0">Cargando…</iframe>
+                    -->
+
+                </div>
+
+            </div>
+
+            <div class="mt-8 text-center text-xs text-zinc-500 font-bold uppercase tracking-wider">
+                <i class="fa-solid fa-triangle-exclamation text-yellow-400 mr-1"></i> Próximamente mayor información, estén al pendiente de nuestras redes sociales.
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-zinc-900 py-10 text-zinc-400 text-xs sm:text-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
+            <div>
+                <p class="font-black text-white text-lg uppercase">MTB PUG'S SANTA CRUZ EL PORVENIR IXTACUIXTLA</p>
+                <p class="text-xs text-zinc-500">© 2026 3er Aniversario Rodada "La Rabiosa". Todos los derechos reservados.</p>
+            </div>
+            <div>
+                <a href="https://facebook.com" target="_blank" class="inline-flex items-center gap-2 bg-yellow-400 text-black font-black px-6 py-3 rounded uppercase hover:bg-yellow-500 transition shadow">
+                    <i class="fa-brands fa-facebook text-lg"></i> Visita nuestra página de Facebook
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
+
