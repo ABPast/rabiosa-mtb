@@ -48,9 +48,17 @@
     <!-- Header / Navbar -->
     <header class="sticky top-0 z-50 bg-black/95 backdrop-blur border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3">
-                <div class="bg-yellow-400 text-black font-black p-2 rounded text-lg uppercase tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-dog"></i> MTB PUG'S
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="bg-yellow-400 text-black font-black px-3 py-1.5 rounded-lg text-lg uppercase tracking-wider flex items-center gap-2.5 shadow-lg shadow-yellow-400/20">
+                    <!-- Contenedor del Logo del Equipo en el Encabezado -->
+                    <div class="w-10 h-10 flex items-center justify-center overflow-hidden">
+                        <img src="./app/logo-equipo.png" alt="Logo MTB Pugs" class="max-h-full max-w-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <!-- Respaldo en caso de que la imagen no esté cargada -->
+                        <div class="hidden w-full h-full bg-black text-yellow-400 rounded items-center justify-center text-base">
+                            <i class="fa-solid fa-dog"></i>
+                        </div>
+                    </div>
+                    <span class="tracking-tighter text-black font-black text-base sm:text-lg">MTB PUG'S</span>
                 </div>
             </a>
             <nav class="hidden md:flex items-center gap-6 font-bold text-sm tracking-wide">
@@ -59,7 +67,8 @@
                 <a href="#ruta" class="hover:text-yellow-400 transition">CATEGORÍAS</a>
                 <a href="#strava" class="hover:text-yellow-400 transition">RUTAS STRAVA</a>
                 <a href="#ubicacion" class="hover:text-yellow-400 transition">UBICACIÓN</a>
-                <a href="#registro" class="bg-yellow-400 text-black px-5 py-2.5 rounded shadow hover:bg-yellow-500 transition">REGÍSTRATE GRATIS</a>
+                <a href="#registro" class="hover:text-yellow-400 transition">REGISTRO</a>
+                <a href="#patrocinadores" class="hover:text-yellow-400 transition">PATROCINADORES</a>
             </nav>
             <button id="menu-btn" class="md:hidden text-2xl text-yellow-400 focus:outline-none">
                 <i class="fa-solid fa-bars"></i>
@@ -72,7 +81,8 @@
             <a href="#ruta" class="block py-1 hover:text-yellow-400">CATEGORÍAS</a>
             <a href="#strava" class="block py-1 hover:text-yellow-400">RUTAS STRAVA</a>
             <a href="#ubicacion" class="block py-1 hover:text-yellow-400">UBICACIÓN</a>
-            <a href="#registro" class="block text-center bg-yellow-400 text-black py-2.5 rounded">REGÍSTRATE GRATIS</a>
+            <a href="#registro" class="block py-1 hover:text-yellow-400">REGISTRO</a>
+            <a href="#patrocinadores" class="block py-1 hover:text-yellow-400">PATROCINADORES</a>
         </div>
     </header>
 
@@ -82,8 +92,8 @@
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             
-            <div class="inline-block bg-yellow-400 text-black font-black text-xl sm:text-2xl px-6 py-2 uppercase tracking-widest mb-6 transform -rotate-1 shadow-lg">
-                #3ER ANIVERSARIO
+            <div class="inline-flex items-center gap-2 bg-yellow-400 text-black font-black text-xl sm:text-2xl px-6 py-2 uppercase tracking-widest mb-6 transform -rotate-1 shadow-lg">
+                <i class="fa-solid fa-shield-dog"></i> #3ER ANIVERSARIO <i class="fa-solid fa-bicycle"></i>
             </div>
 
             <h1 class="text-5xl sm:text-7xl md:text-8xl font-black italic tracking-tighter uppercase mb-4 text-white">
@@ -253,7 +263,7 @@
     </section>
 
     <!-- Ubicación Google Maps Section -->
-    <section id="ubicacion" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="ubicacion" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-zinc-950">
         <div class="text-center max-w-2xl mx-auto mb-12">
             <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded"><i class="fa-solid fa-location-dot mr-1"></i> PUNTO DE SALIDA Y META</span>
             <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-3 mb-4">
@@ -283,7 +293,6 @@
         </div>
     </section>
 
-    <!-- Custom Integrated Form Section (Connected to Google Forms) -->
     <!-- Custom Integrated Form Section -->
     <section id="registro" class="py-20 bg-zinc-950 border-t border-zinc-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -298,8 +307,20 @@
                 </p>
             </div>
 
-            <div class="bg-zinc-900 border-4 border-yellow-400 p-6 sm:p-10 rounded-xl shadow-2xl max-w-2xl mx-auto">
+            <div class="bg-zinc-900 border-4 border-yellow-400 p-6 sm:p-10 rounded-xl shadow-2xl max-w-2xl mx-auto relative overflow-hidden">
                 
+                <!-- Feedback visual elegante (Reemplazo del alert) -->
+                <div id="form-success-banner" class="hidden absolute inset-0 bg-zinc-900 z-20 flex flex-col items-center justify-center text-center p-8 transition-all duration-300">
+                    <div class="w-20 h-20 bg-yellow-400 text-black rounded-full flex items-center justify-center text-4xl mb-4 shadow-lg shadow-yellow-400/30 animate-bounce">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-black text-white uppercase mb-2">¡REGISTRO EXITOSO!</h3>
+                    <p class="text-zinc-300 text-sm mb-6 max-w-md">Tus datos han sido guardados correctamente. ¡Estás listo para rodar con los MTB Pug's en "La Rabiosa"! Nos vemos en la línea de salida.</p>
+                    <button type="button" id="reset-form-btn" class="bg-yellow-400 hover:bg-yellow-500 text-black font-black uppercase px-8 py-3 rounded-lg text-sm transition">
+                        Registrar a otro ciclista
+                    </button>
+                </div>
+
                 <!-- Formulario conectado a Google Apps Script -->
                 <form id="registro-form" class="space-y-6">
                     
@@ -361,12 +382,75 @@
         </div>
     </section>
 
-    <!-- Script actualizado para manejar el envío por AJAX -->
+    <!-- Patrocinadores Section (Al final, con carga de imágenes) -->
+    <section id="patrocinadores" class="py-20 bg-zinc-900 border-t border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded"><i class="fa-solid fa-handshake mr-1"></i> ALIADOS Y MARCAS</span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-3 mb-4">
+                    NUESTROS <span class="text-yellow-400">PATROCINADORES</span>
+                </h2>
+                <p class="text-zinc-400 text-sm">Agradecemos profundamente a los negocios, marcas y amigos que apoyan e impulsan este gran evento.</p>
+            </div>
+
+            <!-- Grid de Patrocinadores con contenedores de imagen -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+                
+                <!-- Patrocinador 1 -->
+                <div class="bg-black border-2 border-zinc-800 hover:border-yellow-400 p-6 rounded-xl flex flex-col items-center justify-center text-center transition group min-h-[160px]">
+                    <div class="w-28 h-16 flex items-center justify-center mb-3">
+                        <img src="./app/patrocinador1.png" alt="Logo Patrocinador 1" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="hidden text-xs text-zinc-500 italic font-bold">[Cargar Logo 1]</span>
+                    </div>
+                    <h3 class="font-black text-white uppercase text-xs tracking-wider">Patrocinador 01</h3>
+                </div>
+
+                <!-- Patrocinador 2 -->
+                <div class="bg-black border-2 border-zinc-800 hover:border-yellow-400 p-6 rounded-xl flex flex-col items-center justify-center text-center transition group min-h-[160px]">
+                    <div class="w-28 h-16 flex items-center justify-center mb-3">
+                        <img src="./app/patrocinador2.png" alt="Logo Patrocinador 2" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="hidden text-xs text-zinc-500 italic font-bold">[Cargar Logo 2]</span>
+                    </div>
+                    <h3 class="font-black text-white uppercase text-xs tracking-wider">Patrocinador 02</h3>
+                </div>
+
+                <!-- Patrocinador 3 -->
+                <div class="bg-black border-2 border-zinc-800 hover:border-yellow-400 p-6 rounded-xl flex flex-col items-center justify-center text-center transition group min-h-[160px]">
+                    <div class="w-28 h-16 flex items-center justify-center mb-3">
+                        <img src="./app/patrocinador3.png" alt="Logo Patrocinador 3" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="hidden text-xs text-zinc-500 italic font-bold">[Cargar Logo 3]</span>
+                    </div>
+                    <h3 class="font-black text-white uppercase text-xs tracking-wider">Patrocinador 03</h3>
+                </div>
+
+                <!-- Patrocinador 4 -->
+                <div class="bg-black border-2 border-zinc-800 hover:border-yellow-400 p-6 rounded-xl flex flex-col items-center justify-center text-center transition group min-h-[160px]">
+                    <div class="w-28 h-16 flex items-center justify-center mb-3">
+                        <img src="./app/patrocinador4.png" alt="Logo Patrocinador 4" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                        <span class="hidden text-xs text-zinc-500 italic font-bold">[Cargar Logo 4]</span>
+                    </div>
+                    <h3 class="font-black text-white uppercase text-xs tracking-wider">Patrocinador 04</h3>
+                </div>
+
+            </div>
+
+            <div class="mt-12 text-center bg-black border border-zinc-800 p-6 rounded-xl max-w-lg mx-auto">
+                <p class="text-xs text-zinc-300 font-bold mb-2 uppercase">¿Te gustaría sumar tu marca como patrocinador?</p>
+                <a href="https://www.facebook.com/mtbpugssantacruzelporvenirixtacuixtla" target="_blank" class="inline-block text-yellow-400 font-black text-sm hover:underline">
+                    Contáctanos vía Facebook <i class="fa-solid fa-arrow-right ml-1"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script actualizado para manejar envío por AJAX y banner visual de éxito -->
     <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmaGm1b3lPhTSBjeS-tpHgjIfPEtQzylDAA-N5-6yDVp_-xYSV-2ebG1veVvXmt79ydg/exec'; // <--- Reemplaza con tu URL obtenida
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmaGm1b3lPhTSBjeS-tpHgjIfPEtQzylDAA-N5-6yDVp_-xYSV-2ebG1veVvXmt79ydg/exec';
 
         const form = document.getElementById('registro-form');
         const submitBtn = document.getElementById('submit-btn');
+        const successBanner = document.getElementById('form-success-banner');
+        const resetFormBtn = document.getElementById('reset-form-btn');
 
         form.addEventListener('submit', e => {
             e.preventDefault();
@@ -375,10 +459,10 @@
 
             fetch(scriptURL, { method: 'POST', body: new FormData(form)})
                 .then(response => {
-                    alert('¡Registro enviado con éxito! Nos vemos en la rodada.');
                     form.reset();
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i> Enviar Registro';
+                    successBanner.classList.remove('hidden');
                 })
                 .catch(error => {
                     console.error('Error!', error.message);
@@ -387,14 +471,20 @@
                     submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i> Enviar Registro';
                 });
         });
+
+        resetFormBtn.addEventListener('click', () => {
+            successBanner.classList.add('hidden');
+        });
     </script>
 
     <!-- Footer -->
     <footer class="bg-black border-t border-zinc-900 py-10 text-zinc-400 text-xs sm:text-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
             <div>
-                <p class="font-black text-white text-lg uppercase">MTB PUG'S SANTA CRUZ EL PORVENIR IXTACUIXTLA</p>
-                <p class="text-xs text-zinc-500">© 2026 3er Aniversario Rodada "La Rabiosa". Todos los derechos reservados.</p>
+                <p class="font-black text-white text-lg uppercase flex items-center justify-center sm:justify-start gap-2">
+                    <i class="fa-solid fa-dog text-yellow-400"></i> MTB PUG'S SANTA CRUZ EL PORVENIR IXTACUIXTLA
+                </p>
+                <p class="text-xs text-zinc-500 mt-1">© 2026 3er Aniversario Rodada "La Rabiosa". Todos los derechos reservados.</p>
             </div>
             <div>
                 <a href="https://www.facebook.com/mtbpugssantacruzelporvenirixtacuixtla" target="_blank" class="inline-flex items-center gap-2 bg-yellow-400 text-black font-black px-6 py-3 rounded uppercase hover:bg-yellow-500 transition shadow">
@@ -404,10 +494,8 @@
         </div>
     </footer>
 
-    <!-- Scripting for submission feedback & mobile menu -->
+    <!-- Scripting for mobile menu -->
     <script>
-        let submitted = false;
-
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
