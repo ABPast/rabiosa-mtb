@@ -14,7 +14,8 @@ class RabiosaApp {
              * URL de Google Apps Script
              */
             scriptURL:
-                'https://script.google.com/macros/s/AKfycbzmaGm1b3lPhTSBjeS-tpHgjIfPEtQzylDAA-N5-6yDVp_-xYSV-2ebG1veVvXmt79ydg/exec',
+                'https://script.google.com/macros/s/AKfycbzp5JTZ2Odv_LXExz7RUYL-Wf2r2fwpVHvjSdB7vcF1G_uw3jJPgq2YE9aFtqrh7q9Y/exec',
+                //'https://script.google.com/macros/s/AKfycbzmaGm1b3lPhTSBjeS-tpHgjIfPEtQzylDAA-N5-6yDVp_-xYSV-2ebG1veVvXmt79ydg/exec',
             /*
              * Fecha del evento
              */
