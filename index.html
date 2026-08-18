@@ -11,7 +11,7 @@
     <meta property="og:title" content="Rodada MTB La Rabiosa - 3er Aniversario">
     <meta property="og:description"
         content="22 de noviembre de 2026. Santa Cruz El Porvenir, Ixtacuixtla, Tlaxcala. Evento totalmente gratuito.">
-    <meta property="og:image" content="./app/logo-equipo.png">
+    <meta property="og:image" content="./app/img/logo-equipo.png">
     <title>Rodada "La Rabiosa" | 3er Aniversario MTB Pug's</title>
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -197,7 +197,7 @@
                 <div
                     class="bg-yellow-400 text-black font-black px-3 py-1.5 rounded-lg text-lg uppercase tracking-wider flex items-center gap-2">
                     <div class="w-10 h-10 flex items-center justify-center overflow-hidden">
-                        <img src="./app/logo-equipo.png" alt="Logo MTB Pug's" width="80" height="80" decoding="async"
+                        <img src="./app/img/logo-equipo.png" alt="Logo MTB Pug's" width="80" height="80" decoding="async"
                             class="max-h-full max-w-full object-contain"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="hidden w-full h-full bg-black text-yellow-400 rounded items-center justify-center">
@@ -293,7 +293,7 @@
             <!-- Logo -->
             <div
                 class="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-6 flex items-center justify-center bg-black/60 p-2 rounded-full border-2 border-yellow-400/60 shadow-xl overflow-hidden">
-                <img src="./app/logo-equipo.png" alt="MTB Pug's" width="200" height="200" decoding="async"
+                <img src="./app/img/logo-equipo.png" alt="MTB Pug's" width="200" height="200" decoding="async"
                     class="max-h-full max-w-full object-contain"
                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 <div
@@ -1214,7 +1214,7 @@
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 max-w-4xl mx-auto">
                 <div class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
-                    <img src="./app/patrocinador1.png" alt="Patrocinador oficial 1" loading="lazy" decoding="async"
+                    <img src="./app/img/patrocinador1.png" alt="Patrocinador oficial 1" loading="lazy" decoding="async"
                         class="max-h-full max-w-full object-contain"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="hidden text-xs text-zinc-500 font-bold">
@@ -1222,7 +1222,7 @@
                     </span>
                 </div>
                 <div class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
-                    <img src="./app/patrocinador2.png" alt="Patrocinador oficial 2" loading="lazy" decoding="async"
+                    <img src="./app/img/patrocinador2.png" alt="Patrocinador oficial 2" loading="lazy" decoding="async"
                         class="max-h-full max-w-full object-contain"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="hidden text-xs text-zinc-500 font-bold">
@@ -1230,7 +1230,7 @@
                     </span>
                 </div>
                 <div class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
-                    <img src="./app/patrocinador3.png" alt="Patrocinador oficial 3" loading="lazy" decoding="async"
+                    <img src="./app/img/patrocinador3.png" alt="Patrocinador oficial 3" loading="lazy" decoding="async"
                         class="max-h-full max-w-full object-contain"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="hidden text-xs text-zinc-500 font-bold">
@@ -1238,7 +1238,7 @@
                     </span>
                 </div>
                 <div class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
-                    <img src="./app/patrocinador4.png" alt="Patrocinador oficial 4" loading="lazy" decoding="async"
+                    <img src="./app/img/patrocinador4.png" alt="Patrocinador oficial 4" loading="lazy" decoding="async"
                         class="max-h-full max-w-full object-contain"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="hidden text-xs text-zinc-500 font-bold">
@@ -1295,438 +1295,6 @@
     <!-- ========================================================= -->
     <!-- JAVASCRIPT -->
     <!-- ========================================================= -->
-    <script>
-        /* =========================================================
-           CONFIGURACIÓN
-           ========================================================= */
-        const CONFIG = {
-            /* Google Apps Script */
-            scriptURL:
-                'https://script.google.com/macros/s/AKfycbzmaGm1b3lPhTSBjeS-tpHgjIfPEtQzylDAA-N5-6yDVp_-xYSV-2ebG1veVvXmt79ydg/exec',
-            /* Fecha del evento */
-            eventDate:
-                '2026-11-22T08:00:00-06:00',
-            /*
-             * Coloca aquí la URL REAL de cada ruta de Strava.
-             *
-             * Ejemplo:
-             *
-             * stravaShort:
-             * 'https://www.strava.com/routes/123456'
-             */
-            stravaShort:
-                '',
-            stravaLong:
-                '',
-            /*
-             * Coloca aquí el número de WhatsApp del evento.
-             *
-             * Formato:
-             * 521XXXXXXXXXX
-             *
-             * SIN +, espacios ni guiones.
-             */
-            whatsapp:
-                ''
-        };
-        /* =========================================================
-           ELEMENTOS
-           ========================================================= */
-        const form =
-            document.getElementById('registro-form');
-        const submitBtn =
-            document.getElementById('submit-btn');
-        const successBanner =
-            document.getElementById('form-success-banner');
-        const errorBox =
-            document.getElementById('form-error');
-        const errorMessage =
-            document.getElementById('form-error-message');
-        const resetFormBtn =
-            document.getElementById('reset-form-btn');
-        const shareBtn =
-            document.getElementById('share-registration-btn');
-        const folioElement =
-            document.getElementById('confirmation-folio');
-        let generatedFolio = '';
-        /* =========================================================
-           MOBILE MENU
-           ========================================================= */
-        const menuBtn =
-            document.getElementById('menu-btn');
-        const mobileMenu =
-            document.getElementById('mobile-menu');
-        const menuIcon =
-            document.getElementById('menu-icon');
-        menuBtn.addEventListener('click', () => {
-            const isHidden =
-                mobileMenu.classList.contains('hidden');
-            mobileMenu.classList.toggle('hidden');
-            menuBtn.setAttribute(
-                'aria-expanded',
-                String(isHidden)
-            );
-            menuIcon.className =
-                isHidden
-                    ? 'fa-solid fa-xmark'
-                    : 'fa-solid fa-bars';
-        });
-        document.querySelectorAll('.mobile-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                menuBtn.setAttribute(
-                    'aria-expanded',
-                    'false'
-                );
-                menuIcon.className =
-                    'fa-solid fa-bars';
-            });
-        });
-        /* =========================================================
-           COUNTDOWN
-           ========================================================= */
-        function updateCountdown() {
-            const eventDate =
-                new Date(CONFIG.eventDate).getTime();
-            const now =
-                new Date().getTime();
-            const difference =
-                eventDate - now;
-            if (difference <= 0) {
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-                return;
-            }
-            const days =
-                Math.floor(
-                    difference /
-                    (1000 * 60 * 60 * 24)
-                );
-            const hours =
-                Math.floor(
-                    (difference %
-                        (1000 * 60 * 60 * 24)) /
-                    (1000 * 60 * 60)
-                );
-            const minutes =
-                Math.floor(
-                    (difference %
-                        (1000 * 60 * 60)) /
-                    (1000 * 60)
-                );
-            const seconds =
-                Math.floor(
-                    (difference %
-                        (1000 * 60)) /
-                    1000
-                );
-            document.getElementById('days').textContent =
-                String(days).padStart(2, '0');
-            document.getElementById('hours').textContent =
-                String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent =
-                String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent =
-                String(seconds).padStart(2, '0');
-        }
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-        /* =========================================================
-           FAQ
-           ========================================================= */
-        document.querySelectorAll('.faq-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const item =
-                    button.closest('.faq-item');
-                const wasActive =
-                    item.classList.contains('active');
-                document.querySelectorAll('.faq-item')
-                    .forEach(otherItem => {
-                        otherItem.classList.remove('active');
-                    });
-                if (!wasActive) {
-                    item.classList.add('active');
-                }
-            });
-        });
-        /* =========================================================
-           STRAVA
-           ========================================================= */
-        const shortStrava =
-            document.getElementById('strava-short-link');
-        const longStrava =
-            document.getElementById('strava-long-link');
-        function configureStravaLink(element, url) {
-            if (!url) {
-                element.removeAttribute('href');
-                element.classList.add(
-                    'opacity-60',
-                    'cursor-not-allowed'
-                );
-                element.innerHTML =
-                    '<i class="fa-solid fa-clock mr-2"></i> Ruta próximamente';
-                return;
-            }
-            element.href = url;
-        }
-        configureStravaLink(
-            shortStrava,
-            CONFIG.stravaShort
-        );
-        configureStravaLink(
-            longStrava,
-            CONFIG.stravaLong
-        );
-        /* =========================================================
-           WHATSAPP
-           ========================================================= */
-        const whatsappLink =
-            document.getElementById('whatsapp-link');
-        if (CONFIG.whatsapp) {
-            whatsappLink.href =
-                `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(
-                    'Hola MTB Pug\'s, tengo una duda sobre la Rodada La Rabiosa.'
-                )}`;
-            whatsappLink.classList.remove('hidden');
-        }
-        /* =========================================================
-           TOAST
-           ========================================================= */
-        let toastTimeout;
-        function showToast(message, type = 'success') {
-            const toast =
-                document.getElementById('toast');
-            const toastMessage =
-                document.getElementById('toast-message');
-            const toastIcon =
-                document.getElementById('toast-icon');
-            toastMessage.textContent =
-                message;
-            toastIcon.className =
-                type === 'error'
-                    ? 'fa-solid fa-circle-exclamation text-red-400 text-xl'
-                    : 'fa-solid fa-circle-check text-yellow-400 text-xl';
-            toast.classList.add('show');
-            clearTimeout(toastTimeout);
-            toastTimeout =
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 4000);
-        }
-        /* =========================================================
-           FOLIO
-           ========================================================= */
-        function generateFolio() {
-            const random =
-                Math.floor(
-                    10000 +
-                    Math.random() * 90000
-                );
-            return `RAB-${random}`;
-        }
-        /* =========================================================
-           VALIDACIÓN
-           ========================================================= */
-        function validateForm() {
-            const nombre =
-                document.getElementById('nombre');
-            const edad =
-                document.getElementById('edad');
-            const telefono =
-                document.getElementById('telefono');
-            const emergencia =
-                document.getElementById('emergencia');
-            const privacidad =
-                document.getElementById('privacidad');
-            if (!nombre.value.trim()) {
-                nombre.focus();
-                showToast(
-                    'Ingresa tu nombre completo.',
-                    'error'
-                );
-                return false;
-            }
-            const age =
-                Number(edad.value);
-            if (!age || age < 15 || age > 100) {
-                edad.focus();
-                showToast(
-                    'La edad debe estar entre 15 y 100 años.',
-                    'error'
-                );
-                return false;
-            }
-            const phoneDigits =
-                telefono.value.replace(/\D/g, '');
-            if (phoneDigits.length < 10) {
-                telefono.focus();
-                showToast(
-                    'Ingresa un número de teléfono válido.',
-                    'error'
-                );
-                return false;
-            }
-            if (!emergencia.value.trim()) {
-                emergencia.focus();
-                showToast(
-                    'Ingresa un contacto de emergencia.',
-                    'error'
-                );
-                return false;
-            }
-            if (!privacidad.checked) {
-                privacidad.focus();
-                showToast(
-                    'Debes aceptar el uso de datos para logística y seguridad.',
-                    'error'
-                );
-                return false;
-            }
-            return true;
-        }
-        /* =========================================================
-           FORMULARIO
-           ========================================================= */
-        form.addEventListener('submit', async event => {
-            event.preventDefault();
-            if (!validateForm()) {
-                return;
-            }
-            if (submitBtn.disabled) {
-                return;
-            }
-            errorBox.classList.add('hidden');
-            submitBtn.disabled = true;
-            submitBtn.innerHTML =
-                '<i class="fa-solid fa-spinner loading-spinner"></i> Enviando información...';
-            const controller =
-                new AbortController();
-            const timeout =
-                setTimeout(() => {
-                    controller.abort();
-                }, 15000);
-            try {
-                const response =
-                    await fetch(
-                        CONFIG.scriptURL,
-                        {
-                            method: 'POST',
-                            body: new FormData(form),
-                            signal: controller.signal
-                        }
-                    );
-                clearTimeout(timeout);
-                if (!response.ok) {
-                    throw new Error(
-                        `HTTP ${response.status}`
-                    );
-                }
-                /*
-                 * Generamos un folio local para mostrar
-                 * inmediatamente al participante.
-                 *
-                 * IMPORTANTE:
-                 * Para que este folio sea definitivo y único,
-                 * recomiendo posteriormente generarlo también
-                 * en Google Apps Script.
-                 */
-                generatedFolio =
-                    generateFolio();
-                folioElement.textContent =
-                    generatedFolio;
-                form.reset();
-                successBanner.classList.remove(
-                    'hidden'
-                );
-                showToast(
-                    'Registro enviado correctamente.'
-                );
-            } catch (error) {
-                clearTimeout(timeout);
-                console.error(
-                    'Error al enviar:',
-                    error
-                );
-                let message =
-                    'Hubo un problema de conexión. Inténtalo nuevamente.';
-                if (error.name === 'AbortError') {
-                    message =
-                        'La solicitud tardó demasiado. Verifica tu conexión e inténtalo nuevamente.';
-                }
-                errorMessage.textContent =
-                    message;
-                errorBox.classList.remove(
-                    'hidden'
-                );
-                showToast(
-                    message,
-                    'error'
-                );
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML =
-                    '<i class="fa-solid fa-paper-plane"></i> Enviar Mi Registro Gratis';
-            }
-        });
-        /* =========================================================
-           RESET
-           ========================================================= */
-        resetFormBtn.addEventListener('click', () => {
-            successBanner.classList.add(
-                'hidden'
-            );
-            window.scrollTo({
-                top:
-                    document.getElementById('registro')
-                        .offsetTop - 90,
-                behavior: 'smooth'
-            });
-        });
-        /* =========================================================
-           SHARE
-           ========================================================= */
-        shareBtn.addEventListener('click', async () => {
-            const nombre =
-                document.getElementById('nombre').value ||
-                'Participante';
-            const shareText =
-                `🚴 ¡Estoy registrado para La Rabiosa!
-MTB Pug's - 3er Aniversario
-📅 22 de noviembre de 2026
-📍 Santa Cruz El Porvenir, Ixtacuixtla
-🎫 Folio: ${generatedFolio}
-¡Nos vemos en la rodada!`;
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title:
-                            'Rodada La Rabiosa',
-                        text:
-                            shareText
-                    });
-                } catch (error) {
-                    console.log(
-                        'Compartir cancelado.'
-                    );
-                }
-                return;
-            }
-            try {
-                await navigator.clipboard.writeText(
-                    shareText
-                );
-                showToast(
-                    'Información copiada para compartir.'
-                );
-            } catch (error) {
-                showToast(
-                    'No fue posible copiar la información.',
-                    'error'
-                );
-            }
-        });
-    </script>
+    <script src="./app/js/rabiosa.js" defer></script>
 </body>
 </html>
