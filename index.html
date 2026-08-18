@@ -2,9 +2,18 @@
 <html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3er Aniversario MTB Pugs - "La Rabiosa"</title>
-    <!-- Tailwind CSS CDN -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#000000">
+    <meta name="description"
+        content="Rodada MTB La Rabiosa - 3er Aniversario MTB Pug's Santa Cruz El Porvenir Ixtacuixtla. Evento gratuito para ciclistas de todos los niveles.">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="event">
+    <meta property="og:title" content="Rodada MTB La Rabiosa - 3er Aniversario">
+    <meta property="og:description"
+        content="22 de noviembre de 2026. Santa Cruz El Porvenir, Ixtacuixtla, Tlaxcala. Evento totalmente gratuito.">
+    <meta property="og:image" content="./app/logo-equipo.png">
+    <title>Rodada "La Rabiosa" | 3er Aniversario MTB Pug's</title>
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -22,486 +31,1701 @@
             }
         }
     </script>
-    <!-- FontAwesome for Icons -->
+    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;0,900;1,900&display=swap" rel="stylesheet">
+    <!-- Google Font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap"
+        rel="stylesheet">
     <style>
+        :root {
+            --yellow: #ffd700;
+            --yellow-dark: #e6b800;
+            --black: #000000;
+            --dark: #0b0b0b;
+            --dark-2: #121212;
+        }
+        html {
+            scroll-padding-top: 90px;
+        }
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #0b0b0b;
+            background: var(--black);
             color: #f3f3f3;
         }
+        ::selection {
+            background: var(--yellow);
+            color: #000;
+        }
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090909;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--yellow);
+            border-radius: 10px;
+        }
+        /* Focus accesible */
+        :focus-visible {
+            outline: 3px solid var(--yellow);
+            outline-offset: 3px;
+        }
+        /* Inputs */
+        input,
+        select {
+            color-scheme: dark;
+        }
+        input::placeholder {
+            color: #71717a;
+        }
+        /* FAQ */
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .3s ease;
+        }
+        .faq-item.active .faq-content {
+            max-height: 300px;
+        }
+        .faq-icon {
+            transition: transform .3s ease;
+        }
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        /* Countdown */
+        .countdown-box {
+            background: rgba(0, 0, 0, .8);
+            border: 1px solid rgba(255, 215, 0, .25);
+            backdrop-filter: blur(8px);
+        }
+        /* Loading */
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        /* Toast */
+        #toast {
+            transform: translateY(150%);
+            transition: transform .3s ease;
+        }
+        #toast.show {
+            transform: translateY(0);
+        }
+        /* Mobile menu */
+        #mobile-menu {
+            transition: all .25s ease;
+        }
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
     </style>
+    <!-- Schema.org Event -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SportsEvent",
+        "name": "Rodada MTB La Rabiosa - 3er Aniversario MTB Pug's",
+        "description": "Rodada de ciclismo de montaña organizada por MTB Pug's Santa Cruz El Porvenir Ixtacuixtla.",
+        "startDate": "2026-11-22T08:00:00-06:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+            "@type": "Place",
+            "name": "Plaza principal de Santa Cruz El Porvenir",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Santa Cruz El Porvenir",
+                "addressRegion": "Tlaxcala",
+                "addressCountry": "MX"
+            }
+        },
+        "organizer": {
+            "@type": "Organization",
+            "name": "MTB Pug's Santa Cruz El Porvenir Ixtacuixtla"
+        },
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "MXN",
+            "availability": "https://schema.org/InStock"
+        }
+    }
+    </script>
 </head>
-<body class="bg-black text-white selection:bg-yellow-400 selection:text-black">
-
-    <!-- Top Banner / Club Info -->
-    <div class="bg-yellow-400 text-black font-black py-2.5 px-4 text-center text-xs sm:text-sm tracking-wider uppercase shadow-md overflow-hidden">
-        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-2">
-            <span><i class="fa-solid fa-paw mr-1"></i> MTB PUG'S SANTA CRUZ EL PORVENIR IXTACUIXTLA</span>
+<body class="bg-black text-white">
+    <!-- ========================================================= -->
+    <!-- TOP BAR -->
+    <!-- ========================================================= -->
+    <div
+        class="bg-yellow-400 text-black font-black py-2.5 px-4 text-center text-xs sm:text-sm uppercase tracking-wider">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+            <span>
+                <i class="fa-solid fa-paw mr-1"></i>
+                MTB PUG'S SANTA CRUZ EL PORVENIR IXTACUIXTLA
+            </span>
             <span class="hidden sm:inline">|</span>
-            <span>¡EVENTO TOTALMENTE GRATUITO!</span>
+            <span>
+                ¡EVENTO TOTALMENTE GRATUITO!
+            </span>
         </div>
     </div>
-
-    <!-- Header / Navbar -->
+    <!-- ========================================================= -->
+    <!-- NAVBAR -->
+    <!-- ========================================================= -->
     <header class="sticky top-0 z-50 bg-black/95 backdrop-blur border-b border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="bg-yellow-400 text-black font-black px-3 py-1.5 rounded-lg text-lg uppercase tracking-wider flex items-center gap-2.5 shadow-lg shadow-yellow-400/20">
-                    <!-- Logo del Equipo en el Encabezado -->
+            <a href="#inicio" aria-label="MTB Pug's - Inicio" class="flex items-center gap-3">
+                <div
+                    class="bg-yellow-400 text-black font-black px-3 py-1.5 rounded-lg text-lg uppercase tracking-wider flex items-center gap-2">
                     <div class="w-10 h-10 flex items-center justify-center overflow-hidden">
-                        <img src="./app/logo-equipo.png" alt="Logo MTB Pugs" class="max-h-full max-w-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="hidden w-full h-full bg-black text-yellow-400 rounded items-center justify-center text-base">
+                        <img src="./app/logo-equipo.png" alt="Logo MTB Pug's" width="80" height="80" decoding="async"
+                            class="max-h-full max-w-full object-contain"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="hidden w-full h-full bg-black text-yellow-400 rounded items-center justify-center">
                             <i class="fa-solid fa-dog"></i>
                         </div>
                     </div>
-                    <span class="tracking-tighter text-black font-black text-base sm:text-lg">MTB PUG'S</span>
+                    <span class="tracking-tighter text-base sm:text-lg">
+                        MTB PUG'S
+                    </span>
                 </div>
             </a>
-            <nav class="hidden md:flex items-center gap-6 font-bold text-sm tracking-wide">
-                <a href="#inicio" class="hover:text-yellow-400 transition">INICIO</a>
-                <a href="#detalles" class="hover:text-yellow-400 transition">DETALLES</a>
-                <a href="#ruta" class="hover:text-yellow-400 transition">CATEGORÍAS</a>
-                <a href="#strava" class="hover:text-yellow-400 transition">RUTAS STRAVA</a>
-                <a href="#ubicacion" class="hover:text-yellow-400 transition">UBICACIÓN</a>
-                <a href="#registro" class="hover:text-yellow-400 transition">REGISTRO</a>
-                <a href="#patrocinadores" class="hover:text-yellow-400 transition">PATROCINADORES</a>
+            <!-- Desktop -->
+            <nav class="hidden lg:flex items-center gap-5 font-bold text-xs xl:text-sm tracking-wide">
+                <a href="#inicio" class="hover:text-yellow-400 transition">
+                    INICIO
+                </a>
+                <a href="#detalles" class="hover:text-yellow-400 transition">
+                    EVENTO
+                </a>
+                <a href="#ruta" class="hover:text-yellow-400 transition">
+                    RUTAS
+                </a>
+                <a href="#strava" class="hover:text-yellow-400 transition">
+                    STRAVA
+                </a>
+                <a href="#ubicacion" class="hover:text-yellow-400 transition">
+                    UBICACIÓN
+                </a>
+                <a href="#seguridad" class="hover:text-yellow-400 transition">
+                    SEGURIDAD
+                </a>
+                <a href="#faq" class="hover:text-yellow-400 transition">
+                    DUDAS
+                </a>
+                <a href="#registro"
+                    class="bg-yellow-400 text-black px-4 py-2.5 rounded font-black hover:bg-yellow-500 transition">
+                    REGISTRARME
+                </a>
             </nav>
-            <button id="menu-btn" class="md:hidden text-2xl text-yellow-400 focus:outline-none">
-                <i class="fa-solid fa-bars"></i>
+            <!-- Mobile -->
+            <button id="menu-btn" type="button" aria-label="Abrir menú" aria-expanded="false"
+                class="lg:hidden text-2xl text-yellow-400 p-2">
+                <i id="menu-icon" class="fa-solid fa-bars"></i>
             </button>
         </div>
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-zinc-900 border-b border-zinc-800 px-4 py-4 space-y-3 font-bold text-sm">
-            <a href="#inicio" class="block py-1 hover:text-yellow-400">INICIO</a>
-            <a href="#detalles" class="block py-1 hover:text-yellow-400">DETALLES</a>
-            <a href="#ruta" class="block py-1 hover:text-yellow-400">CATEGORÍAS</a>
-            <a href="#strava" class="block py-1 hover:text-yellow-400">RUTAS STRAVA</a>
-            <a href="#ubicacion" class="block py-1 hover:text-yellow-400">UBICACIÓN</a>
-            <a href="#registro" class="block py-1 hover:text-yellow-400">REGISTRO</a>
-            <a href="#patrocinadores" class="block py-1 hover:text-yellow-400">PATROCINADORES</a>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-zinc-950 border-t border-zinc-800 px-6 py-5">
+            <div class="space-y-1">
+                <a href="#inicio" class="mobile-link block py-3 border-b border-zinc-800">
+                    INICIO
+                </a>
+                <a href="#detalles" class="mobile-link block py-3 border-b border-zinc-800">
+                    EVENTO
+                </a>
+                <a href="#ruta" class="mobile-link block py-3 border-b border-zinc-800">
+                    RUTAS
+                </a>
+                <a href="#strava" class="mobile-link block py-3 border-b border-zinc-800">
+                    STRAVA
+                </a>
+                <a href="#ubicacion" class="mobile-link block py-3 border-b border-zinc-800">
+                    UBICACIÓN
+                </a>
+                <a href="#seguridad" class="mobile-link block py-3 border-b border-zinc-800">
+                    SEGURIDAD
+                </a>
+                <a href="#faq" class="mobile-link block py-3 border-b border-zinc-800">
+                    DUDAS FRECUENTES
+                </a>
+                <a href="#registro"
+                    class="mobile-link block text-center bg-yellow-400 text-black py-3.5 rounded uppercase font-black mt-4">
+                    REGISTRARME GRATIS
+                </a>
+            </div>
         </div>
     </header>
-
-    <!-- Hero Section -->
-    <section id="inicio" class="relative pt-20 pb-28 md:pt-32 md:pb-36 bg-zinc-950 overflow-hidden">
-        <div class="absolute inset-0 opacity-15 bg-cover bg-center pointer-events-none" style="background-image: url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1920&q=80')"></div>
-
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center flex flex-col items-center">
-            
-            <div class="inline-flex items-center gap-2 bg-yellow-400 text-black font-black text-xl sm:text-2xl px-6 py-2 uppercase tracking-widest mb-6 transform -rotate-1 shadow-lg">
-                <i class="fa-solid fa-shield-dog"></i> #3ER ANIVERSARIO <i class="fa-solid fa-bicycle"></i>
+    <!-- ========================================================= -->
+    <!-- HERO -->
+    <!-- ========================================================= -->
+    <section id="inicio" class="relative pt-16 pb-20 md:pt-24 md:pb-28 bg-zinc-950 overflow-hidden">
+        <div class="absolute inset-0 opacity-15 bg-cover bg-center pointer-events-none"
+            style="background-image:url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1920&q=80');">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <!-- Badge -->
+            <div
+                class="inline-flex items-center gap-2 bg-yellow-400 text-black font-black text-sm sm:text-xl px-5 sm:px-6 py-2 uppercase tracking-widest mb-6 transform -rotate-1">
+                <i class="fa-solid fa-shield-dog"></i>
+                3ER ANIVERSARIO
+                <i class="fa-solid fa-bicycle"></i>
             </div>
-
-            <!-- Logo del equipo entre el distintivo y el título -->
-            <div class="w-24 h-24 sm:w-32 sm:h-32 mb-6 flex items-center justify-center bg-black/40 p-2 rounded-full border-2 border-yellow-400/50 shadow-xl overflow-hidden">
-                <img src="./app/logo-equipo.png" alt="Logo MTB Pugs" class="max-h-full max-w-full object-contain filter drop-shadow-[0_5px_5px_rgba(255,215,0,0.4)]" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="hidden w-full h-full bg-black text-yellow-400 rounded-full items-center justify-center text-4xl">
+            <!-- Logo -->
+            <div
+                class="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-6 flex items-center justify-center bg-black/60 p-2 rounded-full border-2 border-yellow-400/60 shadow-xl overflow-hidden">
+                <img src="./app/logo-equipo.png" alt="MTB Pug's" width="200" height="200" decoding="async"
+                    class="max-h-full max-w-full object-contain"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div
+                    class="hidden w-full h-full bg-black text-yellow-400 rounded-full items-center justify-center text-4xl">
                     <i class="fa-solid fa-dog"></i>
                 </div>
             </div>
-
-            <!-- Título principal sin texto debajo -->
-            <h1 class="text-5xl sm:text-7xl md:text-8xl font-black italic tracking-tighter uppercase mb-10 text-white">
-                RODADA <span class="text-yellow-400 underline decoration-yellow-400 decoration-wavy">"LA RABIOSA"</span>
+            <!-- Title -->
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-black italic tracking-tighter uppercase mb-5">
+                RODADA
+                <span class="text-yellow-400">
+                    "LA RABIOSA"
+                </span>
             </h1>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#registro" class="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 font-black text-lg uppercase tracking-wider rounded shadow-xl transition transform hover:-translate-y-1">
-                    <i class="fa-solid fa-bicycle mr-2"></i> Apartar Mi Lugar Gratis
+            <p class="text-zinc-300 text-base sm:text-xl max-w-2xl mx-auto mb-8 font-medium">
+                Celebra con nosotros
+                <strong class="text-white">
+                    3 años de pasión por el ciclismo de montaña.
+                </strong>
+                Evento familiar, seguro y 100% gratuito.
+            </p>
+            <!-- Essential information -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto mb-10">
+                <div class="countdown-box rounded-lg p-4">
+                    <i class="fa-solid fa-calendar-days text-yellow-400 text-xl mb-2"></i>
+                    <div class="text-xs text-zinc-500 uppercase font-bold">
+                        Fecha
+                    </div>
+                    <div class="font-black">
+                        22 NOV 2026
+                    </div>
+                </div>
+                <div class="countdown-box rounded-lg p-4">
+                    <i class="fa-solid fa-clock text-yellow-400 text-xl mb-2"></i>
+                    <div class="text-xs text-zinc-500 uppercase font-bold">
+                        Salida
+                    </div>
+                    <div class="font-black">
+                        8:00 AM
+                    </div>
+                </div>
+                <div class="countdown-box rounded-lg p-4">
+                    <i class="fa-solid fa-location-dot text-yellow-400 text-xl mb-2"></i>
+                    <div class="text-xs text-zinc-500 uppercase font-bold">
+                        Lugar
+                    </div>
+                    <div class="font-black text-sm">
+                        Ixtacuixtla
+                    </div>
+                </div>
+                <div class="countdown-box rounded-lg p-4">
+                    <i class="fa-solid fa-ticket text-yellow-400 text-xl mb-2"></i>
+                    <div class="text-xs text-zinc-500 uppercase font-bold">
+                        Costo
+                    </div>
+                    <div class="font-black text-yellow-400">
+                        GRATIS
+                    </div>
+                </div>
+            </div>
+            <!-- CTA -->
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-xl mx-auto">
+                <a href="#registro"
+                    class="w-full sm:w-auto bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-4 font-black text-lg uppercase tracking-wider rounded shadow-xl transition">
+                    <i class="fa-solid fa-bicycle mr-2"></i>
+                    Apartar Mi Lugar Gratis
                 </a>
-                <a href="#detalles" class="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700 px-8 py-4 font-bold text-lg uppercase tracking-wider rounded transition">
-                    Ver Información
+                <a href="#ruta"
+                    class="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700 px-8 py-4 font-bold text-lg uppercase tracking-wider rounded transition">
+                    Ver Rutas
                 </a>
             </div>
         </div>
     </section>
-
-    <!-- Info Grid matching poster icons -->
+    <!-- ========================================================= -->
+    <!-- COUNTDOWN -->
+    <!-- ========================================================= -->
+    <section class="bg-yellow-400 text-black py-8">
+        <div class="max-w-5xl mx-auto px-4 text-center">
+            <p class="font-black uppercase tracking-widest text-sm mb-5">
+                ⏱️ FALTAN PARA LA RABIOSA
+            </p>
+            <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-5 max-w-2xl mx-auto">
+                <div class="bg-black text-white rounded-lg p-3 sm:p-5">
+                    <div id="days" class="text-2xl sm:text-4xl font-black">
+                        --
+                    </div>
+                    <div class="text-[10px] sm:text-xs uppercase text-zinc-400">
+                        Días
+                    </div>
+                </div>
+                <div class="bg-black text-white rounded-lg p-3 sm:p-5">
+                    <div id="hours" class="text-2xl sm:text-4xl font-black">
+                        --
+                    </div>
+                    <div class="text-[10px] sm:text-xs uppercase text-zinc-400">
+                        Horas
+                    </div>
+                </div>
+                <div class="bg-black text-white rounded-lg p-3 sm:p-5">
+                    <div id="minutes" class="text-2xl sm:text-4xl font-black">
+                        --
+                    </div>
+                    <div class="text-[10px] sm:text-xs uppercase text-zinc-400">
+                        Minutos
+                    </div>
+                </div>
+                <div class="bg-black text-white rounded-lg p-3 sm:p-5">
+                    <div id="seconds" class="text-2xl sm:text-4xl font-black">
+                        --
+                    </div>
+                    <div class="text-[10px] sm:text-xs uppercase text-zinc-400">
+                        Segundos
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================================================= -->
+    <!-- EVENT DETAILS -->
+    <!-- ========================================================= -->
     <section id="detalles" class="py-16 bg-zinc-900 border-y-4 border-yellow-400">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            <div class="text-center mb-12">
+                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">
+                    INFORMACIÓN
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase mt-3">
+                    DATOS DEL <span class="text-yellow-400">EVENTO</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
                 <!-- Location -->
-                <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
-                    <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
+                <div class="bg-black p-6 rounded-lg border border-zinc-800">
+                    <div
+                        class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl rounded mb-4">
                         <i class="fa-solid fa-location-dot"></i>
                     </div>
-                    <div>
-                        <p class="text-xs font-bold text-yellow-400 uppercase">Ubicación</p>
-                        <p class="text-sm font-bold text-white">Santa Cruz El Porvenir, Ixtacuixtla, Tlax.</p>
-                    </div>
+                    <p class="text-xs font-bold text-yellow-400 uppercase">
+                        Ubicación
+                    </p>
+                    <p class="text-sm font-bold mt-1">
+                        Santa Cruz El Porvenir, Ixtacuixtla, Tlaxcala
+                    </p>
                 </div>
                 <!-- Date -->
-                <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
-                    <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
+                <div class="bg-black p-6 rounded-lg border border-zinc-800">
+                    <div
+                        class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl rounded mb-4">
                         <i class="fa-solid fa-calendar-days"></i>
                     </div>
-                    <div>
-                        <p class="text-xs font-bold text-yellow-400 uppercase">Fecha</p>
-                        <p class="text-sm font-bold text-white">22 de Noviembre</p>
-                    </div>
+                    <p class="text-xs font-bold text-yellow-400 uppercase">
+                        Fecha
+                    </p>
+                    <p class="text-sm font-bold mt-1">
+                        22 de noviembre de 2026
+                    </p>
                 </div>
-                <!-- Hour -->
-                <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
-                    <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
+                <!-- Time -->
+                <div class="bg-black p-6 rounded-lg border border-zinc-800">
+                    <div
+                        class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl rounded mb-4">
                         <i class="fa-solid fa-clock"></i>
                     </div>
-                    <div>
-                        <p class="text-xs font-bold text-yellow-400 uppercase">Hora de Salida</p>
-                        <p class="text-sm font-bold text-white">8:00 AM</p>
-                    </div>
+                    <p class="text-xs font-bold text-yellow-400 uppercase">
+                        Salida
+                    </p>
+                    <p class="text-sm font-bold mt-1">
+                        8:00 AM
+                    </p>
+                    <p class="text-xs text-zinc-500 mt-1">
+                        Registro y acomodo previo
+                    </p>
                 </div>
-                <!-- Route / Levels -->
-                <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
-                    <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
+                <!-- Routes -->
+                <div class="bg-black p-6 rounded-lg border border-zinc-800">
+                    <div
+                        class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl rounded mb-4">
                         <i class="fa-solid fa-mountain"></i>
                     </div>
-                    <div>
-                        <p class="text-xs font-bold text-yellow-400 uppercase">Ruta / Niveles</p>
-                        <p class="text-sm font-bold text-white">Principiantes aferrados, Intermedios y Avanzados</p>
-                    </div>
+                    <p class="text-xs font-bold text-yellow-400 uppercase">
+                        Rutas
+                    </p>
+                    <p class="text-sm font-bold mt-1">
+                        Principiantes, Intermedios y Avanzados
+                    </p>
                 </div>
                 <!-- Cost -->
-                <div class="bg-black p-6 rounded border border-zinc-800 flex items-center gap-4">
-                    <div class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl font-bold rounded flex-shrink-0">
+                <div class="bg-black p-6 rounded-lg border border-zinc-800">
+                    <div
+                        class="w-14 h-14 bg-yellow-400 text-black flex items-center justify-center text-2xl rounded mb-4">
                         <i class="fa-solid fa-paw"></i>
                     </div>
-                    <div>
-                        <p class="text-xs font-bold text-yellow-400 uppercase">Costo</p>
-                        <p class="text-sm font-bold text-white">¡Evento Totalmente Gratuito!</p>
-                    </div>
+                    <p class="text-xs font-bold text-yellow-400 uppercase">
+                        Costo
+                    </p>
+                    <p class="text-lg font-black text-yellow-400 mt-1">
+                        GRATIS
+                    </p>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Categories Section -->
-    <section id="ruta" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-2xl mx-auto mb-16">
-            <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mb-4">
-                CATEGORÍAS DE <span class="text-yellow-400">RODADA</span>
-            </h2>
-            <p class="text-zinc-400 text-sm">Elige la categoría que mejor se adapte a tu nivel y prepárate para conquistar los caminos.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Principiantes aferrados -->
-            <div class="bg-zinc-900 border-2 border-zinc-800 p-8 rounded relative">
-                <div class="text-yellow-400 text-4xl font-black mb-4"><i class="fa-solid fa-seedling"></i></div>
-                <h3 class="text-xl font-black uppercase text-white mb-3">Principiantes aferrados</h3>
-                <p class="text-zinc-400 text-sm">Para quienes están empezando en el mundo del MTB pero con todas las ganas de completar el reto y disfrutar cada kilómetro.</p>
-            </div>
-            <!-- Intermedios -->
-            <div class="bg-zinc-900 border-2 border-zinc-800 p-8 rounded relative">
-                <div class="text-yellow-400 text-4xl font-black mb-4"><i class="fa-solid fa-bolt"></i></div>
-                <h3 class="text-xl font-black uppercase text-white mb-3">Intermedios</h3>
-                <p class="text-zinc-400 text-sm">Para rodadores con buen ritmo, listos para superar senderos divertidos y mantener una rodada constante y ágil.</p>
-            </div>
-            <!-- Avanzados -->
-            <div class="bg-zinc-900 border-2 border-yellow-400 p-8 rounded relative shadow-lg shadow-yellow-400/10">
-                <div class="absolute -top-3 right-4 bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">¡Alto Rendimiento!</div>
-                <div class="text-yellow-400 text-4xl font-black mb-4"><i class="fa-solid fa-fire"></i></div>
-                <h3 class="text-xl font-black uppercase text-white mb-3">Avanzados</h3>
-                <p class="text-zinc-400 text-sm">Para los expertos que buscan exigencia máxima, tramos técnicos avanzados y poner a prueba toda su condición física.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Strava Routes Section -->
-    <section id="strava" class="py-20 bg-zinc-900 border-y border-zinc-800">
+    <!-- ========================================================= -->
+    <!-- ROUTES -->
+    <!-- ========================================================= -->
+    <section id="ruta" class="py-20 bg-black">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="bg-orange-500 text-white text-xs font-black uppercase px-3 py-1 rounded"><i class="fa-brands fa-strava mr-1"></i> SECCIÓN STRAVA</span>
-                <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-3 mb-4">
-                    MAPAS Y <span class="text-yellow-400">RUTAS OFICIALES</span>
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">
+                    ELIGE TU RETO
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase mt-3 mb-4">
+                    CATEGORÍAS DE
+                    <span class="text-yellow-400">
+                        RODADA
+                    </span>
                 </h2>
-                <p class="text-zinc-400 text-sm">Consulta la altimetría, descarga el archivo GPX o analiza los tramos oficiales de la rodada en Strava.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Tarjeta Ruta Corta / Principiantes -->
-                <div class="bg-black border-2 border-zinc-800 p-6 sm:p-8 rounded-xl flex flex-col justify-between">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-yellow-400/10 text-yellow-400 border border-yellow-400/30 text-xs font-bold px-3 py-1 rounded uppercase">Principiantes Aferrados</span>
-                            <span class="text-orange-500 text-2xl"><i class="fa-brands fa-strava"></i></span>
-                        </div>
-                        <h3 class="text-2xl font-black uppercase text-white mb-2">Circuito Santa Cruz</h3>
-                        <p class="text-zinc-400 text-xs sm:text-sm mb-6">Ruta diseñada para disfrutar de los paisajes locales con exigencia moderada y excelente marcaje.</p>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-6 border-y border-zinc-800 py-4">
-                            <div>
-                                <p class="text-xs text-zinc-500 uppercase font-bold">Distancia Estimada</p>
-                                <p class="text-lg font-black text-white">~ 25 km</p>
-                            </div>
-                            <div>
-                                <p class="text-xs text-zinc-500 uppercase font-bold">Desnivel (+)</p>
-                                <p class="text-lg font-black text-white">~ 450 m</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="https://www.strava.com" target="_blank" class="block text-center bg-zinc-800 hover:bg-orange-600 text-white font-bold py-3 rounded uppercase text-sm transition tracking-wider">
-                        Ver Ruta en Strava <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
-                    </a>
-                </div>
-
-                <!-- Tarjeta Ruta Reto / Intermedios y Avanzados -->
-                <div class="bg-black border-2 border-yellow-400/60 p-6 sm:p-8 rounded-xl flex flex-col justify-between shadow-xl shadow-yellow-400/5">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <span class="bg-yellow-400 text-black text-xs font-black px-3 py-1 rounded uppercase">Intermedios y Avanzados</span>
-                            <span class="text-orange-500 text-2xl"><i class="fa-brands fa-strava"></i></span>
-                        </div>
-                        <h3 class="text-2xl font-black uppercase text-white mb-2">El Reto "La Rabiosa"</h3>
-                        <p class="text-zinc-400 text-xs sm:text-sm mb-6">La ruta completa que atraviesa los senderos más técnicos, subidas demandantes y toda la aventura.</p>
-                        
-                        <div class="grid grid-cols-2 gap-4 mb-6 border-y border-zinc-800 py-4">
-                            <div>
-                                <p class="text-xs text-zinc-500 uppercase font-bold">Distancia Estimada</p>
-                                <p class="text-lg font-black text-white">~ 45 km</p>
-                            </div>
-                            <div>
-                                <p class="text-xs text-zinc-500 uppercase font-bold">Desnivel (+)</p>
-                                <p class="text-lg font-black text-white">~ 950 m</p>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="https://www.strava.com" target="_blank" class="block text-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 rounded uppercase text-sm transition tracking-wider">
-                        Ver Ruta Completa en Strava <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Ubicación Google Maps Section -->
-    <section id="ubicacion" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 bg-zinc-950">
-        <div class="text-center max-w-2xl mx-auto mb-12">
-            <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded"><i class="fa-solid fa-location-dot mr-1"></i> PUNTO DE SALIDA Y META</span>
-            <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-3 mb-4">
-                UBICACIÓN DEL <span class="text-yellow-400">EVENTO</span>
-            </h2>
-            <p class="text-zinc-400 text-sm">Santa Cruz El Porvenir, Ixtacuixtla, Tlaxcala. ¡Te esperamos para el banderazo de salida!</p>
-        </div>
-
-        <div class="bg-zinc-900 border-4 border-yellow-400 p-2 rounded-2xl shadow-2xl overflow-hidden">
-            <div class="w-full h-[450px] rounded-xl overflow-hidden">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1119.3116504728916!2d-98.34556426560147!3d19.330118342013368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfd7006b4aeb07%3A0xb3455e2c7b27da43!2sLetras%20PORVENIR%20plaza%20principal!5e0!3m2!1ses-419!2smx!4v1786728257081!5m2!1ses-419!2smx" 
-                    width="100%" 
-                    height="100%" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade"
-                    class="filter contrast-125 invert brightness-90">
-                </iframe>
-            </div>
-        </div>
-        <div class="mt-6 text-center">
-            <a href="https://maps.app.goo.gl/CAMAcUUsPdx9yGJv7" target="_blank" class="inline-flex items-center gap-2 bg-zinc-800 hover:bg-zinc-700 text-white font-bold px-6 py-3 rounded-lg border border-zinc-700 text-sm uppercase tracking-wider transition">
-                <i class="fa-solid fa-diamond-turn-right text-yellow-400"></i> Abrir ubicación en la app de Google Maps
-            </a>
-        </div>
-    </section>
-
-    <!-- Custom Integrated Form Section -->
-    <section id="registro" class="py-20 bg-zinc-950 border-t border-zinc-900">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            
-            <div class="text-center mb-12">
-                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">INSCRIPCIÓN OFICIAL</span>
-                <h2 class="text-3xl sm:text-5xl font-black uppercase tracking-tight text-white mt-3 mb-4">
-                    REGÍSTRATE PARA <span class="text-yellow-400">LA RODADA</span>
-                </h2>
-                <p class="text-zinc-400 text-sm max-w-lg mx-auto">
-                    Completa tus datos directamente en este formulario. ¡Es totalmente gratuito y asegura tu registro al 3er Aniversario!
+                <p class="text-zinc-400">
+                    Selecciona la ruta que mejor se adapte a tu experiencia y condición física.
                 </p>
             </div>
-
-            <div class="bg-zinc-900 border-4 border-yellow-400 p-6 sm:p-10 rounded-xl shadow-2xl max-w-2xl mx-auto relative overflow-hidden">
-                
-                <!-- Feedback visual elegante (Reemplazo del alert) -->
-                <div id="form-success-banner" class="hidden absolute inset-0 bg-zinc-900 z-20 flex flex-col items-center justify-center text-center p-8 transition-all duration-300">
-                    <div class="w-20 h-20 bg-yellow-400 text-black rounded-full flex items-center justify-center text-4xl mb-4 shadow-lg shadow-yellow-400/30 animate-bounce">
-                        <i class="fa-solid fa-check"></i>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- PRINCIPIANTES -->
+                <div class="bg-zinc-900 border-2 border-zinc-800 rounded-xl p-7">
+                    <div class="text-yellow-400 text-4xl mb-5">
+                        <i class="fa-solid fa-seedling"></i>
                     </div>
-                    <h3 class="text-2xl sm:text-3xl font-black text-white uppercase mb-2">¡REGISTRO EXITOSO!</h3>
-                    <p class="text-zinc-300 text-sm mb-6 max-w-md">Tus datos han sido guardados correctamente. ¡Estás listo para rodar con los MTB Pug's en "La Rabiosa"! Nos vemos en la línea de salida.</p>
-                    <button type="button" id="reset-form-btn" class="bg-yellow-400 hover:bg-yellow-500 text-black font-black uppercase px-8 py-3 rounded-lg text-sm transition">
-                        Registrar a otro ciclista
-                    </button>
+                    <h3 class="text-xl font-black uppercase mb-3">
+                        Principiantes Aferrados
+                    </h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                        Ideal para quienes están comenzando en el MTB.
+                        Ritmo recreativo y recorrido pensado para disfrutar.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-black rounded p-3">
+                            <div class="text-xs text-zinc-500">
+                                DISTANCIA
+                            </div>
+                            <div class="font-black text-lg">
+                                ~25 km
+                            </div>
+                        </div>
+                        <div class="bg-black rounded p-3">
+                            <div class="text-xs text-zinc-500">
+                                DESNIVEL
+                            </div>
+                            <div class="font-black text-lg">
+                                ~450 m+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 text-sm">
+                        <span class="inline-flex items-center gap-2 text-green-400">
+                            <i class="fa-solid fa-circle"></i>
+                            Dificultad baja
+                        </span>
+                    </div>
                 </div>
-
-                <!-- Formulario conectado a Google Apps Script -->
-                <form id="registro-form" class="space-y-6">
-                    
-                    <!-- Nombre -->
-                    <div>
-                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Nombre *</label>
-                        <input type="text" name="nombre" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                <!-- INTERMEDIOS -->
+                <div class="bg-zinc-900 border-2 border-yellow-400/50 rounded-xl p-7">
+                    <div class="text-yellow-400 text-4xl mb-5">
+                        <i class="fa-solid fa-bolt"></i>
                     </div>
-
-                    <!-- Edad -->
-                    <div>
-                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Edad *</label>
-                        <input type="number" name="edad" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                    <h3 class="text-xl font-black uppercase mb-3">
+                        Intermedios
+                    </h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                        Para ciclistas con experiencia y buen ritmo,
+                        preparados para senderos y subidas de exigencia media.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-black rounded p-3">
+                            <div class="text-xs text-zinc-500">
+                                DISTANCIA
+                            </div>
+                            <div class="font-black text-lg">
+                                Ruta oficial
+                            </div>
+                        </div>
+                        <div class="bg-black rounded p-3">
+                            <div class="text-xs text-zinc-500">
+                                DIFICULTAD
+                            </div>
+                            <div class="font-black text-lg">
+                                MEDIA
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- Lugar de procedencia -->
-                    <div>
-                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Lugar de procedencia</label>
-                        <input type="text" name="procedencia" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                    <div class="mt-5 text-sm">
+                        <span class="inline-flex items-center gap-2 text-yellow-400">
+                            <i class="fa-solid fa-circle"></i>
+                            Dificultad media
+                        </span>
                     </div>
-
-                    <!-- Equipo -->
-                    <div>
-                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Equipo</label>
-                        <input type="text" name="equipo" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                </div>
+                <!-- AVANZADOS -->
+                <div
+                    class="bg-zinc-900 border-2 border-yellow-400 rounded-xl p-7 relative shadow-xl shadow-yellow-400/5">
+                    <div
+                        class="absolute -top-3 right-5 bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">
+                        Alto rendimiento
                     </div>
-
-                    <!-- Ruta -->
-                    <div>
-                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Ruta *</label>
-                        <select name="ruta" required class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
-                            <option value="" disabled selected>Elegir</option>
-                            <option value="Principiantes aferrados">Principiantes aferrados</option>
-                            <option value="Intermedios">Intermedios</option>
-                            <option value="Avanzados">Avanzados</option>
-                        </select>
+                    <div class="text-yellow-400 text-4xl mb-5">
+                        <i class="fa-solid fa-fire"></i>
                     </div>
-
-                    <!-- Teléfono -->
-                    <div>
-                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Teléfono *</label>
-                        <input type="tel" name="telefono" required placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                    <h3 class="text-xl font-black uppercase mb-3">
+                        Avanzados
+                    </h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed mb-6">
+                        Para ciclistas experimentados que buscan tramos técnicos,
+                        subidas demandantes y una mayor exigencia física.
+                    </p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="bg-black rounded p-3">
+                            <div class="text-xs text-zinc-500">
+                                DISTANCIA
+                            </div>
+                            <div class="font-black text-lg">
+                                ~45 km
+                            </div>
+                        </div>
+                        <div class="bg-black rounded p-3">
+                            <div class="text-xs text-zinc-500">
+                                DESNIVEL
+                            </div>
+                            <div class="font-black text-lg">
+                                ~950 m+
+                            </div>
+                        </div>
                     </div>
-
-                    <!-- Contacto de emergencia -->
-                    <div>
-                        <label class="block text-xs font-black uppercase text-yellow-400 mb-2">Contacto de emergencia</label>
-                        <input type="text" name="emergencia" placeholder="Tu respuesta" class="w-full bg-black border-2 border-zinc-800 rounded-lg p-3.5 text-white focus:border-yellow-400 focus:outline-none transition">
+                    <div class="mt-5 text-sm">
+                        <span class="inline-flex items-center gap-2 text-red-400">
+                            <i class="fa-solid fa-circle"></i>
+                            Dificultad alta
+                        </span>
                     </div>
-
-                    <!-- Check de Privacidad Opción 1 -->
-                    <div class="flex items-start gap-3 pt-2">
-                        <input type="checkbox" id="privacidad" name="privacidad" required class="mt-1 w-4 h-4 accent-yellow-400 bg-black border-zinc-800 rounded cursor-pointer">
-                        <label for="privacidad" class="text-xs text-zinc-300 leading-relaxed cursor-pointer">
-                            Doy mi consentimiento para que el equipo MTB Pug's utilice mis datos exclusivamente para la organización del evento. *
-                        </label>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" id="submit-btn" class="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-black uppercase py-4 rounded-lg tracking-wider text-base transition shadow-lg transform hover:-translate-y-0.5">
-                        <i class="fa-solid fa-paper-plane mr-2"></i> Enviar Registro
-                    </button>
-                </form>
-
+                </div>
             </div>
-
         </div>
     </section>
-
-    <!-- Patrocinadores Section (Simplificado: Solo logos, justo después del formulario) -->
+    <!-- ========================================================= -->
+    <!-- STRAVA -->
+    <!-- ========================================================= -->
+    <section id="strava" class="py-20 bg-zinc-900 border-y border-zinc-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="bg-orange-500 text-white text-xs font-black uppercase px-3 py-1 rounded">
+                    <i class="fa-brands fa-strava mr-1"></i>
+                    STRAVA
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase mt-3 mb-4">
+                    RUTAS
+                    <span class="text-yellow-400">
+                        OFICIALES
+                    </span>
+                </h2>
+                <p class="text-zinc-400">
+                    Consulta distancia, desnivel y recorrido antes de participar.
+                </p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- RUTA CORTA -->
+                <div class="bg-black border border-zinc-800 rounded-xl p-7">
+                    <div class="flex items-center justify-between mb-5">
+                        <span
+                            class="bg-yellow-400/10 text-yellow-400 border border-yellow-400/30 px-3 py-1 rounded text-xs font-black uppercase">
+                            Principiantes
+                        </span>
+                        <i class="fa-brands fa-strava text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase mb-2">
+                        Circuito Santa Cruz
+                    </h3>
+                    <p class="text-zinc-400 text-sm mb-6">
+                        Ruta recreativa para disfrutar de los paisajes locales.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 border-y border-zinc-800 py-5 mb-6">
+                        <div>
+                            <p class="text-xs text-zinc-500 uppercase font-bold">
+                                Distancia
+                            </p>
+                            <p class="text-xl font-black">
+                                ~25 km
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-zinc-500 uppercase font-bold">
+                                Desnivel
+                            </p>
+                            <p class="text-xl font-black">
+                                ~450 m+
+                            </p>
+                        </div>
+                    </div>
+                    <!-- IMPORTANTE: colocar aquí URL real de Strava -->
+                    <a id="strava-short-link" href="#" target="_blank" rel="noopener noreferrer"
+                        class="strava-link block text-center bg-zinc-800 hover:bg-orange-600 text-white font-bold py-3.5 rounded uppercase text-sm transition">
+                        <i class="fa-brands fa-strava mr-2"></i>
+                        Ver Ruta en Strava
+                    </a>
+                </div>
+                <!-- RUTA LARGA -->
+                <div class="bg-black border-2 border-yellow-400/60 rounded-xl p-7">
+                    <div class="flex items-center justify-between mb-5">
+                        <span class="bg-yellow-400 text-black px-3 py-1 rounded text-xs font-black uppercase">
+                            Intermedios / Avanzados
+                        </span>
+                        <i class="fa-brands fa-strava text-orange-500 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase mb-2">
+                        El Reto "La Rabiosa"
+                    </h3>
+                    <p class="text-zinc-400 text-sm mb-6">
+                        La ruta completa con senderos técnicos y subidas demandantes.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 border-y border-zinc-800 py-5 mb-6">
+                        <div>
+                            <p class="text-xs text-zinc-500 uppercase font-bold">
+                                Distancia
+                            </p>
+                            <p class="text-xl font-black">
+                                ~45 km
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-xs text-zinc-500 uppercase font-bold">
+                                Desnivel
+                            </p>
+                            <p class="text-xl font-black">
+                                ~950 m+
+                            </p>
+                        </div>
+                    </div>
+                    <a id="strava-long-link" href="#" target="_blank" rel="noopener noreferrer"
+                        class="strava-link block text-center bg-orange-500 hover:bg-orange-600 text-white font-bold py-3.5 rounded uppercase text-sm transition">
+                        <i class="fa-brands fa-strava mr-2"></i>
+                        Ver Ruta en Strava
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================================================= -->
+    <!-- WHAT TO BRING -->
+    <!-- ========================================================= -->
+    <section class="py-20 bg-black">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">
+                    PREPÁRATE
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase mt-3">
+                    ¿QUÉ <span class="text-yellow-400">LLEVAR?</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg text-center">
+                    <i class="fa-solid fa-helmet-safety text-yellow-400 text-3xl mb-3"></i>
+                    <h3 class="font-black uppercase text-sm">Casco</h3>
+                    <p class="text-xs text-zinc-500 mt-2">Obligatorio</p>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg text-center">
+                    <i class="fa-solid fa-hand text-yellow-400 text-3xl mb-3"></i>
+                    <h3 class="font-black uppercase text-sm">Guantes</h3>
+                    <p class="text-xs text-zinc-500 mt-2">Recomendados</p>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg text-center">
+                    <i class="fa-solid fa-bottle-water text-yellow-400 text-3xl mb-3"></i>
+                    <h3 class="font-black uppercase text-sm">Hidratación</h3>
+                    <p class="text-xs text-zinc-500 mt-2">Agua suficiente</p>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg text-center">
+                    <i class="fa-solid fa-wrench text-yellow-400 text-3xl mb-3"></i>
+                    <h3 class="font-black uppercase text-sm">Herramientas</h3>
+                    <p class="text-xs text-zinc-500 mt-2">Reparaciones básicas</p>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg text-center">
+                    <i class="fa-solid fa-bicycle text-yellow-400 text-3xl mb-3"></i>
+                    <h3 class="font-black uppercase text-sm">Bicicleta</h3>
+                    <p class="text-xs text-zinc-500 mt-2">Buen estado mecánico</p>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg text-center">
+                    <i class="fa-solid fa-sun text-yellow-400 text-3xl mb-3"></i>
+                    <h3 class="font-black uppercase text-sm">Protección solar</h3>
+                    <p class="text-xs text-zinc-500 mt-2">Muy recomendable</p>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg text-center">
+                    <i class="fa-solid fa-mobile-screen text-yellow-400 text-3xl mb-3"></i>
+                    <h3 class="font-black uppercase text-sm">Teléfono</h3>
+                    <p class="text-xs text-zinc-500 mt-2">Batería suficiente</p>
+                </div>
+                <div class="bg-zinc-900 border border-zinc-800 p-5 rounded-lg text-center">
+                    <i class="fa-solid fa-id-card text-yellow-400 text-3xl mb-3"></i>
+                    <h3 class="font-black uppercase text-sm">Identificación</h3>
+                    <p class="text-xs text-zinc-500 mt-2">Recomendable</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================================================= -->
+    <!-- SAFETY -->
+    <!-- ========================================================= -->
+    <section id="seguridad" class="py-20 bg-zinc-900 border-y border-zinc-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">
+                    IMPORTANTE
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase mt-3">
+                    SEGURIDAD EN LA <span class="text-yellow-400">RODADA</span>
+                </h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-5">
+                <div class="bg-black border border-zinc-800 p-6 rounded-xl">
+                    <i class="fa-solid fa-helmet-safety text-yellow-400 text-3xl mb-4"></i>
+                    <h3 class="font-black uppercase mb-2">
+                        Casco obligatorio
+                    </h3>
+                    <p class="text-sm text-zinc-400">
+                        Todos los participantes deberán portar casco correctamente colocado y abrochado durante el
+                        recorrido.
+                    </p>
+                </div>
+                <div class="bg-black border border-zinc-800 p-6 rounded-xl">
+                    <i class="fa-solid fa-bicycle text-yellow-400 text-3xl mb-4"></i>
+                    <h3 class="font-black uppercase mb-2">
+                        Bicicleta en buen estado
+                    </h3>
+                    <p class="text-sm text-zinc-400">
+                        Cada participante es responsable de verificar las condiciones mecánicas de su bicicleta antes de
+                        iniciar.
+                    </p>
+                </div>
+                <div class="bg-black border border-zinc-800 p-6 rounded-xl">
+                    <i class="fa-solid fa-people-group text-yellow-400 text-3xl mb-4"></i>
+                    <h3 class="font-black uppercase mb-2">
+                        Rodamos en grupo
+                    </h3>
+                    <p class="text-sm text-zinc-400">
+                        Respeta las indicaciones de los organizadores y mantente atento a los demás ciclistas.
+                    </p>
+                </div>
+                <div class="bg-black border border-zinc-800 p-6 rounded-xl">
+                    <i class="fa-solid fa-triangle-exclamation text-yellow-400 text-3xl mb-4"></i>
+                    <h3 class="font-black uppercase mb-2">
+                        Conoce tus límites
+                    </h3>
+                    <p class="text-sm text-zinc-400">
+                        Selecciona una categoría acorde con tu experiencia y condición física.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================================================= -->
+    <!-- LOCATION -->
+    <!-- ========================================================= -->
+    <section id="ubicacion" class="py-20 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">
+                    <i class="fa-solid fa-location-dot mr-1"></i>
+                    PUNTO DE SALIDA Y META
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase mt-3 mb-4">
+                    UBICACIÓN DEL
+                    <span class="text-yellow-400">
+                        EVENTO
+                    </span>
+                </h2>
+                <p class="text-zinc-400">
+                    Plaza principal de Santa Cruz El Porvenir, Ixtacuixtla, Tlaxcala.
+                </p>
+            </div>
+            <div class="bg-zinc-900 border-4 border-yellow-400 p-2 rounded-2xl shadow-2xl overflow-hidden">
+                <div class="w-full h-[350px] sm:h-[450px] rounded-xl overflow-hidden">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1119.3116504728916!2d-98.34556426560147!3d19.330118342013368!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfd7006b4aeb07%3A0xb3455e2c7b27da43!2sLetras%20PORVENIR%20plaza%20principal!5e0!3m2!1ses-419!2smx!4v1786728257081!5m2!1ses-419!2smx"
+                        width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"
+                        title="Mapa de ubicación del evento MTB Pug's" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+            <div class="text-center mt-6">
+                <a href="https://maps.app.goo.gl/CAMAcUUsPdx9yGJv7" target="_blank" rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-black font-black px-6 py-3.5 rounded-lg uppercase text-sm transition">
+                    <i class="fa-solid fa-diamond-turn-right"></i>
+                    Cómo llegar con Google Maps
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- ========================================================= -->
+    <!-- REGISTRATION -->
+    <!-- ========================================================= -->
+    <section id="registro" class="py-20 bg-black border-t border-zinc-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">
+                    INSCRIPCIÓN OFICIAL
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase mt-3 mb-4">
+                    REGÍSTRATE PARA
+                    <span class="text-yellow-400">
+                        LA RABIOSA
+                    </span>
+                </h2>
+                <p class="text-zinc-400 max-w-xl mx-auto">
+                    Registro gratuito.
+                    Completa tus datos para facilitar la logística y seguridad del evento.
+                </p>
+            </div>
+            <!-- FORM CARD -->
+            <div
+                class="bg-zinc-900 border-4 border-yellow-400 p-5 sm:p-10 rounded-2xl shadow-2xl relative overflow-hidden">
+                <!-- SUCCESS -->
+                <div id="form-success-banner"
+                    class="hidden absolute inset-0 bg-zinc-950 z-20 flex flex-col items-center justify-center text-center p-6">
+                    <div
+                        class="w-20 h-20 bg-yellow-400 text-black rounded-full flex items-center justify-center text-4xl mb-5">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-black uppercase mb-2">
+                        ¡REGISTRO RECIBIDO!
+                    </h3>
+                    <p class="text-zinc-400 mb-5 max-w-md">
+                        Tus datos fueron enviados correctamente.
+                    </p>
+                    <div class="bg-black border border-yellow-400/30 rounded-lg p-5 mb-6 w-full max-w-sm">
+                        <p class="text-xs text-zinc-500 uppercase font-bold">
+                            Tu folio
+                        </p>
+                        <p id="confirmation-folio" class="text-2xl font-black text-yellow-400 mt-1">
+                            RAB-00000
+                        </p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button type="button" id="share-registration-btn"
+                            class="bg-yellow-400 hover:bg-yellow-500 text-black font-black uppercase px-6 py-3 rounded-lg transition">
+                            <i class="fa-solid fa-share-nodes mr-2"></i>
+                            Compartir
+                        </button>
+                        <button type="button" id="reset-form-btn"
+                            class="bg-zinc-800 hover:bg-zinc-700 text-white font-black uppercase px-6 py-3 rounded-lg transition">
+                            Registrar otro
+                        </button>
+                    </div>
+                </div>
+                <!-- ERROR -->
+                <div id="form-error"
+                    class="hidden bg-red-950/40 border border-red-500/40 text-red-300 p-4 rounded-lg mb-6">
+                    <div class="flex gap-3">
+                        <i class="fa-solid fa-circle-exclamation text-red-400 mt-1"></i>
+                        <div>
+                            <p class="font-black uppercase text-sm">
+                                No pudimos enviar tu registro
+                            </p>
+                            <p id="form-error-message" class="text-sm mt-1">
+                                Verifica tu conexión e inténtalo nuevamente.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- FORM -->
+                <form id="registro-form" class="space-y-6" novalidate>
+                    <!-- NAME -->
+                    <div>
+                        <label for="nombre" class="block text-sm font-black uppercase text-yellow-400 mb-2">
+                            Nombre completo *
+                        </label>
+                        <input id="nombre" type="text" name="nombre" required autocomplete="name" maxlength="100"
+                            placeholder="Ej. Juan Pérez Gómez"
+                            class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
+                    <!-- AGE -->
+                    <div>
+                        <label for="edad" class="block text-sm font-black uppercase text-yellow-400 mb-2">
+                            Edad *
+                        </label>
+                        <input id="edad" type="number" name="edad" required min="15" max="100" inputmode="numeric"
+                            placeholder="Ej. 30"
+                            class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
+                        <p class="text-xs text-zinc-500 mt-2">
+                            Para participantes menores de 15 años, favor de contactar previamente a los organizadores.
+                        </p>
+                    </div>
+                    <!-- LOCATION -->
+                    <div>
+                        <label for="procedencia" class="block text-sm font-black uppercase text-yellow-400 mb-2">
+                            Lugar de procedencia
+                        </label>
+                        <input id="procedencia" type="text" name="procedencia" maxlength="100"
+                            autocomplete="address-level2" placeholder="Ej. Ixtacuixtla, Tlaxcala"
+                            class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
+                    <!-- TEAM -->
+                    <div>
+                        <label for="equipo" class="block text-sm font-black uppercase text-yellow-400 mb-2">
+                            Equipo de ciclismo
+                            <span class="text-zinc-500">
+                                (Opcional)
+                            </span>
+                        </label>
+                        <input id="equipo" type="text" name="equipo" maxlength="100"
+                            placeholder="Ej. MTB Pug's / Independiente"
+                            class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
+                    <!-- ROUTE -->
+                    <div>
+                        <label for="ruta-select" class="block text-sm font-black uppercase text-yellow-400 mb-2">
+                            Selecciona tu ruta *
+                        </label>
+                        <select id="ruta-select" name="ruta" required
+                            class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition cursor-pointer">
+                            <option value="" disabled selected>
+                                -- Elige una categoría --
+                            </option>
+                            <option value="Principiantes aferrados">
+                                Principiantes aferrados
+                            </option>
+                            <option value="Intermedios">
+                                Intermedios
+                            </option>
+                            <option value="Avanzados">
+                                Avanzados
+                            </option>
+                        </select>
+                    </div>
+                    <!-- PHONE -->
+                    <div>
+                        <label for="telefono" class="block text-sm font-black uppercase text-yellow-400 mb-2">
+                            Teléfono / WhatsApp *
+                        </label>
+                        <input id="telefono" type="tel" name="telefono" required autocomplete="tel" maxlength="20"
+                            inputmode="tel" placeholder="Ej. 246 000 0000"
+                            class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
+                    <!-- EMERGENCY -->
+                    <div>
+                        <label for="emergencia" class="block text-sm font-black uppercase text-yellow-400 mb-2">
+                            Contacto de emergencia *
+                        </label>
+                        <input id="emergencia" type="text" name="emergencia" required maxlength="150"
+                            placeholder="Nombre y teléfono de contacto"
+                            class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
+                    </div>
+                    <!-- PRIVACY -->
+                    <div class="bg-black border border-zinc-800 rounded-lg p-4">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input id="privacidad" type="checkbox" name="privacidad" value="Aceptado" required
+                                class="mt-1.5 w-5 h-5 accent-yellow-400 cursor-pointer">
+                            <span class="text-sm text-zinc-300 leading-relaxed">
+                                Confirmo que los datos proporcionados son correctos y autorizo a MTB Pug's a utilizarlos
+                                exclusivamente para la logística y seguridad del evento. *
+                            </span>
+                        </label>
+                    </div>
+                    <!-- PHOTO -->
+                    <div class="bg-black border border-zinc-800 rounded-lg p-4">
+                        <label class="flex items-start gap-3 cursor-pointer">
+                            <input id="foto" type="checkbox" name="autorizacion_fotografia" value="Aceptado"
+                                class="mt-1.5 w-5 h-5 accent-yellow-400 cursor-pointer">
+                            <span class="text-sm text-zinc-300 leading-relaxed">
+                                Acepto que fotografías o videos tomados durante el evento puedan utilizarse para fines
+                                informativos o promocionales de MTB Pug's.
+                                <span class="text-zinc-500">
+                                    (Opcional)
+                                </span>
+                            </span>
+                        </label>
+                    </div>
+                    <!-- SUBMIT -->
+                    <button type="submit" id="submit-btn"
+                        class="w-full bg-yellow-400 hover:bg-yellow-500 disabled:bg-yellow-400/50 disabled:cursor-not-allowed text-black font-black uppercase py-5 rounded-xl tracking-wider text-lg transition shadow-xl flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Enviar Mi Registro Gratis
+                    </button>
+                    <p class="text-xs text-center text-zinc-500">
+                        * Campos obligatorios.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- ========================================================= -->
+    <!-- FAQ -->
+    <!-- ========================================================= -->
+    <section id="faq" class="py-20 bg-zinc-950 border-t border-zinc-900">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="bg-yellow-400 text-black text-xs font-black uppercase px-3 py-1 rounded">
+                    RESOLVEMOS TUS DUDAS
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black uppercase mt-3 mb-4">
+                    PREGUNTAS
+                    <span class="text-yellow-400">
+                        FRECUENTES
+                    </span>
+                </h2>
+            </div>
+            <div class="space-y-3">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+                    <button type="button"
+                        class="faq-button w-full flex items-center justify-between gap-4 p-5 text-left">
+                        <span class="font-bold">
+                            <i class="fa-solid fa-circle-question text-yellow-400 mr-2"></i>
+                            ¿Tiene algún costo participar?
+                        </span>
+                        <i class="faq-icon fa-solid fa-chevron-down text-yellow-400"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p class="px-5 pb-5 text-sm text-zinc-400 leading-relaxed">
+                            No. El evento es
+                            <strong class="text-white">
+                                100% gratuito.
+                            </strong>
+                            Lo organizamos para celebrar el aniversario de MTB Pug's con la comunidad ciclista.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+                    <button type="button"
+                        class="faq-button w-full flex items-center justify-between gap-4 p-5 text-left">
+                        <span class="font-bold">
+                            <i class="fa-solid fa-circle-question text-yellow-400 mr-2"></i>
+                            ¿Es obligatorio el casco?
+                        </span>
+                        <i class="faq-icon fa-solid fa-chevron-down text-yellow-400"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p class="px-5 pb-5 text-sm text-zinc-400 leading-relaxed">
+                            Sí.
+                            <strong class="text-white">
+                                El casco correctamente abrochado es obligatorio
+                            </strong>
+                            durante todo el recorrido.
+                            También recomendamos guantes y bicicleta en buen estado mecánico.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+                    <button type="button"
+                        class="faq-button w-full flex items-center justify-between gap-4 p-5 text-left">
+                        <span class="font-bold">
+                            <i class="fa-solid fa-circle-question text-yellow-400 mr-2"></i>
+                            ¿Pueden participar menores de edad?
+                        </span>
+                        <i class="faq-icon fa-solid fa-chevron-down text-yellow-400"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p class="px-5 pb-5 text-sm text-zinc-400 leading-relaxed">
+                            El formulario está configurado para participantes de
+                            <strong class="text-white">
+                                15 años en adelante.
+                            </strong>
+                            Para menores de 15 años será necesario contactar previamente a los organizadores para
+                            revisar las condiciones de participación y acompañamiento.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+                    <button type="button"
+                        class="faq-button w-full flex items-center justify-between gap-4 p-5 text-left">
+                        <span class="font-bold">
+                            <i class="fa-solid fa-circle-question text-yellow-400 mr-2"></i>
+                            ¿Dónde es la salida?
+                        </span>
+                        <i class="faq-icon fa-solid fa-chevron-down text-yellow-400"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p class="px-5 pb-5 text-sm text-zinc-400 leading-relaxed">
+                            La salida y meta estarán ubicadas en la
+                            <strong class="text-white">
+                                plaza principal de Santa Cruz El Porvenir, Ixtacuixtla, Tlaxcala.
+                            </strong>
+                            La salida está programada para las 8:00 AM.
+                        </p>
+                    </div>
+                </div>
+                <!-- FAQ 5 -->
+                <div class="faq-item bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden">
+                    <button type="button"
+                        class="faq-button w-full flex items-center justify-between gap-4 p-5 text-left">
+                        <span class="font-bold">
+                            <i class="fa-solid fa-circle-question text-yellow-400 mr-2"></i>
+                            ¿Qué bicicleta necesito?
+                        </span>
+                        <i class="faq-icon fa-solid fa-chevron-down text-yellow-400"></i>
+                    </button>
+                    <div class="faq-content">
+                        <p class="px-5 pb-5 text-sm text-zinc-400 leading-relaxed">
+                            Se recomienda una bicicleta de montaña en buenas condiciones mecánicas.
+                            Revisa especialmente frenos, transmisión, llantas y presión antes de la salida.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ========================================================= -->
+    <!-- SPONSORS -->
+    <!-- ========================================================= -->
     <section id="patrocinadores" class="py-16 bg-zinc-900 border-t border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10">
-                <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-tight text-white">
-                    PATROCINADORES
+                <span class="text-yellow-400 text-xs font-black uppercase">
+                    Gracias por apoyar el evento
+                </span>
+                <h2 class="text-2xl sm:text-3xl font-black uppercase mt-2">
+                    PATROCINADORES OFICIALES
                 </h2>
             </div>
-
-            <!-- Grid simple de logos -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto items-center justify-items-center">
-                
-                <!-- Patrocinador 1 -->
-                <div class="w-full bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-24 group">
-                    <img src="./app/patrocinador1.png" alt="Patrocinador 1" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="hidden text-xs text-zinc-600 font-bold">[Logo 1]</span>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 max-w-4xl mx-auto">
+                <div class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
+                    <img src="./app/patrocinador1.png" alt="Patrocinador oficial 1" loading="lazy" decoding="async"
+                        class="max-h-full max-w-full object-contain"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="hidden text-xs text-zinc-500 font-bold">
+                        PATROCINADOR
+                    </span>
                 </div>
-
-                <!-- Patrocinador 2 -->
-                <div class="w-full bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-24 group">
-                    <img src="./app/patrocinador2.png" alt="Patrocinador 2" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="hidden text-xs text-zinc-600 font-bold">[Logo 2]</span>
+                <div class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
+                    <img src="./app/patrocinador2.png" alt="Patrocinador oficial 2" loading="lazy" decoding="async"
+                        class="max-h-full max-w-full object-contain"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="hidden text-xs text-zinc-500 font-bold">
+                        PATROCINADOR
+                    </span>
                 </div>
-
-                <!-- Patrocinador 3 -->
-                <div class="w-full bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-24 group">
-                    <img src="./app/patrocinador3.png" alt="Patrocinador 3" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="hidden text-xs text-zinc-600 font-bold">[Logo 3]</span>
+                <div class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
+                    <img src="./app/patrocinador3.png" alt="Patrocinador oficial 3" loading="lazy" decoding="async"
+                        class="max-h-full max-w-full object-contain"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="hidden text-xs text-zinc-500 font-bold">
+                        PATROCINADOR
+                    </span>
                 </div>
-
-                <!-- Patrocinador 4 -->
-                <div class="w-full bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-24 group">
-                    <img src="./app/patrocinador4.png" alt="Patrocinador 4" class="max-h-full max-w-full object-contain filter grayscale group-hover:grayscale-0 transition" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <span class="hidden text-xs text-zinc-600 font-bold">[Logo 4]</span>
+                <div class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
+                    <img src="./app/patrocinador4.png" alt="Patrocinador oficial 4" loading="lazy" decoding="async"
+                        class="max-h-full max-w-full object-contain"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <span class="hidden text-xs text-zinc-500 font-bold">
+                        PATROCINADOR
+                    </span>
                 </div>
-
             </div>
         </div>
     </section>
-
-    <!-- Script actualizado para manejar envío por AJAX y banner visual de éxito -->
-    <script>
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbzmaGm1b3lPhTSBjeS-tpHgjIfPEtQzylDAA-N5-6yDVp_-xYSV-2ebG1veVvXmt79ydg/exec';
-
-        const form = document.getElementById('registro-form');
-        const submitBtn = document.getElementById('submit-btn');
-        const successBanner = document.getElementById('form-success-banner');
-        const resetFormBtn = document.getElementById('reset-form-btn');
-
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Enviando...';
-
-            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-                .then(response => {
-                    form.reset();
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i> Enviar Registro';
-                    successBanner.classList.remove('hidden');
-                })
-                .catch(error => {
-                    console.error('Error!', error.message);
-                    alert('Hubo un error al enviar tu registro. Inténtalo de nuevo.');
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane mr-2"></i> Enviar Registro';
-                });
-        });
-
-        resetFormBtn.addEventListener('click', () => {
-            successBanner.classList.add('hidden');
-        });
-    </script>
-
-    <!-- Footer -->
-    <footer class="bg-black border-t border-zinc-900 py-10 text-zinc-400 text-xs sm:text-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left">
-            <div>
-                <p class="font-black text-white text-lg uppercase flex items-center justify-center sm:justify-start gap-2">
-                    <i class="fa-solid fa-dog text-yellow-400"></i> MTB PUG'S SANTA CRUZ EL PORVENIR IXTACUIXTLA
-                </p>
-                <p class="text-xs text-zinc-500 mt-1">© 2026 3er Aniversario Rodada "La Rabiosa". Todos los derechos reservados.</p>
-            </div>
-            <div>
-                <a href="https://www.facebook.com/mtbpugssantacruzelporvenirixtacuixtla" target="_blank" class="inline-flex items-center gap-2 bg-yellow-400 text-black font-black px-6 py-3 rounded uppercase hover:bg-yellow-500 transition shadow">
-                    <i class="fa-brands fa-facebook text-lg"></i> Visita nuestra página de Facebook
-                </a>
+    <!-- ========================================================= -->
+    <!-- FOOTER -->
+    <!-- ========================================================= -->
+    <footer class="bg-black border-t border-zinc-900 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+                <div>
+                    <p class="font-black text-white text-base uppercase">
+                        <i class="fa-solid fa-dog text-yellow-400 mr-2"></i>
+                        MTB PUG'S SANTA CRUZ EL PORVENIR IXTACUIXTLA
+                    </p>
+                    <p class="text-xs text-zinc-500 mt-2">
+                        © 2026 3er Aniversario Rodada "La Rabiosa".
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a href="https://www.facebook.com/mtbpugssantacruzelporvenirixtacuixtla" target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center justify-center gap-2 bg-yellow-400 text-black font-black px-6 py-3 rounded uppercase hover:bg-yellow-500 transition text-xs">
+                        <i class="fa-brands fa-facebook text-lg"></i>
+                        Facebook
+                    </a>
+                    <!-- WhatsApp será configurado en JS -->
+                    <a id="whatsapp-link" href="#" target="_blank" rel="noopener noreferrer"
+                        class="hidden inline-flex items-center justify-center gap-2 bg-green-500 text-white font-black px-6 py-3 rounded uppercase hover:bg-green-600 transition text-xs">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        WhatsApp
+                    </a>
+                </div>
             </div>
         </div>
     </footer>
-
-    <!-- Scripting for mobile menu -->
+    <!-- ========================================================= -->
+    <!-- TOAST -->
+    <!-- ========================================================= -->
+    <div id="toast"
+        class="fixed bottom-5 left-4 right-4 sm:left-auto sm:right-5 sm:max-w-sm z-[100] bg-zinc-900 border border-yellow-400 text-white rounded-lg shadow-2xl p-4">
+        <div class="flex items-center gap-3">
+            <i id="toast-icon" class="fa-solid fa-circle-check text-yellow-400 text-xl"></i>
+            <p id="toast-message" class="text-sm font-bold">
+                Listo.
+            </p>
+        </div>
+    </div>
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT -->
+    <!-- ========================================================= -->
     <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
+        /* =========================================================
+           CONFIGURACIÓN
+           ========================================================= */
+        const CONFIG = {
+            /* Google Apps Script */
+            scriptURL:
+                'https://script.google.com/macros/s/AKfycbzmaGm1b3lPhTSBjeS-tpHgjIfPEtQzylDAA-N5-6yDVp_-xYSV-2ebG1veVvXmt79ydg/exec',
+            /* Fecha del evento */
+            eventDate:
+                '2026-11-22T08:00:00-06:00',
+            /*
+             * Coloca aquí la URL REAL de cada ruta de Strava.
+             *
+             * Ejemplo:
+             *
+             * stravaShort:
+             * 'https://www.strava.com/routes/123456'
+             */
+            stravaShort:
+                '',
+            stravaLong:
+                '',
+            /*
+             * Coloca aquí el número de WhatsApp del evento.
+             *
+             * Formato:
+             * 521XXXXXXXXXX
+             *
+             * SIN +, espacios ni guiones.
+             */
+            whatsapp:
+                ''
+        };
+        /* =========================================================
+           ELEMENTOS
+           ========================================================= */
+        const form =
+            document.getElementById('registro-form');
+        const submitBtn =
+            document.getElementById('submit-btn');
+        const successBanner =
+            document.getElementById('form-success-banner');
+        const errorBox =
+            document.getElementById('form-error');
+        const errorMessage =
+            document.getElementById('form-error-message');
+        const resetFormBtn =
+            document.getElementById('reset-form-btn');
+        const shareBtn =
+            document.getElementById('share-registration-btn');
+        const folioElement =
+            document.getElementById('confirmation-folio');
+        let generatedFolio = '';
+        /* =========================================================
+           MOBILE MENU
+           ========================================================= */
+        const menuBtn =
+            document.getElementById('menu-btn');
+        const mobileMenu =
+            document.getElementById('mobile-menu');
+        const menuIcon =
+            document.getElementById('menu-icon');
         menuBtn.addEventListener('click', () => {
+            const isHidden =
+                mobileMenu.classList.contains('hidden');
             mobileMenu.classList.toggle('hidden');
+            menuBtn.setAttribute(
+                'aria-expanded',
+                String(isHidden)
+            );
+            menuIcon.className =
+                isHidden
+                    ? 'fa-solid fa-xmark'
+                    : 'fa-solid fa-bars';
+        });
+        document.querySelectorAll('.mobile-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuBtn.setAttribute(
+                    'aria-expanded',
+                    'false'
+                );
+                menuIcon.className =
+                    'fa-solid fa-bars';
+            });
+        });
+        /* =========================================================
+           COUNTDOWN
+           ========================================================= */
+        function updateCountdown() {
+            const eventDate =
+                new Date(CONFIG.eventDate).getTime();
+            const now =
+                new Date().getTime();
+            const difference =
+                eventDate - now;
+            if (difference <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+            const days =
+                Math.floor(
+                    difference /
+                    (1000 * 60 * 60 * 24)
+                );
+            const hours =
+                Math.floor(
+                    (difference %
+                        (1000 * 60 * 60 * 24)) /
+                    (1000 * 60 * 60)
+                );
+            const minutes =
+                Math.floor(
+                    (difference %
+                        (1000 * 60 * 60)) /
+                    (1000 * 60)
+                );
+            const seconds =
+                Math.floor(
+                    (difference %
+                        (1000 * 60)) /
+                    1000
+                );
+            document.getElementById('days').textContent =
+                String(days).padStart(2, '0');
+            document.getElementById('hours').textContent =
+                String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent =
+                String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent =
+                String(seconds).padStart(2, '0');
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        /* =========================================================
+           FAQ
+           ========================================================= */
+        document.querySelectorAll('.faq-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const item =
+                    button.closest('.faq-item');
+                const wasActive =
+                    item.classList.contains('active');
+                document.querySelectorAll('.faq-item')
+                    .forEach(otherItem => {
+                        otherItem.classList.remove('active');
+                    });
+                if (!wasActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        /* =========================================================
+           STRAVA
+           ========================================================= */
+        const shortStrava =
+            document.getElementById('strava-short-link');
+        const longStrava =
+            document.getElementById('strava-long-link');
+        function configureStravaLink(element, url) {
+            if (!url) {
+                element.removeAttribute('href');
+                element.classList.add(
+                    'opacity-60',
+                    'cursor-not-allowed'
+                );
+                element.innerHTML =
+                    '<i class="fa-solid fa-clock mr-2"></i> Ruta próximamente';
+                return;
+            }
+            element.href = url;
+        }
+        configureStravaLink(
+            shortStrava,
+            CONFIG.stravaShort
+        );
+        configureStravaLink(
+            longStrava,
+            CONFIG.stravaLong
+        );
+        /* =========================================================
+           WHATSAPP
+           ========================================================= */
+        const whatsappLink =
+            document.getElementById('whatsapp-link');
+        if (CONFIG.whatsapp) {
+            whatsappLink.href =
+                `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(
+                    'Hola MTB Pug\'s, tengo una duda sobre la Rodada La Rabiosa.'
+                )}`;
+            whatsappLink.classList.remove('hidden');
+        }
+        /* =========================================================
+           TOAST
+           ========================================================= */
+        let toastTimeout;
+        function showToast(message, type = 'success') {
+            const toast =
+                document.getElementById('toast');
+            const toastMessage =
+                document.getElementById('toast-message');
+            const toastIcon =
+                document.getElementById('toast-icon');
+            toastMessage.textContent =
+                message;
+            toastIcon.className =
+                type === 'error'
+                    ? 'fa-solid fa-circle-exclamation text-red-400 text-xl'
+                    : 'fa-solid fa-circle-check text-yellow-400 text-xl';
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout =
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 4000);
+        }
+        /* =========================================================
+           FOLIO
+           ========================================================= */
+        function generateFolio() {
+            const random =
+                Math.floor(
+                    10000 +
+                    Math.random() * 90000
+                );
+            return `RAB-${random}`;
+        }
+        /* =========================================================
+           VALIDACIÓN
+           ========================================================= */
+        function validateForm() {
+            const nombre =
+                document.getElementById('nombre');
+            const edad =
+                document.getElementById('edad');
+            const telefono =
+                document.getElementById('telefono');
+            const emergencia =
+                document.getElementById('emergencia');
+            const privacidad =
+                document.getElementById('privacidad');
+            if (!nombre.value.trim()) {
+                nombre.focus();
+                showToast(
+                    'Ingresa tu nombre completo.',
+                    'error'
+                );
+                return false;
+            }
+            const age =
+                Number(edad.value);
+            if (!age || age < 15 || age > 100) {
+                edad.focus();
+                showToast(
+                    'La edad debe estar entre 15 y 100 años.',
+                    'error'
+                );
+                return false;
+            }
+            const phoneDigits =
+                telefono.value.replace(/\D/g, '');
+            if (phoneDigits.length < 10) {
+                telefono.focus();
+                showToast(
+                    'Ingresa un número de teléfono válido.',
+                    'error'
+                );
+                return false;
+            }
+            if (!emergencia.value.trim()) {
+                emergencia.focus();
+                showToast(
+                    'Ingresa un contacto de emergencia.',
+                    'error'
+                );
+                return false;
+            }
+            if (!privacidad.checked) {
+                privacidad.focus();
+                showToast(
+                    'Debes aceptar el uso de datos para logística y seguridad.',
+                    'error'
+                );
+                return false;
+            }
+            return true;
+        }
+        /* =========================================================
+           FORMULARIO
+           ========================================================= */
+        form.addEventListener('submit', async event => {
+            event.preventDefault();
+            if (!validateForm()) {
+                return;
+            }
+            if (submitBtn.disabled) {
+                return;
+            }
+            errorBox.classList.add('hidden');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML =
+                '<i class="fa-solid fa-spinner loading-spinner"></i> Enviando información...';
+            const controller =
+                new AbortController();
+            const timeout =
+                setTimeout(() => {
+                    controller.abort();
+                }, 15000);
+            try {
+                const response =
+                    await fetch(
+                        CONFIG.scriptURL,
+                        {
+                            method: 'POST',
+                            body: new FormData(form),
+                            signal: controller.signal
+                        }
+                    );
+                clearTimeout(timeout);
+                if (!response.ok) {
+                    throw new Error(
+                        `HTTP ${response.status}`
+                    );
+                }
+                /*
+                 * Generamos un folio local para mostrar
+                 * inmediatamente al participante.
+                 *
+                 * IMPORTANTE:
+                 * Para que este folio sea definitivo y único,
+                 * recomiendo posteriormente generarlo también
+                 * en Google Apps Script.
+                 */
+                generatedFolio =
+                    generateFolio();
+                folioElement.textContent =
+                    generatedFolio;
+                form.reset();
+                successBanner.classList.remove(
+                    'hidden'
+                );
+                showToast(
+                    'Registro enviado correctamente.'
+                );
+            } catch (error) {
+                clearTimeout(timeout);
+                console.error(
+                    'Error al enviar:',
+                    error
+                );
+                let message =
+                    'Hubo un problema de conexión. Inténtalo nuevamente.';
+                if (error.name === 'AbortError') {
+                    message =
+                        'La solicitud tardó demasiado. Verifica tu conexión e inténtalo nuevamente.';
+                }
+                errorMessage.textContent =
+                    message;
+                errorBox.classList.remove(
+                    'hidden'
+                );
+                showToast(
+                    message,
+                    'error'
+                );
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML =
+                    '<i class="fa-solid fa-paper-plane"></i> Enviar Mi Registro Gratis';
+            }
+        });
+        /* =========================================================
+           RESET
+           ========================================================= */
+        resetFormBtn.addEventListener('click', () => {
+            successBanner.classList.add(
+                'hidden'
+            );
+            window.scrollTo({
+                top:
+                    document.getElementById('registro')
+                        .offsetTop - 90,
+                behavior: 'smooth'
+            });
+        });
+        /* =========================================================
+           SHARE
+           ========================================================= */
+        shareBtn.addEventListener('click', async () => {
+            const nombre =
+                document.getElementById('nombre').value ||
+                'Participante';
+            const shareText =
+                `🚴 ¡Estoy registrado para La Rabiosa!
+MTB Pug's - 3er Aniversario
+📅 22 de noviembre de 2026
+📍 Santa Cruz El Porvenir, Ixtacuixtla
+🎫 Folio: ${generatedFolio}
+¡Nos vemos en la rodada!`;
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title:
+                            'Rodada La Rabiosa',
+                        text:
+                            shareText
+                    });
+                } catch (error) {
+                    console.log(
+                        'Compartir cancelado.'
+                    );
+                }
+                return;
+            }
+            try {
+                await navigator.clipboard.writeText(
+                    shareText
+                );
+                showToast(
+                    'Información copiada para compartir.'
+                );
+            } catch (error) {
+                showToast(
+                    'No fue posible copiar la información.',
+                    'error'
+                );
+            }
         });
     </script>
 </body>
