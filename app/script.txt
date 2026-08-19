@@ -1,0 +1,295 @@
+const SHEET_NAME = 'Registros';
+
+
+function doPost(e) {
+
+  const lock = LockService.getScriptLock();
+
+  try {
+
+    // =====================================================
+    // BLOQUEO
+    // Evita que dos registros reciban el mismo número
+    // =====================================================
+
+    lock.waitLock(30000);
+
+
+    // =====================================================
+    // OBTENER HOJA
+    // =====================================================
+
+    const spreadsheet =
+      SpreadsheetApp.getActiveSpreadsheet();
+
+    const sheet =
+      spreadsheet.getSheetByName(SHEET_NAME);
+
+
+    if (!sheet) {
+      throw new Error(
+        'No existe la hoja "' + SHEET_NAME + '".'
+      );
+    }
+
+
+    // =====================================================
+    // OBTENER DATOS RECIBIDOS
+    // =====================================================
+
+    const data = e.parameter;
+
+
+    // =====================================================
+    // VALIDACIONES
+    // =====================================================
+
+    if (!data.nombre || data.nombre.trim() === '') {
+      throw new Error('El nombre es obligatorio.');
+    }
+
+    if (!data.edad || data.edad.trim() === '') {
+      throw new Error('La edad es obligatoria.');
+    }
+
+    if (!data.ruta || data.ruta.trim() === '') {
+      throw new Error('La ruta es obligatoria.');
+    }
+
+    if (!data.telefono || data.telefono.trim() === '') {
+      throw new Error('El teléfono es obligatorio.');
+    }
+
+
+    // =====================================================
+    // OBTENER ÚLTIMO NÚMERO DE REGISTRO
+    // =====================================================
+
+    const lastRow = sheet.getLastRow();
+
+    let ultimoRegistro = 0;
+
+
+    if (lastRow > 1) {
+
+      const registros = sheet
+        .getRange(
+          2,
+          1,
+          lastRow - 1,
+          1
+        )
+        .getValues();
+
+
+      for (let i = 0; i < registros.length; i++) {
+
+        const valor = registros[i][0];
+
+
+        if (
+          valor !== '' &&
+          !isNaN(valor)
+        ) {
+
+          ultimoRegistro = Math.max(
+            ultimoRegistro,
+            Number(valor)
+          );
+
+        }
+
+      }
+
+    }
+
+
+    // =====================================================
+    // GENERAR NUEVO NÚMERO
+    // =====================================================
+
+    const nuevoRegistro =
+      ultimoRegistro + 1;
+
+
+    // =====================================================
+    // GUARDAR REGISTRO
+    // =====================================================
+
+    sheet.appendRow([
+
+      nuevoRegistro,
+
+      new Date(),
+
+      data.nombre || '',
+
+      data.edad || '',
+
+      data.procedencia || '',
+
+      data.equipo || '',
+
+      data.ruta || '',
+
+      data.telefono || '',
+
+      data.emergencia || ''
+
+    ]);
+
+
+    // =====================================================
+    // RESPUESTA EXITOSA
+    // =====================================================
+
+    return ContentService
+      .createTextOutput(
+        JSON.stringify({
+
+          result: 'success',
+
+          registro: nuevoRegistro
+
+        })
+      )
+      .setMimeType(
+        ContentService.MimeType.JSON
+      );
+
+
+  } catch (error) {
+
+
+    // =====================================================
+    // RESPUESTA DE ERROR
+    // =====================================================
+
+    return ContentService
+      .createTextOutput(
+        JSON.stringify({
+
+          result: 'error',
+
+          error: error.toString()
+
+        })
+      )
+      .setMimeType(
+        ContentService.MimeType.JSON
+      );
+
+
+  } finally {
+
+
+    // =====================================================
+    // LIBERAR BLOQUEO
+    // =====================================================
+
+    try {
+
+      lock.releaseLock();
+
+    } catch (error) {
+
+      // No hacer nada
+
+    }
+
+  }
+
+}
+
+function pruebaRegistro() {
+
+  const sheet =
+    SpreadsheetApp
+      .getActiveSpreadsheet()
+      .getSheetByName(SHEET_NAME);
+
+  if (!sheet) {
+    throw new Error(
+      'No existe la hoja "' + SHEET_NAME + '".'
+    );
+  }
+
+  const lock = LockService.getScriptLock();
+
+  try {
+
+    lock.waitLock(30000);
+
+    const lastRow = sheet.getLastRow();
+
+    let ultimoRegistro = 0;
+
+    if (lastRow > 1) {
+
+      const registros = sheet
+        .getRange(2, 1, lastRow - 1, 1)
+        .getValues();
+
+      for (let i = 0; i < registros.length; i++) {
+
+        const valor = registros[i][0];
+
+        if (
+          valor !== '' &&
+          !isNaN(valor)
+        ) {
+          ultimoRegistro = Math.max(
+            ultimoRegistro,
+            Number(valor)
+          );
+        }
+
+      }
+
+    }
+
+    const nuevoRegistro = ultimoRegistro + 1;
+
+    sheet.appendRow([
+      nuevoRegistro,
+      new Date(),
+      'PRUEBA',
+      99,
+      'PRUEBA',
+      'PRUEBA',
+      'PRUEBA',
+      '0000000000',
+      'PRUEBA'
+    ]);
+
+    Logger.log(
+      'Registro generado: #' + nuevoRegistro
+    );
+
+  } finally {
+
+    lock.releaseLock();
+
+  }
+}
+
+function pruebaDoPost() {
+
+  const datosPrueba = {
+    parameter: {
+      nombre: 'Juan Pérez Prueba',
+      edad: '30',
+      procedencia: 'Ixtacuixtla, Tlaxcala',
+      equipo: "MTB Pug's",
+      ruta: 'Intermedios',
+      telefono: '2460000000',
+      emergencia: 'María Pérez - 2461112233'
+    }
+  };
+
+  const respuesta = doPost(datosPrueba);
+
+  Logger.log(
+    respuesta.getContent()
+  );
+}

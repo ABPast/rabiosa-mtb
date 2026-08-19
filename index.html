@@ -220,7 +220,7 @@
                 <a href="#ruta" class="hover:text-yellow-400 transition">
                     RUTAS
                 </a> -->
-                <a href="#strava" class="hover:text-yellow-400 transition">
+                <a href="#rutas" class="hover:text-yellow-400 transition">
                     RUTAS
                 </a>
                 <a href="#whattobring" class="hover:text-yellow-400 transition">
@@ -258,21 +258,24 @@
                 <a href="#ruta" class="mobile-link block py-3 border-b border-zinc-800">
                     RUTAS
                 </a> -->
-                <a href="#strava" class="mobile-link block py-3 border-b border-zinc-800">
-                    STRAVA
+                <a href="#rutas" class="mobile-link block py-3 border-b border-zinc-800">
+                    RUTAS
                 </a>
-                <a href="#ubicacion" class="mobile-link block py-3 border-b border-zinc-800">
-                    UBICACIÓN
+                <a href="#whattobring" class="mobile-link block py-3 border-b border-zinc-800">
+                    PREPÁRATE
                 </a>
                 <a href="#seguridad" class="mobile-link block py-3 border-b border-zinc-800">
                     SEGURIDAD
+                </a>
+                <a href="#ubicacion" class="mobile-link block py-3 border-b border-zinc-800">
+                    UBICACIÓN
                 </a>
                 <a href="#faq" class="mobile-link block py-3 border-b border-zinc-800">
                     DUDAS FRECUENTES
                 </a>
                 <a href="#registro"
                     class="mobile-link block text-center bg-yellow-400 text-black py-3.5 rounded uppercase font-black mt-4">
-                    REGISTRARME GRATIS
+                    REGISTRARME
                 </a>
             </div>
         </div>
@@ -364,7 +367,7 @@
                     <i class="fa-solid fa-bicycle mr-2"></i>
                     Apartar Mi Lugar
                 </a>
-                <a href="#ruta"
+                <a href="#rutas"
                     class="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 text-white border border-zinc-700 px-8 py-4 font-bold text-lg uppercase tracking-wider rounded transition">
                     Ver Rutas
                 </a>
@@ -418,7 +421,7 @@
     <!-- ========================================================= -->
     <!-- STRAVA -->
     <!-- ========================================================= -->
-    <section id="strava" class="py-20 bg-zinc-900 border-y border-zinc-800">
+    <section id="rutas" class="py-20 bg-zinc-900 border-y border-zinc-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="bg-orange-500 text-white text-xs font-black uppercase px-3 py-1 rounded">
@@ -816,7 +819,7 @@
                         <label for="telefono" class="block text-sm font-black uppercase text-yellow-400 mb-2">
                             Teléfono / WhatsApp *
                         </label>
-                        <input id="telefono" type="tel" name="telefono" required autocomplete="tel" maxlength="20"
+                        <input id="telefono" type="tel" name="telefono" required autocomplete="tel" maxlength="15"
                             inputmode="tel" placeholder="Ej. 246 000 0000"
                             class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
@@ -825,9 +828,15 @@
                         <label for="emergencia" class="block text-sm font-black uppercase text-yellow-400 mb-2">
                             Contacto de emergencia *
                         </label>
-                        <input id="emergencia" type="text" name="emergencia" required maxlength="150"
-                            placeholder="Nombre y teléfono de contacto"
+                        <input id="emergencia_name" type="text" name="emergencia_name" required maxlength="150"
+                            placeholder="Nombre"
                             class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
+                    
+                        <input id="emergencia_number" type="tel" name="emergencia_number" required maxlength="15"
+                            placeholder="teléfono de contacto"
+                            class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
+                        
+                            <input id="emergencia" type="hidden" name="emergencia" >
                     </div>
                     <!-- PRIVACY -->
                     <div class="bg-black border border-zinc-800 rounded-lg p-4">
@@ -851,7 +860,7 @@
                     <button type="submit" id="submit-btn"
                         class="w-full bg-yellow-400 hover:bg-yellow-500 disabled:bg-yellow-400/50 disabled:cursor-not-allowed text-black font-black uppercase py-5 rounded-xl tracking-wider text-lg transition shadow-xl flex items-center justify-center gap-3">
                         <i class="fa-solid fa-paper-plane"></i>
-                        Enviar Mi Registro Gratis
+                        Enviar Mi Registro
                     </button>
                     <p class="text-xs text-center text-zinc-500">
                         * Campos obligatorios.

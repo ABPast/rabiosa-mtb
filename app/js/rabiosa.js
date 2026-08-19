@@ -419,9 +419,17 @@ class RabiosaApp {
             document.getElementById(
                 'telefono'
             );
-        const emergencia =
+        const ruta =
             document.getElementById(
-                'emergencia'
+                'ruta-select'
+            );
+        const emergencia_name =
+            document.getElementById(
+                'emergencia_name'
+            );
+        const emergencia_number =
+            document.getElementById(
+                'emergencia_number'
             );
         const privacidad =
             document.getElementById(
@@ -450,16 +458,29 @@ class RabiosaApp {
             );
         if (
             !age ||
-            age < 15 ||
+            age < 1 ||
             age > 100
         ) {
             edad.focus();
             this.showToast(
-                'La edad debe estar entre 15 y 100 años.',
+                'La edad debe estar entre 1 y 100 años.',
                 'error'
             );
             return false;
         }
+        /*
+         * RUTA
+         */
+        if (
+            !ruta.value.trim()
+        ){
+            ruta.focus();
+            this.showToast(
+                'Selecciona una ruta.',
+                'error'
+            );
+            return false;
+        } 
         /*
          * TELÉFONO
          */
@@ -477,14 +498,30 @@ class RabiosaApp {
             return false;
         }
         /*
-         * CONTACTO DE EMERGENCIA
+         * CONTACTO DE EMERGENCIA_name
          */
         if (
-            !emergencia.value.trim()
+            !emergencia_name.value.trim()
         ) {
-            emergencia.focus();
+            emergencia_name.focus();
             this.showToast(
                 'Ingresa un contacto de emergencia.',
+                'error'
+            );
+            return false;
+        }
+        /*
+         * CONTACTO DE EMERGENCIA_number
+         */
+        const emergencyDigits =
+            emergencia_number.value
+                .replace(/\D/g, '');
+        if (
+            emergencyDigits.length < 10
+        ) {
+            emergencia_number.focus();
+            this.showToast(
+                'Ingresa un número de teléfono válido.',
                 'error'
             );
             return false;
@@ -502,6 +539,15 @@ class RabiosaApp {
             );
             return false;
         }
+        /*
+         * Concatena contacto emergencia
+         */
+        const emer_name = document.getElementById('emergencia_name').value.trim();
+        const emer_numb = document.getElementById('emergencia_number').value.trim();
+    
+        // Asigna el valor unido a un input oculto antes de enviar
+        document.getElementById('emergencia').value = `${emer_name} - ${emer_numb}`;
+        
         return true;
     }
     /* =========================================================
