@@ -24,14 +24,12 @@ class RabiosaApp {
             /*
              * Rutas de Strava.
              *
-             * Coloca aquí las URL reales cuando las tengas.
              */
             stravaShort: '',
             stravaLong: '',
-            /*
-             * WhatsApp queda fuera por ahora.
-             */
-            whatsapp: ''
+            // Formato: 521XXXXXXXXXX, sin +, espacios ni guiones.
+            whatsapp: '5212481294043',
+            groupWhats: 'https://chat.whatsapp.com/TU_LINK_DE_GRUPO',
         };
         /*
          * =====================================================
@@ -131,6 +129,10 @@ class RabiosaApp {
         this.seconds =
             document.getElementById(
                 'seconds'
+            );
+        this.whatsappGroup =
+            document.getElementById(
+                'whatsapp-group'
             );
     }
     /* =========================================================
@@ -362,7 +364,8 @@ class RabiosaApp {
          */
         if (
             !this.whatsappLink ||
-            !this.CONFIG.whatsapp
+            !this.CONFIG.whatsapp || !this.whatsappGroup ||
+            !this.CONFIG.groupWhats
         ) {
             return;
         }
@@ -372,6 +375,9 @@ class RabiosaApp {
             `https://wa.me/${this.CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
         this.whatsappLink.classList
             .remove('hidden');
+
+        this.whatsappGroup.href =
+            this.CONFIG.groupWhats;
     }
     /* =========================================================
        TOAST
