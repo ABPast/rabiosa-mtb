@@ -929,7 +929,7 @@
                             Tu folio
                         </p>
                         <p id="confirmation-folio" class="text-2xl font-black text-yellow-400 mt-1">
-                            RAB-00000
+                            #000
                         </p>
                     </div>
                     <div class="flex flex-col sm:flex-row gap-3">
@@ -1053,20 +1053,13 @@
                             </span>
                         </label>
                     </div>
-                    <!-- PHOTO -->
-                    <div class="bg-black border border-zinc-800 rounded-lg p-4">
-                        <label class="flex items-start gap-3 cursor-pointer">
-                            <input id="foto" type="checkbox" name="autorizacion_fotografia" value="Aceptado"
-                                class="mt-1.5 w-5 h-5 accent-yellow-400 cursor-pointer">
-                            <span class="text-sm text-zinc-300 leading-relaxed">
-                                Acepto que fotografías o videos tomados durante el evento puedan utilizarse para fines
-                                informativos o promocionales de MTB Pug's.
-                                <span class="text-zinc-500">
-                                    (Opcional)
-                                </span>
-                            </span>
-                        </label>
-                    </div>
+                    <!-- TOKEN -->
+                    <input
+                        type="hidden"
+                        id="form-token"
+                        name="form_token"
+                        value=""
+                    >
                     <!-- SUBMIT -->
                     <button type="submit" id="submit-btn"
                         class="w-full bg-yellow-400 hover:bg-yellow-500 disabled:bg-yellow-400/50 disabled:cursor-not-allowed text-black font-black uppercase py-5 rounded-xl tracking-wider text-lg transition shadow-xl flex items-center justify-center gap-3">
@@ -1076,6 +1069,20 @@
                     <p class="text-xs text-center text-zinc-500">
                         * Campos obligatorios.
                     </p>
+                    <!-- Campo anti-bot. Los usuarios reales no deben llenarlo. -->
+                    <div
+                        aria-hidden="true"
+                        style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"
+                    >
+                        <label for="website">No llenar este campo</label>
+                        <input
+                            type="text"
+                            id="website"
+                            name="website"
+                            tabindex="-1"
+                            autocomplete="off"
+                        >
+                    </div>
                 </form>
             </div>
         </div>

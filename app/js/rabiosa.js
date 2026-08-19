@@ -142,6 +142,7 @@ class RabiosaApp {
         this.initFaq();
         this.initStrava();
         this.initWhatsApp();
+        this.initSecurityToken();
         this.initForm();
     }
     /* =========================================================
@@ -815,7 +816,22 @@ MTB Pug's - 3er Aniversario
             );
         }
     }
+    
+    initSecurityToken() {
+        const tokenField =
+            document.getElementById(
+                'form-token'
+            );
+        if (!tokenField) {
+            return;
+        }
+        const token =
+            crypto.randomUUID();
+        tokenField.value =
+            token;
+    }
 }
+
 /* ============================================================
    ARRANQUE
    ============================================================ */
