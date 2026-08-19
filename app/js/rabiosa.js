@@ -29,7 +29,7 @@ class RabiosaApp {
             stravaLong: '',
             // Formato: 521XXXXXXXXXX, sin +, espacios ni guiones.
             whatsapp: '5212481294043',
-            groupWhats: 'https://chat.whatsapp.com/TU_LINK_DE_GRUPO',
+            groupWhats: 'https://chat.whatsapp.com/LJFcZ8aya4e69fkLqzYoE2',
         };
         /*
          * =====================================================
