@@ -28,8 +28,9 @@ class RabiosaApp {
             stravaShort: '',
             stravaLong: '',
             // Formato: 521XXXXXXXXXX, sin +, espacios ni guiones.
-            whatsapp: '5212481294043',
+            whatsapp: '5212481231457',
             groupWhats: 'https://chat.whatsapp.com/LJFcZ8aya4e69fkLqzYoE2',
+            urlPage: 'https://abpast.github.io/rabiosa-mtb/',
         };
         /*
          * =====================================================
@@ -370,7 +371,7 @@ class RabiosaApp {
             return;
         }
         const message =
-            'Hola MTB Pug\'s, tengo una duda sobre la Rodada La Rabiosa.';
+            'Hola MTB PUG\'S, tengo una duda sobre la Rodada La Rabiosa.';
         this.whatsappLink.href =
             `https://wa.me/${this.CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
         this.whatsappLink.classList
@@ -820,13 +821,15 @@ class RabiosaApp {
         }
         const shareText =
             `🚴 ¡Estoy registrado para La Rabiosa!
-MTB Pug's - 3er Aniversario
-📅 22 de noviembre de 2026
-📍 Santa Cruz El Porvenir, Ixtacuixtla
-🎫 Registro #${String(
-                this.registro
-            ).padStart(3, '0')}
-¡Nos vemos en la rodada!`;
+            MTB Pug's - 3er Aniversario
+            📅 22 de noviembre de 2026
+            📍 Santa Cruz El Porvenir, Ixtacuixtla
+            🎫 Registro #${String(
+                            this.registro
+                        ).padStart(3, '0')}
+            ¡Nos vemos en la rodada!
+            
+            Registrate aquí: ${this.CONFIG.urlPage}`;
         /*
          * Dispositivos que soportan
          * Web Share API.
