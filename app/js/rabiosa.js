@@ -30,7 +30,7 @@ class RabiosaApp {
             // Formato: 521XXXXXXXXXX, sin +, espacios ni guiones.
             whatsapp: '5212481231457',
             groupWhats: 'https://chat.whatsapp.com/LJFcZ8aya4e69fkLqzYoE2',
-            urlPage: 'https://abpast.github.io/rabiosa-mtb/',
+            urlPage: 'https://mtb-pugs.sportiqs.com.mx',
         };
         /*
          * =====================================================
