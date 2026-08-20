@@ -821,7 +821,7 @@ class RabiosaApp {
         }
         const shareText =
             `🚴 ¡Estoy registrado para La Rabiosa!
-            MTB Pug's - 3er Aniversario
+            MTB PUG'S - 3er Aniversario
             📅 22 de noviembre de 2026
             📍 Santa Cruz El Porvenir, Ixtacuixtla
             🎫 Registro #${String(
