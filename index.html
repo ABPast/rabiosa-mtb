@@ -37,107 +37,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,900&display=swap"
         rel="stylesheet">
-    <style>
-        :root {
-            --yellow: #ffd700;
-            --yellow-dark: #e6b800;
-            --black: #000000;
-            --dark: #0b0b0b;
-            --dark-2: #121212;
-        }
-        html {
-            scroll-padding-top: 90px;
-        }
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: var(--black);
-            color: #f3f3f3;
-        }
-        ::selection {
-            background: var(--yellow);
-            color: #000;
-        }
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #090909;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--yellow);
-            border-radius: 10px;
-        }
-        /* Focus accesible */
-        :focus-visible {
-            outline: 3px solid var(--yellow);
-            outline-offset: 3px;
-        }
-        /* Inputs */
-        input,
-        select {
-            color-scheme: dark;
-        }
-        input::placeholder {
-            color: #71717a;
-        }
-        /* FAQ */
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .3s ease;
-        }
-        .faq-item.active .faq-content {
-            max-height: 300px;
-        }
-        .faq-icon {
-            transition: transform .3s ease;
-        }
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-        /* Countdown */
-        .countdown-box {
-            background: rgba(0, 0, 0, .8);
-            border: 1px solid rgba(255, 215, 0, .25);
-            backdrop-filter: blur(8px);
-        }
-        /* Loading */
-        .loading-spinner {
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        /* Toast */
-        #toast {
-            transform: translateY(150%);
-            transition: transform .3s ease;
-        }
-        #toast.show {
-            transform: translateY(0);
-        }
-        /* Mobile menu */
-        #mobile-menu {
-            transition: all .25s ease;
-        }
-        /* Reduced motion */
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                scroll-behavior: auto !important;
-                animation-duration: .01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: .01ms !important;
-            }
-        }
-    </style>
+    <!-- CSS -->
+     <link rel="stylesheet" href="./app/css/styles.css">
     <!-- Schema.org Event -->
     <script type="application/ld+json">
     {
@@ -178,11 +79,11 @@
     <div
         class="bg-yellow-400 text-black font-black py-2.5 px-4 text-center text-xs sm:text-sm uppercase tracking-wider">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
-            <span>
+            <!-- <span>
                 <i class="fa-solid fa-paw mr-1"></i>
                 MTB PUG'S SANTA CRUZ EL PORVENIR IXTACUIXTLA
             </span>
-            <span class="hidden sm:inline">|</span>
+            <span class="hidden sm:inline">|</span> -->
             <span>
                 ¡EVENTO TOTALMENTE GRATUITO!
             </span>
@@ -285,7 +186,7 @@
     <!-- ========================================================= -->
     <section id="inicio" class="relative pt-16 pb-20 md:pt-24 md:pb-28 bg-zinc-950 overflow-hidden">
         <div class="absolute inset-0 opacity-15 bg-cover bg-center pointer-events-none"
-            style="background-image:url('https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=1920&q=80');">
+            style="background-image:url('./app/img/background.png');">
         </div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -809,7 +710,7 @@
                         <label for="nombre" class="block text-sm font-black uppercase text-yellow-400 mb-2">
                             Nombre completo *
                         </label>
-                        <input id="nombre" type="text" name="nombre" required autocomplete="name" maxlength="100"
+                        <input id="nombre" type="text" name="nombre" required autocomplete="off" maxlength="100"
                             placeholder="Ej. Juan Pérez Gómez"
                             class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
@@ -834,7 +735,7 @@
                             </span>
                         </label>
                         <input id="procedencia" type="text" name="procedencia" maxlength="100"
-                            autocomplete="address-level2" placeholder="Ej. Ixtacuixtla, Tlaxcala"
+                            autocomplete="off" placeholder="Ej. Ixtacuixtla, Tlaxcala"
                             class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
                     <!-- TEAM -->
@@ -875,10 +776,13 @@
                         <label for="telefono" class="block text-sm font-black uppercase text-yellow-400 mb-2">
                             Teléfono / WhatsApp *
                         </label>
-                        <input id="telefono" type="tel" name="telefono" required autocomplete="tel" maxlength="15"
-                            inputmode="tel" placeholder="Ej. 246 000 0000"
+                        <input id="telefono" type="tel" name="telefono" required autocomplete="off" 
+                            minlength="10" maxlength="10" pattern="[0-9]{10}" inputmode="numeric"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                            placeholder="Ej. 2460000000"
                             class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
                     </div>
+
                     <!-- EMERGENCY -->
                     <div>
                         <label for="emergencia" class="block text-sm font-black uppercase text-yellow-400 mb-2">
@@ -886,13 +790,15 @@
                         </label>
                         <input id="emergencia_name" type="text" name="emergencia_name" required maxlength="150"
                             placeholder="Nombre"
+                            class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition mb-2">
+
+                        <input id="emergencia_number" type="tel" name="emergencia_number" required 
+                            minlength="10" maxlength="10" pattern="[0-9]{10}" inputmode="numeric"
+                            oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                            placeholder="Teléfono de contacto (10 dígitos)"
                             class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
-                    
-                        <input id="emergencia_number" type="tel" name="emergencia_number" required maxlength="15"
-                            placeholder="Teléfono de contacto"
-                            class="w-full bg-black border-2 border-zinc-800 rounded-lg p-4 text-white focus:border-yellow-400 focus:outline-none transition">
-                        
-                            <input id="emergencia" type="hidden" name="emergencia" >
+
+                        <input id="emergencia" type="hidden" name="emergencia">
                     </div>
                     <!-- PRIVACY -->
                     <div class="bg-black border border-zinc-800 rounded-lg p-4">
@@ -1070,14 +976,15 @@
                 </h2>
             </div>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-5 max-w-4xl mx-auto">
-                <div class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
+                <a href="https://www.facebook.com/SPORTIQSBIT" target="_blank" rel="noopener noreferrer"
+                    class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
                     <img src="./app/img/patrocinador1.png" alt="Patrocinador oficial 1" loading="lazy" decoding="async"
                         class="max-h-full max-w-full object-contain"
                         onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <span class="hidden text-xs text-zinc-500 font-bold">
                         PATROCINADOR
                     </span>
-                </div>
+                </a>
                 <div class="bg-black border border-zinc-800 p-4 rounded-lg flex items-center justify-center h-28">
                     <img src="./app/img/patrocinador2.png" alt="Patrocinador oficial 2" loading="lazy" decoding="async"
                         class="max-h-full max-w-full object-contain"

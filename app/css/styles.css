@@ -1,0 +1,119 @@
+:root {
+    --yellow: #ffd700;
+    --yellow-dark: #e6b800;
+    --black: #000000;
+    --dark: #0b0b0b;
+    --dark-2: #121212;
+}
+
+html {
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--black);
+    color: #f3f3f3;
+}
+
+::selection {
+    background: var(--yellow);
+    color: #000;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #090909;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--yellow);
+    border-radius: 10px;
+}
+
+/* Focus accesible */
+:focus-visible {
+    outline: 3px solid var(--yellow);
+    outline-offset: 3px;
+}
+
+/* Inputs */
+input,
+select {
+    color-scheme: dark;
+}
+
+input::placeholder {
+    color: #71717a;
+}
+
+/* FAQ */
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .3s ease;
+}
+
+.faq-item.active .faq-content {
+    max-height: 300px;
+}
+
+.faq-icon {
+    transition: transform .3s ease;
+}
+
+.faq-item.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+/* Countdown */
+.countdown-box {
+    background: rgba(0, 0, 0, .8);
+    border: 1px solid rgba(255, 215, 0, .25);
+    backdrop-filter: blur(8px);
+}
+
+/* Loading */
+.loading-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Toast */
+#toast {
+    transform: translateY(150%);
+    transition: transform .3s ease;
+}
+
+#toast.show {
+    transform: translateY(0);
+}
+
+/* Mobile menu */
+#mobile-menu {
+    transition: all .25s ease;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
