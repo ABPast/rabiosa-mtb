@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p class="text-xs text-zinc-400 mt-0.5">${item.equipo}</p>
                 </div>
                 <div class="text-right">
-                    <span class="text-xs text-zinc-500 uppercase font-bold block">Folio</span>
+                    <span class="text-xs text-zinc-500 uppercase font-bold block">Registro</span>
                     <span class="text-xl font-black text-yellow-400">#${String(item.registro).padStart(3, '0')}</span>
                 </div>
             </div>
