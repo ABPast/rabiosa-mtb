@@ -376,7 +376,6 @@ class RabiosaApp {
             `https://wa.me/${this.CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
         this.whatsappLink.classList
             .remove('hidden');
-
         this.whatsappGroup.href =
             this.CONFIG.groupWhats;
     }
@@ -551,10 +550,8 @@ class RabiosaApp {
          */
         const emer_name = document.getElementById('emergencia_name').value.trim();
         const emer_numb = document.getElementById('emergencia_number').value.trim();
-    
         // Asigna el valor unido a un input oculto antes de enviar
         document.getElementById('emergencia').value = `${emer_name} - ${emer_numb}`;
-        
         return true;
     }
     /* =========================================================
@@ -828,7 +825,6 @@ class RabiosaApp {
                             this.registro
                         ).padStart(3, '0')}
             ¡Nos vemos en la rodada!
-            
             Registrate aquí: ${this.CONFIG.urlPage}`;
         /*
          * Dispositivos que soportan
@@ -871,7 +867,6 @@ class RabiosaApp {
             );
         }
     }
-    
     initSecurityToken() {
         const tokenField =
             document.getElementById(
@@ -886,7 +881,6 @@ class RabiosaApp {
             token;
     }
 }
-
 /* ============================================================
    ARRANQUE
    ============================================================ */
@@ -895,5 +889,203 @@ document.addEventListener(
     () => {
         window.rabiosaApp =
             new RabiosaApp();
+    }
+);
+// ============================================================
+// CARRUSEL DE PATROCINADORES
+// ============================================================
+class SponsorsCarousel {
+    constructor() {
+        this.carousel = document.getElementById('sponsors-carousel');
+        this.prevBtn = document.getElementById('sponsors-prev');
+        this.nextBtn = document.getElementById('sponsors-next');
+        this.dotsContainer = document.getElementById('sponsors-dots');
+        if (!this.carousel || !this.prevBtn || !this.nextBtn) {
+            return;
+        }
+        this.slides = Array.from(
+            this.carousel.querySelectorAll('.sponsor-slide')
+        );
+        this.currentIndex = 0;
+        this.autoPlayInterval = null;
+        this.init();
+    }
+    init() {
+        this.createDots();
+        this.prevBtn.addEventListener(
+            'click',
+            () => this.prev()
+        );
+        this.nextBtn.addEventListener(
+            'click',
+            () => this.next()
+        );
+        this.carousel.addEventListener(
+            'scroll',
+            () => this.updateActiveDot()
+        );
+        // Pausar mientras el usuario interactúa
+        this.carousel.addEventListener(
+            'mouseenter',
+            () => this.stopAutoPlay()
+        );
+        this.carousel.addEventListener(
+            'mouseleave',
+            () => this.startAutoPlay()
+        );
+        this.carousel.addEventListener(
+            'touchstart',
+            () => this.stopAutoPlay(),
+            { passive: true }
+        );
+        this.carousel.addEventListener(
+            'touchend',
+            () => this.startAutoPlay()
+        );
+        // Iniciar desplazamiento automático
+        this.startAutoPlay();
+        // Ajustar indicador al cargar
+        this.updateActiveDot();
+    }
+    getSlideWidth() {
+        if (!this.slides.length) {
+            return 0;
+        }
+        const slide = this.slides[0];
+        const style = window.getComputedStyle(
+            this.carousel
+        );
+        const gap = parseFloat(style.columnGap || style.gap || 0);
+        return slide.offsetWidth + gap;
+    }
+    next() {
+        const slideWidth = this.getSlideWidth();
+        if (!slideWidth) {
+            return;
+        }
+        const maxScroll =
+            this.carousel.scrollWidth -
+            this.carousel.clientWidth;
+        const nextPosition =
+            this.carousel.scrollLeft + slideWidth;
+        if (nextPosition >= maxScroll - 10) {
+            this.carousel.scrollTo({
+                left: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            this.carousel.scrollBy({
+                left: slideWidth,
+                behavior: 'smooth'
+            });
+        }
+    }
+    prev() {
+        const slideWidth = this.getSlideWidth();
+        if (!slideWidth) {
+            return;
+        }
+        if (this.carousel.scrollLeft <= 10) {
+            this.carousel.scrollTo({
+                left: this.carousel.scrollWidth,
+                behavior: 'smooth'
+            });
+        } else {
+            this.carousel.scrollBy({
+                left: -slideWidth,
+                behavior: 'smooth'
+            });
+        }
+    }
+    createDots() {
+        if (!this.dotsContainer) {
+            return;
+        }
+        this.dotsContainer.innerHTML = '';
+        this.slides.forEach((slide, index) => {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'sponsor-dot';
+            dot.setAttribute(
+                'aria-label',
+                `Ver patrocinador ${index + 1}`
+            );
+            dot.addEventListener(
+                'click',
+                () => this.goTo(index)
+            );
+            this.dotsContainer.appendChild(dot);
+        });
+        this.dots =
+            Array.from(
+                this.dotsContainer.children
+            );
+    }
+    goTo(index) {
+        if (!this.slides[index]) {
+            return;
+        }
+        const slideWidth = this.getSlideWidth();
+        this.carousel.scrollTo({
+            left: slideWidth * index,
+            behavior: 'smooth'
+        });
+        this.currentIndex = index;
+        this.updateDots();
+    }
+    updateActiveDot() {
+        if (!this.slides.length) {
+            return;
+        }
+        const slideWidth = this.getSlideWidth();
+        if (!slideWidth) {
+            return;
+        }
+        const index =
+            Math.round(
+                this.carousel.scrollLeft / slideWidth
+            );
+        this.currentIndex =
+            Math.min(
+                Math.max(index, 0),
+                this.slides.length - 1
+            );
+        this.updateDots();
+    }
+    updateDots() {
+        if (!this.dots) {
+            return;
+        }
+        this.dots.forEach(
+            (dot, index) => {
+                dot.classList.toggle(
+                    'active',
+                    index === this.currentIndex
+                );
+            }
+        );
+    }
+    startAutoPlay() {
+        this.stopAutoPlay();
+        this.autoPlayInterval =
+            setInterval(
+                () => this.next(),
+                2500
+            );
+    }
+    stopAutoPlay() {
+        if (this.autoPlayInterval) {
+            clearInterval(
+                this.autoPlayInterval
+            );
+            this.autoPlayInterval = null;
+        }
+    }
+}
+// Inicializar cuando el DOM esté listo
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+        new SponsorsCarousel();
     }
 );
