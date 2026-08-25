@@ -776,7 +776,7 @@ class RabiosaApp {
             this.submitBtn.disabled =
                 false;
             this.submitBtn.innerHTML =
-                '<i class="fa-solid fa-paper-plane"></i> Enviar Mi Registro Gratis';
+                '<i class="fa-solid fa-paper-plane"></i> Enviar Mi Registro';
         }
     }
     /* =========================================================
