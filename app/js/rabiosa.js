@@ -29,7 +29,7 @@ class RabiosaApp {
             stravaLong: '',
             // Formato: 521XXXXXXXXXX, sin +, espacios ni guiones.
             whatsapp: '5212481231457',
-            groupWhats: 'https://chat.whatsapp.com/LJFcZ8aya4e69fkLqzYoE2',
+            groupWhats: 'https://chat.whatsapp.com/H8IElKhyw4856ftBU64BWF',
             urlPage: 'https://mtb-pugs.sportiqs.com.mx',
         };
         /*
