@@ -39,6 +39,7 @@ class RabiosaApp {
          */
         this.registro = null;
         this.toastTimeout = null;
+        this.isSubmitting = false;
         /*
          * =====================================================
          * INICIAR
@@ -589,37 +590,254 @@ class RabiosaApp {
     /* =========================================================
        FORMULARIO - ENVÍO
        ========================================================= */
+    // async submitForm(event) {
+    //     event.preventDefault();
+    //     /*
+    //      * Validar antes de enviar.
+    //      */
+    //     if (!this.validateForm()) {
+    //         return;
+    //     }
+    //     /*
+    //      * Evitar doble clic.
+    //      */
+    //     if (this.submitBtn.disabled) {
+    //         return;
+    //     }
+    //     /*
+    //      * Ocultar errores anteriores.
+    //      */
+    //     if (this.errorBox) {
+    //         this.errorBox.classList
+    //             .add('hidden');
+    //     }
+    //     /*
+    //      * Desactivar botón.
+    //      */
+    //     this.submitBtn.disabled =
+    //         true;
+    //     this.submitBtn.innerHTML =
+    //         '<i class="fa-solid fa-spinner fa-spin"></i> Enviando información...';
+    //     /*
+    //      * Timeout de seguridad.
+    //      */
+    //     const controller =
+    //         new AbortController();
+    //     const timeout =
+    //         setTimeout(
+    //             () => {
+    //                 controller.abort();
+    //             },
+    //             20000
+    //         );
+    //     try {
+    //         /*
+    //          * Enviar formulario a Apps Script.
+    //          */
+    //         const response =
+    //             await fetch(
+    //                 this.CONFIG.scriptURL,
+    //                 {
+    //                     method: 'POST',
+    //                     body:
+    //                         new FormData(
+    //                             this.form
+    //                         ),
+    //                     signal:
+    //                         controller.signal
+    //                 }
+    //             );
+    //         /*
+    //          * Liberar timeout.
+    //          */
+    //         clearTimeout(
+    //             timeout
+    //         );
+    //         /*
+    //          * Verificar HTTP.
+    //          */
+    //         if (!response.ok) {
+    //             throw new Error(
+    //                 `HTTP ${response.status}`
+    //             );
+    //         }
+    //         /*
+    //          * Leer respuesta de Apps Script.
+    //          */
+    //         const result =
+    //             await response.json();
+    //         /*
+    //          * Verificar resultado.
+    //          */
+    //         if (
+    //             !result ||
+    //             result.result !== 'success'
+    //         ) {
+    //             throw new Error(
+    //                 result?.error ||
+    //                 'Google Apps Script no confirmó el registro.'
+    //             );
+    //         }
+    //         /*
+    //          * =================================================
+    //          * AQUÍ ESTÁ LA PARTE IMPORTANTE
+    //          * =================================================
+    //          *
+    //          * El número NO se genera en JavaScript.
+    //          *
+    //          * Google Apps Script devuelve:
+    //          *
+    //          * {
+    //          *    result: "success",
+    //          *    registro: 37
+    //          * }
+    //          *
+    //          * Nosotros utilizamos exactamente ese número.
+    //          */
+    //         this.registro =
+    //             result.registro;
+    //         /*
+    //          * Mostrar número de registro.
+    //          */
+    //         if (this.folioElement) {
+    //             this.folioElement.textContent =
+    //                 `#${String(
+    //                     this.registro
+    //                 ).padStart(3, '0')}`;
+    //         }
+    //         /*
+    //          * Limpiar formulario.
+    //          */
+    //         this.form.reset();
+    //         /*
+    //          * Mostrar confirmación.
+    //          */
+    //         if (this.successBanner) {
+    //             this.successBanner
+    //                 .classList
+    //                 .remove('hidden');
+    //         }
+    //         /*
+    //          * Mensaje.
+    //          */
+    //         this.showToast(
+    //             `Registro #${this.registro} realizado correctamente.`
+    //         );
+    //     } catch (error) {
+    //         clearTimeout(
+    //             timeout
+    //         );
+    //         console.error(
+    //             'Error al enviar registro:',
+    //             error
+    //         );
+    //         let message =
+    //             'Hubo un problema de conexión. Inténtalo nuevamente.';
+    //         if (
+    //             error.name ===
+    //             'AbortError'
+    //         ) {
+    //             message =
+    //                 'La solicitud tardó demasiado. Verifica tu conexión e inténtalo nuevamente.';
+    //         }
+    //         if (
+    //             error.message &&
+    //             error.message.includes(
+    //                 'Google Apps Script'
+    //             )
+    //         ) {
+    //             message =
+    //                 error.message;
+    //         }
+    //         /*
+    //          * Mostrar error dentro del formulario.
+    //          */
+    //         if (this.errorMessage) {
+    //             this.errorMessage.textContent =
+    //                 message;
+    //         }
+    //         if (this.errorBox) {
+    //             this.errorBox.classList
+    //                 .remove('hidden');
+    //         }
+    //         /*
+    //          * Toast.
+    //          */
+    //         this.showToast(
+    //             message,
+    //             'error'
+    //         );
+    //     } finally {
+    //         /*
+    //          * Reactivar botón.
+    //          */
+    //         this.submitBtn.disabled =
+    //             false;
+    //         this.submitBtn.innerHTML =
+    //             '<i class="fa-solid fa-paper-plane"></i> Enviar Mi Registro';
+    //     }
+    // }
     async submitForm(event) {
-        event.preventDefault();
         /*
-         * Validar antes de enviar.
-         */
+        * =====================================================
+        * EVITAR SUBMIT NATIVO
+        * =====================================================
+        */
+        event.preventDefault();
+        event.stopPropagation();
+        /*
+        * =====================================================
+        * EVITAR DOBLE PETICIÓN
+        * =====================================================
+        *
+        * Esta variable es más segura que depender únicamente
+        * de submitBtn.disabled.
+        */
+        if (this.isSubmitting) {
+            console.warn(
+                'Envío bloqueado: ya existe una petición en curso.'
+            );
+            return;
+        }
+        /*
+        * =====================================================
+        * VALIDAR FORMULARIO
+        * =====================================================
+        */
         if (!this.validateForm()) {
             return;
         }
         /*
-         * Evitar doble clic.
-         */
-        if (this.submitBtn.disabled) {
-            return;
-        }
+        * =====================================================
+        * ACTIVAR BLOQUEO
+        * =====================================================
+        */
+        this.isSubmitting = true;
         /*
-         * Ocultar errores anteriores.
-         */
+        * =====================================================
+        * OCULTAR ERROR ANTERIOR
+        * =====================================================
+        */
         if (this.errorBox) {
-            this.errorBox.classList
-                .add('hidden');
+            this.errorBox.classList.add(
+                'hidden'
+            );
         }
         /*
-         * Desactivar botón.
-         */
-        this.submitBtn.disabled =
-            true;
-        this.submitBtn.innerHTML =
-            '<i class="fa-solid fa-spinner fa-spin"></i> Enviando información...';
+        * =====================================================
+        * DESACTIVAR BOTÓN
+        * =====================================================
+        */
+        if (this.submitBtn) {
+            this.submitBtn.disabled = true;
+            this.submitBtn.innerHTML =
+                '<i class="fa-solid fa-spinner fa-spin"></i> Enviando información...';
+        }
         /*
-         * Timeout de seguridad.
-         */
+        * =====================================================
+        * TIMEOUT
+        * =====================================================
+        */
         const controller =
             new AbortController();
         const timeout =
@@ -631,43 +849,76 @@ class RabiosaApp {
             );
         try {
             /*
-             * Enviar formulario a Apps Script.
-             */
+            * =================================================
+            * CREAR FORM DATA
+            * =================================================
+            */
+            const formData =
+                new FormData(
+                    this.form
+                );
+            /*
+            * =================================================
+            * POST
+            * =================================================
+            */
+            console.log(
+                '[RABIOSA] Enviando POST a Apps Script...'
+            );
             const response =
                 await fetch(
                     this.CONFIG.scriptURL,
                     {
                         method: 'POST',
-                        body:
-                            new FormData(
-                                this.form
-                            ),
-                        signal:
-                            controller.signal
+                        body: formData,
+                        signal: controller.signal
                     }
                 );
             /*
-             * Liberar timeout.
-             */
+            * =================================================
+            * LIMPIAR TIMEOUT
+            * =================================================
+            */
             clearTimeout(
                 timeout
             );
             /*
-             * Verificar HTTP.
-             */
+            * =================================================
+            * VERIFICAR RESPUESTA HTTP
+            * =================================================
+            */
             if (!response.ok) {
                 throw new Error(
                     `HTTP ${response.status}`
                 );
             }
             /*
-             * Leer respuesta de Apps Script.
-             */
+            * =================================================
+            * LEER JSON
+            * =================================================
+            */
             const result =
                 await response.json();
+            console.log(
+                '[RABIOSA] Respuesta Apps Script:',
+                result
+            );
             /*
-             * Verificar resultado.
-             */
+            * =================================================
+            * VALIDAR RESPUESTA DEL SERVIDOR
+            * =================================================
+            *
+            * IMPORTANTE:
+            *
+            * Si Apps Script responde:
+            *
+            * {
+            *   result: "error",
+            *   error: "Este número ya tiene 2 registros..."
+            * }
+            *
+            * mostramos EXACTAMENTE ese mensaje.
+            */
             if (
                 !result ||
                 result.result !== 'success'
@@ -678,26 +929,17 @@ class RabiosaApp {
                 );
             }
             /*
-             * =================================================
-             * AQUÍ ESTÁ LA PARTE IMPORTANTE
-             * =================================================
-             *
-             * El número NO se genera en JavaScript.
-             *
-             * Google Apps Script devuelve:
-             *
-             * {
-             *    result: "success",
-             *    registro: 37
-             * }
-             *
-             * Nosotros utilizamos exactamente ese número.
-             */
+            * =================================================
+            * REGISTRO EXITOSO
+            * =================================================
+            */
             this.registro =
                 result.registro;
             /*
-             * Mostrar número de registro.
-             */
+            * =================================================
+            * MOSTRAR FOLIO
+            * =================================================
+            */
             if (this.folioElement) {
                 this.folioElement.textContent =
                     `#${String(
@@ -705,20 +947,25 @@ class RabiosaApp {
                     ).padStart(3, '0')}`;
             }
             /*
-             * Limpiar formulario.
-             */
+            * =================================================
+            * LIMPIAR FORMULARIO
+            * =================================================
+            */
             this.form.reset();
             /*
-             * Mostrar confirmación.
-             */
+            * =================================================
+            * MOSTRAR CONFIRMACIÓN
+            * =================================================
+            */
             if (this.successBanner) {
-                this.successBanner
-                    .classList
+                this.successBanner.classList
                     .remove('hidden');
             }
             /*
-             * Mensaje.
-             */
+            * =================================================
+            * TOAST ÉXITO
+            * =================================================
+            */
             this.showToast(
                 `Registro #${this.registro} realizado correctamente.`
             );
@@ -727,11 +974,21 @@ class RabiosaApp {
                 timeout
             );
             console.error(
-                'Error al enviar registro:',
+                '[RABIOSA] Error al enviar registro:',
                 error
             );
+            /*
+            * =================================================
+            * MENSAJE POR DEFECTO
+            * =================================================
+            */
             let message =
-                'Hubo un problema de conexión. Inténtalo nuevamente.';
+                'No pudimos enviar tu registro. Inténtalo nuevamente.';
+            /*
+            * =================================================
+            * TIMEOUT
+            * =================================================
+            */
             if (
                 error.name ===
                 'AbortError'
@@ -739,18 +996,35 @@ class RabiosaApp {
                 message =
                     'La solicitud tardó demasiado. Verifica tu conexión e inténtalo nuevamente.';
             }
-            if (
+            /*
+            * =================================================
+            * ERROR DEL SERVIDOR
+            * =================================================
+            *
+            * Si Apps Script rechazó el registro,
+            * mostramos su mensaje.
+            */
+            else if (
                 error.message &&
-                error.message.includes(
-                    'Google Apps Script'
-                )
+                error.message !== ''
             ) {
+                /*
+                * Si es un error generado por Apps Script,
+                * mostrarlo directamente.
+                *
+                * Ejemplo:
+                *
+                * "Este número de teléfono ya tiene 2
+                * registros..."
+                */
                 message =
                     error.message;
             }
             /*
-             * Mostrar error dentro del formulario.
-             */
+            * =================================================
+            * MOSTRAR ERROR EN FORMULARIO
+            * =================================================
+            */
             if (this.errorMessage) {
                 this.errorMessage.textContent =
                     message;
@@ -760,20 +1034,33 @@ class RabiosaApp {
                     .remove('hidden');
             }
             /*
-             * Toast.
-             */
+            * =================================================
+            * TOAST
+            * =================================================
+            */
             this.showToast(
                 message,
                 'error'
             );
         } finally {
             /*
-             * Reactivar botón.
-             */
-            this.submitBtn.disabled =
+            * =================================================
+            * LIBERAR BLOQUEO
+            * =================================================
+            */
+            this.isSubmitting =
                 false;
-            this.submitBtn.innerHTML =
-                '<i class="fa-solid fa-paper-plane"></i> Enviar Mi Registro';
+            /*
+            * =================================================
+            * REACTIVAR BOTÓN
+            * =================================================
+            */
+            if (this.submitBtn) {
+                this.submitBtn.disabled =
+                    false;
+                this.submitBtn.innerHTML =
+                    '<i class="fa-solid fa-paper-plane"></i> Enviar Mi Registro';
+            }
         }
     }
     /* =========================================================
@@ -884,9 +1171,29 @@ class RabiosaApp {
 /* ============================================================
    ARRANQUE
    ============================================================ */
+/* document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+        window.rabiosaApp =
+            new RabiosaApp();
+    }
+); */
 document.addEventListener(
     'DOMContentLoaded',
     () => {
+        /*
+         * =====================================================
+         * EVITAR INICIALIZACIÓN DUPLICADA
+         * =====================================================
+         */
+        if (
+            window.rabiosaApp
+        ) {
+            console.warn(
+                '[RABIOSA] La aplicación ya fue inicializada.'
+            );
+            return;
+        }
         window.rabiosaApp =
             new RabiosaApp();
     }
