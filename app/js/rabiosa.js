@@ -32,6 +32,8 @@ class RabiosaApp {
             groupWhats: 'https://chat.whatsapp.com/H8IElKhyw4856ftBU64BWF',
             urlPage: 'https://mtb-pugs.sportiqs.com.mx',
         };
+
+        window.RABIOSA_CONFIG = this.CONFIG;
         /*
          * =====================================================
          * VARIABLES
@@ -1199,196 +1201,866 @@ document.addEventListener(
     }
 );
 // ============================================================
-// CARRUSEL DE PATROCINADORES
+// CARRUSEL DINÁMICO DE PATROCINADORES
 // ============================================================
+
 class SponsorsCarousel {
+
     constructor() {
-        this.carousel = document.getElementById('sponsors-carousel');
-        this.prevBtn = document.getElementById('sponsors-prev');
-        this.nextBtn = document.getElementById('sponsors-next');
-        this.dotsContainer = document.getElementById('sponsors-dots');
-        if (!this.carousel || !this.prevBtn || !this.nextBtn) {
+
+        this.carousel =
+            document.getElementById(
+                'sponsors-carousel'
+            );
+
+        this.prevBtn =
+            document.getElementById(
+                'sponsors-prev'
+            );
+
+        this.nextBtn =
+            document.getElementById(
+                'sponsors-next'
+            );
+
+        this.dotsContainer =
+            document.getElementById(
+                'sponsors-dots'
+            );
+
+        this.currentIndex = 0;
+
+        this.autoPlayInterval = null;
+
+        this.slides = [];
+
+        /*
+         * URL del Apps Script.
+         */
+        this.scriptURL =
+            window.RABIOSA_CONFIG
+                ?.scriptURL || '';
+
+        /*
+         * Si no existe el carrusel,
+         * no hacemos nada.
+         */
+        if (!this.carousel) {
             return;
         }
-        this.slides = Array.from(
-            this.carousel.querySelectorAll('.sponsor-slide')
-        );
-        this.currentIndex = 0;
-        this.autoPlayInterval = null;
-        this.init();
+
+        this.loadSponsors();
     }
-    init() {
+
+
+    // ========================================================
+    // CARGAR PATROCINADORES
+    // ========================================================
+
+    async loadSponsors() {
+
+        try {
+
+            if (!this.scriptURL) {
+
+                throw new Error(
+                    'No se encontró la URL de Google Apps Script.'
+                );
+
+            }
+
+            /*
+             * Indicador temporal.
+             */
+            this.carousel.innerHTML = `
+                <div class="
+                    w-full
+                    flex
+                    items-center
+                    justify-center
+                    py-10
+                    text-zinc-500
+                    text-sm
+                    font-bold
+                ">
+                    <i class="
+                        fa-solid
+                        fa-spinner
+                        fa-spin
+                        text-yellow-400
+                        mr-2
+                    "></i>
+
+                    Cargando patrocinadores...
+                </div>
+            `;
+
+
+            const response =
+                await fetch(
+                    `${this.scriptURL}?sponsors=1`,
+                    {
+                        method: 'GET',
+                        cache: 'no-store'
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    'No fue posible consultar los patrocinadores.'
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            if (
+                data.result !== 'success'
+            ) {
+
+                throw new Error(
+                    data.error ||
+                    'Google Apps Script no pudo obtener los patrocinadores.'
+                );
+
+            }
+
+
+            const patrocinadores =
+                Array.isArray(
+                    data.patrocinadores
+                )
+                    ? data.patrocinadores
+                    : [];
+
+
+            this.renderSponsors(
+                patrocinadores
+            );
+
+
+        } catch (error) {
+
+            console.error(
+                'Error cargando patrocinadores:',
+                error
+            );
+
+            this.showEmptyState();
+
+        }
+
+    }
+
+
+    // ========================================================
+    // GENERAR TARJETAS
+    // ========================================================
+
+    renderSponsors(
+        patrocinadores
+    ) {
+
+        this.carousel.innerHTML = '';
+
+        /*
+         * Si no existen patrocinadores activos.
+         */
+        if (
+            !patrocinadores.length
+        ) {
+
+            this.showEmptyState();
+
+            return;
+        }
+
+
+        patrocinadores.forEach(
+            sponsor => {
+
+                const slide =
+                    document.createElement(
+                        'a'
+                    );
+
+                slide.className = `
+                    sponsor-slide
+                    flex-none
+                    w-[75%]
+                    sm:w-[45%]
+                    md:w-[30%]
+                    lg:w-[23%]
+                    snap-center
+                    bg-black
+                    border
+                    border-zinc-800
+                    hover:border-yellow-400/60
+                    rounded-xl
+                    h-28
+                    sm:h-32
+                    p-5
+                    flex
+                    items-center
+                    justify-center
+                    transition
+                    duration-300
+                    hover:scale-[1.02]
+                `;
+
+
+                /*
+                 * Si tiene enlace,
+                 * lo utilizamos.
+                 */
+                if (
+                    sponsor.enlace
+                ) {
+
+                    slide.href =
+                        sponsor.enlace;
+
+                    slide.target =
+                        '_blank';
+
+                    slide.rel =
+                        'noopener noreferrer';
+
+                } else {
+
+                    /*
+                     * Si no tiene enlace,
+                     * no hacemos que parezca
+                     * un enlace.
+                     */
+                    slide.href =
+                        'javascript:void(0)';
+
+                    slide.removeAttribute(
+                        'target'
+                    );
+
+                }
+
+
+                /*
+                 * Imagen
+                 */
+                const img =
+                    document.createElement(
+                        'img'
+                    );
+
+                img.src =
+                    sponsor.logo;
+
+                img.alt =
+                    sponsor.nombre ||
+                    'Patrocinador oficial';
+
+                img.loading =
+                    'lazy';
+
+                img.decoding =
+                    'async';
+
+                img.className =
+                    'max-h-full max-w-full object-contain';
+
+
+                /*
+                 * Fallback visual.
+                 */
+                img.onerror =
+                    () => {
+
+                        img.style.display =
+                            'none';
+
+                        fallback.style.display =
+                            'block';
+
+                    };
+
+
+                /*
+                 * Texto alternativo
+                 * en caso de error.
+                 */
+                const fallback =
+                    document.createElement(
+                        'span'
+                    );
+
+                fallback.className =
+                    'text-xs text-zinc-500 font-bold text-center';
+
+                fallback.textContent =
+                    sponsor.nombre ||
+                    'PATROCINADOR';
+
+                fallback.style.display =
+                    'none';
+
+
+                slide.appendChild(
+                    img
+                );
+
+                slide.appendChild(
+                    fallback
+                );
+
+
+                this.carousel.appendChild(
+                    slide
+                );
+
+            }
+        );
+
+
+        /*
+         * Actualizar colección
+         * de slides.
+         */
+        this.slides =
+            Array.from(
+                this.carousel.querySelectorAll(
+                    '.sponsor-slide'
+                )
+            );
+
+
+        this.currentIndex = 0;
+
+
+        /*
+         * Inicializar carrusel.
+         */
+        this.initCarousel();
+
+    }
+
+
+    // ========================================================
+    // ESTADO SIN PATROCINADORES
+    // ========================================================
+
+    showEmptyState() {
+
+        this.carousel.innerHTML = `
+            <div class="
+                w-full
+                text-center
+                py-8
+                text-zinc-600
+                text-sm
+                font-bold
+            ">
+                Próximamente conocerás
+                a nuestros patrocinadores.
+            </div>
+        `;
+
+
+        if (
+            this.dotsContainer
+        ) {
+
+            this.dotsContainer.innerHTML =
+                '';
+
+        }
+
+        if (
+            this.prevBtn
+        ) {
+
+            this.prevBtn.classList.add(
+                'hidden'
+            );
+
+        }
+
+        if (
+            this.nextBtn
+        ) {
+
+            this.nextBtn.classList.add(
+                'hidden'
+            );
+
+        }
+
+    }
+
+
+    // ========================================================
+    // INICIALIZAR CARRUSEL
+    // ========================================================
+
+    initCarousel() {
+
+        /*
+         * Mostrar botones.
+         */
+        if (
+            this.prevBtn
+        ) {
+
+            this.prevBtn.classList.remove(
+                'hidden'
+            );
+
+        }
+
+        if (
+            this.nextBtn
+        ) {
+
+            this.nextBtn.classList.remove(
+                'hidden'
+            );
+
+        }
+
+
         this.createDots();
-        this.prevBtn.addEventListener(
-            'click',
-            () => this.prev()
-        );
-        this.nextBtn.addEventListener(
-            'click',
-            () => this.next()
-        );
+
+
+        if (
+            this.prevBtn
+        ) {
+
+            this.prevBtn.addEventListener(
+                'click',
+                () => this.prev()
+            );
+
+        }
+
+
+        if (
+            this.nextBtn
+        ) {
+
+            this.nextBtn.addEventListener(
+                'click',
+                () => this.next()
+            );
+
+        }
+
+
         this.carousel.addEventListener(
             'scroll',
             () => this.updateActiveDot()
         );
-        // Pausar mientras el usuario interactúa
+
+
+        /*
+         * Pausar al interactuar.
+         */
         this.carousel.addEventListener(
             'mouseenter',
             () => this.stopAutoPlay()
         );
+
+
         this.carousel.addEventListener(
             'mouseleave',
             () => this.startAutoPlay()
         );
+
+
         this.carousel.addEventListener(
             'touchstart',
             () => this.stopAutoPlay(),
-            { passive: true }
+            {
+                passive: true
+            }
         );
+
+
         this.carousel.addEventListener(
             'touchend',
             () => this.startAutoPlay()
         );
-        // Iniciar desplazamiento automático
+
+
         this.startAutoPlay();
-        // Ajustar indicador al cargar
+
         this.updateActiveDot();
+
     }
+
+
+    // ========================================================
+    // ANCHO DE SLIDE
+    // ========================================================
+
     getSlideWidth() {
-        if (!this.slides.length) {
+
+        if (
+            !this.slides.length
+        ) {
+
             return 0;
+
         }
-        const slide = this.slides[0];
-        const style = window.getComputedStyle(
-            this.carousel
+
+
+        const slide =
+            this.slides[0];
+
+
+        const style =
+            window.getComputedStyle(
+                this.carousel
+            );
+
+
+        const gap =
+            parseFloat(
+                style.columnGap ||
+                style.gap ||
+                0
+            );
+
+
+        return (
+            slide.offsetWidth +
+            gap
         );
-        const gap = parseFloat(style.columnGap || style.gap || 0);
-        return slide.offsetWidth + gap;
+
     }
+
+
+    // ========================================================
+    // SIGUIENTE
+    // ========================================================
+
     next() {
-        const slideWidth = this.getSlideWidth();
+
+        const slideWidth =
+            this.getSlideWidth();
+
+
         if (!slideWidth) {
             return;
         }
+
+
         const maxScroll =
             this.carousel.scrollWidth -
             this.carousel.clientWidth;
+
+
         const nextPosition =
-            this.carousel.scrollLeft + slideWidth;
-        if (nextPosition >= maxScroll - 10) {
+            this.carousel.scrollLeft +
+            slideWidth;
+
+
+        if (
+            nextPosition >=
+            maxScroll - 10
+        ) {
+
             this.carousel.scrollTo({
                 left: 0,
                 behavior: 'smooth'
             });
+
         } else {
+
             this.carousel.scrollBy({
                 left: slideWidth,
                 behavior: 'smooth'
             });
+
         }
+
     }
+
+
+    // ========================================================
+    // ANTERIOR
+    // ========================================================
+
     prev() {
-        const slideWidth = this.getSlideWidth();
+
+        const slideWidth =
+            this.getSlideWidth();
+
+
         if (!slideWidth) {
             return;
         }
-        if (this.carousel.scrollLeft <= 10) {
+
+
+        if (
+            this.carousel.scrollLeft <= 10
+        ) {
+
             this.carousel.scrollTo({
-                left: this.carousel.scrollWidth,
-                behavior: 'smooth'
+                left:
+                    this.carousel.scrollWidth,
+                behavior:
+                    'smooth'
             });
+
         } else {
+
             this.carousel.scrollBy({
-                left: -slideWidth,
-                behavior: 'smooth'
+                left:
+                    -slideWidth,
+                behavior:
+                    'smooth'
             });
+
         }
+
     }
+
+
+    // ========================================================
+    // DOTS
+    // ========================================================
+
     createDots() {
-        if (!this.dotsContainer) {
+
+        if (
+            !this.dotsContainer
+        ) {
+
             return;
+
         }
-        this.dotsContainer.innerHTML = '';
-        this.slides.forEach((slide, index) => {
-            const dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = 'sponsor-dot';
-            dot.setAttribute(
-                'aria-label',
-                `Ver patrocinador ${index + 1}`
-            );
-            dot.addEventListener(
-                'click',
-                () => this.goTo(index)
-            );
-            this.dotsContainer.appendChild(dot);
-        });
+
+
+        this.dotsContainer.innerHTML =
+            '';
+
+
+        this.slides.forEach(
+            (slide, index) => {
+
+                const dot =
+                    document.createElement(
+                        'button'
+                    );
+
+
+                dot.type =
+                    'button';
+
+
+                dot.className =
+                    'sponsor-dot';
+
+
+                dot.setAttribute(
+                    'aria-label',
+                    `Ver patrocinador ${index + 1}`
+                );
+
+
+                dot.addEventListener(
+                    'click',
+                    () =>
+                        this.goTo(
+                            index
+                        )
+                );
+
+
+                this.dotsContainer.appendChild(
+                    dot
+                );
+
+            }
+        );
+
+
         this.dots =
             Array.from(
                 this.dotsContainer.children
             );
+
     }
+
+
+    // ========================================================
+    // IR A SLIDE
+    // ========================================================
+
     goTo(index) {
-        if (!this.slides[index]) {
+
+        if (
+            !this.slides[index]
+        ) {
+
             return;
+
         }
-        const slideWidth = this.getSlideWidth();
+
+
+        const slideWidth =
+            this.getSlideWidth();
+
+
         this.carousel.scrollTo({
-            left: slideWidth * index,
-            behavior: 'smooth'
+
+            left:
+                slideWidth * index,
+
+            behavior:
+                'smooth'
+
         });
-        this.currentIndex = index;
+
+
+        this.currentIndex =
+            index;
+
+
         this.updateDots();
+
     }
+
+
+    // ========================================================
+    // ACTUALIZAR DOT
+    // ========================================================
+
     updateActiveDot() {
-        if (!this.slides.length) {
+
+        if (
+            !this.slides.length
+        ) {
+
             return;
+
         }
-        const slideWidth = this.getSlideWidth();
+
+
+        const slideWidth =
+            this.getSlideWidth();
+
+
         if (!slideWidth) {
             return;
         }
+
+
         const index =
             Math.round(
-                this.carousel.scrollLeft / slideWidth
+                this.carousel.scrollLeft /
+                slideWidth
             );
+
+
         this.currentIndex =
             Math.min(
-                Math.max(index, 0),
+                Math.max(
+                    index,
+                    0
+                ),
                 this.slides.length - 1
             );
+
+
         this.updateDots();
+
     }
+
+
+    // ========================================================
+    // ACTUALIZAR DOTS
+    // ========================================================
+
     updateDots() {
+
         if (!this.dots) {
             return;
         }
+
+
         this.dots.forEach(
             (dot, index) => {
+
                 dot.classList.toggle(
                     'active',
-                    index === this.currentIndex
+                    index ===
+                    this.currentIndex
                 );
+
             }
         );
+
     }
+
+
+    // ========================================================
+    // AUTOPLAY
+    // ========================================================
+
     startAutoPlay() {
+
         this.stopAutoPlay();
+
+
+        /*
+         * Si hay un solo patrocinador
+         * no necesitamos autoplay.
+         */
+        if (
+            this.slides.length <= 1
+        ) {
+
+            return;
+
+        }
+
+
         this.autoPlayInterval =
             setInterval(
                 () => this.next(),
                 2500
             );
+
     }
+
+
+    // ========================================================
+    // DETENER AUTOPLAY
+    // ========================================================
+
     stopAutoPlay() {
-        if (this.autoPlayInterval) {
+
+        if (
+            this.autoPlayInterval
+        ) {
+
             clearInterval(
                 this.autoPlayInterval
             );
-            this.autoPlayInterval = null;
+
+            this.autoPlayInterval =
+                null;
+
         }
+
     }
+
 }
+
 // Inicializar cuando el DOM esté listo
 document.addEventListener(
     'DOMContentLoaded',
